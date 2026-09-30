@@ -1,0 +1,1524 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#FFFFFF">
+<title>Tulpar Electronics — техника с доставкой по Казахстану</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F8FB; --surface:#FFFFFF; --surface-2:#EEF5F9; --ink:#23395B; --muted:#5F7390; --line:#DCE7EF;
+  --sky:#0B96BC; --sky-ink:#FFFFFF; --sky-soft:#E1F4FA; --gold:#F2B51D; --gold-soft:#FFF6D9; --gold-ink:#4A3500;
+  --ok:#1E8757; --ok-soft:#E0F5EA; --danger:#C23A3A; --danger-soft:#FDE8E8; --screen:#4B6C93; --hills:#E2EEF5;
+  --shadow:0 1px 2px rgba(35,57,91,.05),0 10px 28px rgba(35,57,91,.07);
+  --display:'Unbounded','Onest',system-ui,sans-serif;
+  --body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--hdr,68px) + 12px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(20px,2.4vw,26px)}
+h3{font-size:17px;font-weight:500}
+.muted{color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* header */
+.top{box-shadow:0 1px 0 var(--line),0 6px 20px rgba(35,57,91,.04);position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo-mark{width:36px;height:36px}
+.logo-text{font-family:var(--display);font-weight:700;font-size:19px;line-height:1;display:flex;flex-direction:column}
+.logo-text small{font-family:var(--body);font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.02em;margin-top:3px}
+.citybtn{display:flex;align-items:center;gap:6px;height:44px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600;white-space:nowrap;flex:none}
+.citybtn svg{width:18px;height:18px;color:var(--sky)}
+.citybtn:hover{border-color:var(--sky)}
+.citylist{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:0 12px;height:44px;min-width:0}
+.search:focus-within{border-color:var(--sky)}
+.search svg{width:18px;height:18px;flex:none;color:var(--muted)}
+.search input{border:0;background:transparent;outline:none;width:100%;min-width:0;height:100%}
+.icons{display:flex;gap:4px;flex:none}
+.ico{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;padding:6px 10px;border-radius:10px;font-size:12px;color:var(--muted)}
+.ico:hover,.ico.on{color:var(--ink);background:var(--surface-2)}
+.ico svg{width:22px;height:22px}
+.badge{position:absolute;top:0;right:4px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--gold);color:var(--gold-ink);font-size:11px;font-weight:700;display:grid;place-items:center}
+.badge:empty{display:none}
+@media (max-width:760px){
+  .top-row{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;gap:10px}
+  .search{order:3;flex-basis:100%}
+  .icons{margin-left:auto}
+  .ico .lbl{display:none}
+  .ico{padding:6px}
+  .top-row{gap:8px}
+  .logo-text small{display:none}
+  .citybtn{height:40px;padding:0 10px}
+  .icons{gap:0}
+}
+@media (max-width:520px){.ico[data-nav="author"]{display:none}}
+@media (max-width:420px){.logo-text{display:none}}
+
+/* buttons & fields */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;background:var(--sky);color:var(--sky-ink)}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.ghost:hover{background:var(--surface-2);filter:none}
+.btn.gold{background:var(--gold);color:var(--gold-ink)}
+.btn.danger{background:transparent;border-color:var(--line);color:var(--danger)}
+.btn.sm{height:36px;padding:0 12px;font-size:14px;border-radius:8px}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.link{background:none;border:0;padding:0;color:var(--sky);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label,.flabel{font-size:14px;font-weight:600}
+.input,select.input,textarea.input{height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%}
+textarea.input{height:auto;min-height:90px;padding:10px 12px;resize:vertical}
+.input:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px var(--sky-soft)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+.err{color:var(--danger);font-size:14px;margin:-6px 0 12px}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;margin-bottom:8px;background:var(--surface)}
+.choice:has(input:checked){border-color:var(--sky);background:var(--sky-soft)}
+.choice input{margin-top:4px;accent-color:var(--sky)}
+.choice b{display:block}
+.choice small{color:var(--muted)}
+.chk{display:flex;gap:10px;align-items:center;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--sky)}
+
+/* hero */
+.hero{padding:40px 0 28px;background:linear-gradient(180deg,#DDF2F9 0%,var(--bg) 100%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(28px,4vw,46px)}
+.hero p{font-size:18px;color:var(--muted);max-width:34em;margin:16px 0 24px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.estimator{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.est-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.est-head select{width:auto;min-width:190px}
+.est-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.est-facts div{background:var(--surface-2);border-radius:12px;padding:10px 12px}
+.est-facts small{display:block;color:var(--muted);font-size:12px}
+.est-facts b{font-size:15px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+@media (max-width:460px){.est-facts{grid-template-columns:1fr 1fr}.est-facts div:last-child{grid-column:span 2}}
+
+/* route */
+.route{width:100%;height:auto;display:block;overflow:visible}
+.route .hills{fill:var(--hills)}
+.route .base{stroke:var(--line);stroke-width:4;stroke-dasharray:2 9;stroke-linecap:round}
+.route .done{stroke:var(--sky);stroke-width:4;stroke-linecap:round}
+.route .pt{fill:var(--surface);stroke:var(--line);stroke-width:3}
+.route .pt.ok{fill:var(--sky);stroke:var(--sky)}
+.route .pt.cur{fill:var(--gold);stroke:var(--surface);stroke-width:4}
+.route .pulse{fill:var(--gold);opacity:.35;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+.kzmap{width:100%;max-width:760px;height:auto;display:block;margin:10px auto 0}
+.kzmap .land{fill:var(--surface-2);stroke:var(--line);stroke-width:1.5;stroke-linejoin:round}
+.kzmap .cdot{fill:var(--muted);opacity:.35}
+.kzmap .rest{stroke:var(--muted);stroke-width:2.5;stroke-dasharray:3 7;stroke-linecap:round;opacity:.7}
+.kzmap .done{stroke:var(--sky);stroke-width:4;stroke-linecap:round}
+.kzmap .end{fill:var(--surface);stroke:var(--sky);stroke-width:3}
+.kzmap .pkg{fill:var(--gold);stroke:var(--surface);stroke-width:3}
+.kzmap .pulse{fill:var(--gold);opacity:.35;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+.kzmap text{font-family:var(--body);font-size:14px;font-weight:600;fill:var(--ink)}
+.whereis{display:flex;align-items:center;gap:10px;background:var(--gold-soft);border-radius:12px;padding:10px 14px;margin-top:14px;font-weight:600}
+.whereis svg{width:20px;height:20px;flex:none;color:var(--gold-ink)}
+@media (prefers-reduced-motion:reduce){.kzmap .pulse{animation:none}}
+.route-wrap{margin:6px 0 4px}
+.route-labels{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);margin-top:-6px}
+.route-labels span{flex:1;text-align:center}
+.route-labels span:first-child{text-align:left}
+.route-labels span:last-child{text-align:right}
+.route-labels .strong{color:var(--ink);font-weight:600}
+
+@keyframes pulse{from{transform:scale(.6);opacity:.5}to{transform:scale(1.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.route .pulse{animation:none;opacity:.25}}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:8px 0 36px}
+.trust div{background:var(--surface);padding:16px 18px}
+.trust b{display:block;font-size:15px}
+.trust span{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.trust{grid-template-columns:1fr 1fr}}
+
+/* catalog */
+.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:thin}
+.chip{flex:none;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:500}
+.chip.on{background:var(--sky);color:var(--sky-ink);border-color:var(--sky)}
+.cat-layout{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,68px) + 16px)}
+.filters summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.filters summary::-webkit-details-marker{display:none}
+.fgroup{margin-top:16px}
+.fgroup .flabel{display:block;margin-bottom:8px}
+.fgroup .chk{font-size:15px;margin-bottom:6px}
+.fgroup.brands{max-height:260px;overflow-y:auto;padding-right:4px}
+.more{text-align:center;margin-top:20px}
+.range{width:100%;accent-color:var(--sky)}
+.grid-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.grid-head select{width:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+@media (max-width:860px){.cat-layout{grid-template-columns:1fr}.filters{position:static}}
+@media (max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}}
+
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.art{display:block;position:relative;aspect-ratio:5/4;background:var(--surface-2);background:color-mix(in srgb,var(--tint) 17%,var(--surface));text-decoration:none}
+.art svg{position:absolute;inset:8% 10%;width:80%;height:84%}
+.art img{position:absolute;inset:6%;width:88%;height:88%;object-fit:contain;opacity:0}
+.art.ph{background:#fff}
+.art.ph svg{display:none}
+.art.ph img{opacity:1}
+.tags{position:absolute;left:10px;top:10px;display:flex;gap:6px}
+.tag{font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--ink)}
+.tag.sale{background:var(--danger);color:#fff}
+.tag.new{background:var(--sky);color:var(--sky-ink)}
+.tag.hit{background:var(--gold);color:var(--gold-ink)}
+.favbtn{position:absolute;right:8px;top:8px;width:38px;height:38px;border-radius:50%;border:0;background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--muted);box-shadow:var(--shadow)}
+.favbtn svg{width:20px;height:20px}
+.favbtn.on{color:var(--danger)}
+.favbtn.on svg path{fill:currentColor}
+.card-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-name{font-weight:600;text-decoration:none;line-height:1.3}
+.card-name:hover{color:var(--sky)}
+.keyspec{display:flex;flex-direction:column;font-size:13px;color:var(--muted);line-height:1.35}
+.keyspec span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+.facts div{background:var(--surface-2);border-radius:10px;padding:8px 12px;font-size:14px}
+.facts small{display:block;color:var(--muted);font-size:12px}
+.tips{margin:0;padding-left:20px}
+.tips li{margin:6px 0}
+.pnav{display:flex;gap:6px;flex-wrap:wrap;margin:28px 0 0;position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,68px));z-index:5;background:var(--bg);padding:8px 0}
+.pnav a{text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.pnav a:hover{border-color:var(--sky);color:var(--sky)}
+.rating{font-size:13px;color:var(--muted)}
+.rating .star{color:var(--gold)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-size:19px}
+.price s{color:var(--muted);font-size:14px}
+.inst{font-size:13px;color:var(--muted)}
+.card-cta{margin-top:auto;padding-top:6px}
+.card-cta .btn{white-space:normal;height:auto;min-height:44px;padding:8px 12px;text-align:center;line-height:1.25}
+.qty{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:10px;height:44px;overflow:hidden}
+.qty button{width:44px;height:100%;border:0;background:var(--surface-2);cursor:pointer;font-size:20px;line-height:1}
+.qty span{font-weight:700}
+.qty.sm{height:36px;width:120px}
+.qty.sm button{width:36px}
+.empty{text-align:center;padding:48px 20px;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
+.empty p{color:var(--muted);margin:8px 0 18px}
+
+/* sections */
+.section{margin:40px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px;gap:12px}
+.page{padding-top:28px;padding-bottom:48px}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:16px}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--sky)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.panel+.panel{margin-top:16px}
+.panel h3{margin-bottom:14px}
+
+/* product */
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.pd-art{border-radius:20px;border:1px solid var(--line)}
+.pd h1{font-size:clamp(22px,3vw,32px);margin:6px 0 10px}
+.pd .price b{font-size:30px;font-family:var(--display)}
+.stock{font-size:14px;font-weight:600;margin:10px 0}
+.stock.ok{color:var(--ok)}
+.stock.no{color:var(--danger)}
+.pd-actions{display:flex;gap:10px;margin:16px 0}
+.pd-actions .btn:first-child,.pd-actions .qty{flex:1}
+.pd-deliv{background:var(--surface-2);border-radius:14px;padding:14px 16px;font-size:15px}
+.pd-deliv select{width:auto;height:36px;display:inline-block;margin-left:6px}
+.specs{width:100%;border-collapse:collapse;font-size:15px}
+.specs td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.specs td:first-child{color:var(--muted);width:42%;padding-right:12px}
+.feat{margin:0;padding-left:20px}
+.feat li{margin:4px 0}
+.reviews{display:grid;gap:12px}
+.review{border-bottom:1px solid var(--line);padding-bottom:12px}
+.review:last-child{border-bottom:0}
+.review header{display:flex;justify-content:space-between;gap:8px;font-size:14px}
+.review p{margin:6px 0 0}
+@media (max-width:860px){.pd{grid-template-columns:1fr}}
+
+/* cart & checkout */
+.two{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+@media (max-width:920px){.two{grid-template-columns:1fr}}
+.line{display:grid;grid-template-columns:84px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.line:last-child{border-bottom:0}
+.line .art{width:84px;border-radius:12px}
+.line-meta{display:flex;align-items:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+.line-sum{text-align:right;font-weight:700;white-space:nowrap}
+.summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,68px) + 16px)}
+.sum-row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:15px}
+.sum-row.total{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;font-size:20px;font-weight:700}
+.sum-row .minus{color:var(--ok)}
+.freebar{background:var(--gold-soft);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px}
+.freebar .bar{height:8px;background:var(--surface);border-radius:4px;margin-top:8px;overflow:hidden}
+.freebar .bar i{display:block;height:100%;background:var(--gold);border-radius:4px}
+.promo{display:flex;gap:8px;margin:12px 0}
+.promo .input{height:40px}
+.promo-on{display:flex;justify-content:space-between;align-items:center;background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:8px 12px;margin:12px 0;font-size:14px;font-weight:600}
+.step-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.step-title span{width:28px;height:28px;border-radius:50%;background:var(--sky);color:var(--sky-ink);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.mini{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:4px 0}
+
+/* profile */
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tab{background:none;border:0;padding:12px 14px;cursor:pointer;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tab.on{color:var(--ink);border-bottom-color:var(--sky)}
+.hello{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-family:var(--display);font-size:24px;font-weight:700}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.tile{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--surface);position:relative}
+.bank{background:linear-gradient(135deg,#0B96BC,#62C7E2);color:#fff;border:0;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
+.bank .num{font-size:18px;letter-spacing:.08em;font-weight:600}
+.bank .rm{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:8px;padding:4px 8px;cursor:pointer;font-size:13px}
+.addtile{border:2px dashed var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;min-height:140px;font-weight:600;color:var(--muted);border-radius:14px}
+.addtile:hover{border-color:var(--sky);color:var(--sky)}
+.level{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.level div{border:1px solid var(--line);border-radius:12px;padding:12px}
+.level div.on{border-color:var(--gold);background:var(--gold-soft)}
+.level small{display:block;color:var(--muted)}
+.bigpts{font-family:var(--display);font-size:40px;font-weight:700}
+
+/* orders */
+.olist{display:grid;gap:12px}
+.ocard{display:grid;grid-template-columns:1fr auto;gap:10px 20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px;text-decoration:none}
+.ocard:hover{border-color:var(--sky)}
+.ocard .progress{grid-column:1/-1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.ocard .progress i{display:block;height:100%;background:var(--sky)}
+.pill{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;font-size:13px;font-weight:700;background:var(--sky-soft);color:var(--sky);white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--danger-soft);color:var(--danger)}
+.status-now{font-family:var(--display);font-size:clamp(20px,2.6vw,28px);margin:8px 0 4px}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{position:relative;padding:0 0 20px 34px}
+.timeline li::before{content:"";position:absolute;left:10px;top:22px;bottom:0;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline li.ok::before{background:var(--sky)}
+.timeline .dot{position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;border:3px solid var(--line);background:var(--surface)}
+.timeline li.ok .dot{background:var(--sky);border-color:var(--sky)}
+.timeline li.cur .dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.timeline b{display:block}
+.timeline small{color:var(--muted);display:block}
+.timeline li.todo b{color:var(--muted);font-weight:500}
+.note{background:var(--sky-soft);border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:16px}
+.banner-ok{background:var(--ok-soft);color:var(--ok);border-radius:14px;padding:14px 18px;font-weight:600;margin-bottom:16px}
+
+/* admin */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+.tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.tbl th{background:var(--surface-2);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl select{height:36px;font-size:14px;max-width:260px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stats div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stats b{display:block;font-family:var(--display);font-size:22px}
+.stats small{color:var(--muted)}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+
+/* info */
+.prose{max-width:760px}
+.prose p,.prose li{font-size:17px}
+.prose h2{margin:28px 0 12px}
+.author{display:grid;grid-template-columns:180px 1fr;gap:28px;align-items:center}
+.author-photo{position:relative;width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#0B96BC,#62C7E2);display:grid;place-items:center;overflow:hidden;box-shadow:var(--shadow)}
+.author-photo span{font-family:var(--display);font-size:56px;font-weight:700;color:#fff}
+.author-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
+.author-photo.ph img{opacity:1}
+@media (max-width:620px){.author{grid-template-columns:1fr;justify-items:start}.author-photo{width:130px;height:130px}.author-photo span{font-size:40px}}
+.faq details{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.faq summary{padding:14px 16px;font-weight:600;cursor:pointer}
+.faq details p{margin:0;padding:0 16px 16px;color:var(--muted)}
+
+/* footer */
+footer{background:#E8F4F9;border-top:1px solid var(--line);margin-top:40px;padding:36px 0 24px}
+.fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.4fr;gap:28px}
+.fgrid h3{font-size:15px;margin-bottom:10px}
+.fgrid ul{list-style:none;padding:0;margin:0}
+.fgrid li{margin:6px 0}
+.fgrid a{text-decoration:none;color:var(--muted)}
+.fgrid a:hover{color:var(--sky)}
+.pays{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pays span{border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--muted)}
+.copy{margin-top:28px;font-size:13px;color:var(--muted)}
+@media (max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
+
+/* floating */
+.fabs{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;z-index:40}
+.fab{width:54px;height:54px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.2);text-decoration:none}
+.fab svg{width:26px;height:26px}
+.fab.wa{background:#25D366;color:#fff}
+.fab.chat{background:var(--sky);color:var(--sky-ink)}
+.chatbox{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 32px));height:min(480px,calc(100vh - 160px));background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.2);display:none;flex-direction:column;z-index:45;overflow:hidden}
+.chatbox.open{display:flex}
+.chat-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--sky);color:var(--sky-ink)}
+.chat-head small{display:block;opacity:.75;font-size:12px}
+.chat-head button{background:none;border:0;color:inherit;font-size:22px;cursor:pointer}
+.chat-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:14px}
+.msg.bot{background:var(--surface-2);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.me{background:var(--sky);color:var(--sky-ink);align-self:flex-end;border-bottom-right-radius:4px}
+.quick{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}
+.quick button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 10px;font-size:13px;cursor:pointer}
+.chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chat-form input{flex:1;height:40px;border-radius:10px;border:1px solid var(--line);padding:0 10px;background:var(--surface)}
+
+.toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;z-index:60;width:min(420px,calc(100vw - 32px))}
+.toast{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-left:5px solid var(--sky);padding:12px 16px;border-radius:12px;font-size:14px;box-shadow:0 10px 30px rgba(35,57,91,.18);animation:tin .2s ease-out}
+@keyframes tin{from{transform:translateY(8px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.toast{animation:none}}
+
+.sheet{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 100px));background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.2);z-index:44}
+.sheet h3{font-family:var(--display);font-weight:700;font-size:18px}
+.code{display:inline-block;font-weight:700;background:var(--gold-soft);border:1px dashed var(--gold);border-radius:8px;padding:4px 10px;letter-spacing:.04em}
+dialog{border:0;border-radius:18px;padding:0;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;width:min(460px,calc(100vw - 32px));background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(35,57,91,.35)}
+.dlg{padding:22px}
+.dlg h3{font-family:var(--display);font-weight:700;font-size:19px;margin-bottom:16px}
+.dlg-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.hint{font-size:13px;color:var(--muted);margin:-6px 0 12px}
+
+/* ===== MOBILE ===== */
+button,a,.chip,.tab,.choice,.chk{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.two>*,.pd>*,.cat-layout>*{min-width:0}
+.cats,.tabs{-webkit-overflow-scrolling:touch}
+@media (max-width:920px){.summary{position:static}}
+@media (max-width:760px){
+  input,select,textarea{font-size:16px!important}
+  body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  .top-row{flex-wrap:nowrap;height:60px;padding-top:0;padding-bottom:0;gap:8px}
+  .search{order:0;flex:1 1 0;height:40px}
+  .icons{position:fixed;left:0;right:0;bottom:0;z-index:35;justify-content:space-around;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(35,57,91,.07);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))}
+  .ico{flex:1;padding:6px 2px;font-size:11px}
+  .ico .lbl{display:block;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ico[data-nav="author"]{display:none}
+  .badge{right:calc(50% - 24px)}
+  .logo-text{display:none}
+  .fabs{bottom:calc(76px + env(safe-area-inset-bottom,0px));right:12px}
+  .fab{width:48px;height:48px}
+  .toasts{bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+  .sheet{left:12px;right:76px;width:auto;bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .chatbox{left:0;right:0;top:0;bottom:auto;width:auto;height:100vh;height:100dvh;border:0;border-radius:0}
+  .chat-head{padding-top:calc(14px + env(safe-area-inset-top,0px))}
+  .chat-form{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  body.chat-open{overflow:hidden}
+  .pnav{flex-wrap:nowrap;overflow-x:auto;margin-top:20px;scrollbar-width:none}
+  .pnav::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
+  .cats{scrollbar-width:none}
+  .pnav a{flex:none;white-space:nowrap}
+  .pd-actions{flex-wrap:wrap}
+  .pd-actions .btn:first-child,.pd-actions .btn,.pd-actions .qty{flex:1 1 140px}
+  .btn.sm{height:40px}
+  .chk input{width:22px;height:22px}
+  .kzmap text{font-size:22px}
+  .hero{padding:24px 0 20px}
+  .hero p{font-size:16px}
+  .section{margin:28px 0}
+}
+@media (max-width:480px){
+  .wrap{padding:0 14px}
+  .panel{padding:16px}
+  .estimator{padding:16px}
+  .line{grid-template-columns:72px 1fr}
+  .line .art{width:72px}
+  .line-sum{grid-column:2;text-align:left}
+  .ocard{grid-template-columns:1fr}
+  .level{grid-template-columns:1fr}
+  .card-body{padding:10px}
+  .card-name{font-size:14px}
+  .price b{font-size:17px}
+  .card .qty span{font-size:12px}
+  .card .qty button{width:38px}
+  .facts{grid-template-columns:1fr 1fr}
+  .specs td:first-child{width:40%}
+  .status-now{font-size:20px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <a href="#/" class="logo" aria-label="Tulpar Electronics, главная">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="15" fill="none" stroke="var(--gold)" stroke-width="5" stroke-dasharray="2.2 3.7"/>
+        <circle cx="20" cy="20" r="9" fill="var(--gold)"/>
+        <path d="M13 23c4-1 7-4 9-9 1 3 0 6-2 8 3-1 5-3 6-5 0 5-4 9-10 9-1 0-2 0-3-1z" fill="var(--surface)"/>
+      </svg>
+      <span class="logo-text">Tulpar<small>electronics</small></span>
+    </a>
+    <button class="citybtn" data-action="city" aria-label="Выбрать город"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span id="cityLbl">Алматы</span></button>
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="sr">Поиск товаров</span>
+      <input id="q" type="search" placeholder="Поиск: смартфон, наушники, MacBook…" autocomplete="off">
+    </label>
+    <nav class="icons" aria-label="Разделы">
+      <a href="#/info/author" class="ico" data-nav="author"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 17c1-2 2.4-3 4-3s3 1 4 3"/></svg><span class="lbl">Автор</span></a>
+      <a href="#/fav" class="ico" data-nav="fav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="lbl">Избранное</span><b class="badge" id="favCount"></b></a>
+      <a href="#/orders" class="ico" data-nav="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg><span class="lbl">Заказы</span><b class="badge" id="ordCount"></b></a>
+      <a href="#/profile" class="ico" data-nav="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="lbl" id="userLbl">Войти</span></a>
+      <a href="#/cart" class="ico" data-nav="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.2 11h11l2-8H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg><span class="lbl">Корзина</span><b class="badge" id="cartCount"></b></a>
+    </nav>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3>Tulpar Electronics</h3>
+        <p class="muted" style="margin:0;font-size:14px">Оригинальная техника со склада в Алматы с доставкой по всему Казахстану.</p>
+        <div class="pays"><span>VISA</span><span>Mastercard</span><span>Kaspi 0-0-12</span><span>Казпочта</span><span>СДЭК</span></div>
+      </div>
+      <div>
+        <h3>Покупателям</h3>
+        <ul>
+          <li><a href="#/info/delivery">Доставка и оплата</a></li>
+          <li><a href="#/info/returns">Возврат и обмен</a></li>
+          <li><a href="#/info/faq">Вопросы и ответы</a></li>
+          <li><a href="#/orders">Отследить заказ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Магазин</h3>
+        <ul>
+          <li><a href="#/info/about">О нас</a></li>
+          <li><a href="#/info/contacts">Контакты</a></li>
+          <li><a href="#/admin">Панель продавца (демо)</a></li>
+          <li><a href="#/info/author">Автор сайта</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Скидка 5 000 ₸ за подписку</h3>
+        <p class="muted" style="margin:0 0 10px;font-size:14px">Новинки и акции раз в неделю, без спама.</p>
+        <form data-form="subscribe" class="promo" style="margin:0">
+          <label class="sr" for="subEmail">Email</label>
+          <input class="input" id="subEmail" type="email" name="email" placeholder="you@mail.kz" required>
+          <button class="btn sm" type="submit">Подписаться</button>
+        </form>
+      </div>
+    </div>
+    <p class="copy">© 2026 Tulpar Electronics. <a href="#/info/author">Автор сайта: Ахантаев Азамат</a>. Демо-магазин: товары и цены условные, оплата не проводится, данные хранятся только в вашем браузере.</p>
+  </div>
+</footer>
+
+<div class="fabs">
+  <a class="fab wa" href="https://wa.me/77000000000" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+  </a>
+  <button class="fab chat" data-action="chat-toggle" aria-label="Открыть чат поддержки">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
+  </button>
+</div>
+
+<section class="chatbox" id="chat" aria-label="Чат поддержки">
+  <div class="chat-head"><div><b>Поддержка Tulpar</b><small>Отвечаем с 9:00 до 21:00</small></div><button data-action="chat-toggle" aria-label="Закрыть чат">×</button></div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="quick">
+    <button data-action="chat-quick" data-q="Где мой заказ?">Где мой заказ?</button>
+    <button data-action="chat-quick" data-q="Сколько идёт доставка?">Доставка</button>
+    <button data-action="chat-quick" data-q="Есть рассрочка?">Рассрочка</button>
+    <button data-action="chat-quick" data-q="Как вернуть товар?">Возврат</button>
+  </div>
+  <form class="chat-form" data-form="chat">
+    <label class="sr" for="chatIn">Сообщение</label>
+    <input id="chatIn" name="m" placeholder="Напишите вопрос…" autocomplete="off">
+    <button class="btn sm" type="submit">Отправить</button>
+  </form>
+</section>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+
+<script>
+/* ================= DATA ================= */
+const CATS=[['all','Все'],['phone','Смартфоны'],['laptop','Ноутбуки'],['tablet','Планшеты'],['audio','Наушники'],['watch','Часы и браслеты'],['monitor','Мониторы'],['tv','Телевизоры'],['game','Игры'],['speaker','Колонки'],['photo','Фото и видео'],['home','Умный дом'],['acc','Аксессуары']];
+const P=[
+ {id:'s25',name:'Samsung Galaxy S25 12/256 ГБ',cat:'phone',art:'phone',brand:'Samsung',price:449990,old:499990,rating:4.8,rc:214,stock:12,tint:'#3B5B8C',tags:['hit','sale'],specs:{'Экран':'6,2″ AMOLED, 120 Гц','Процессор':'Snapdragon 8 Elite','Память':'12 / 256 ГБ','Камера':'50 + 12 + 10 Мп','Аккумулятор':'4000 мА·ч'},desc:'Компактный флагман с ярким экраном и быстрой камерой. Удобно держать в одной руке, хватает на день активного использования.'},
+ {id:'ip16',name:'Apple iPhone 16 128 ГБ',cat:'phone',art:'phone',brand:'Apple',price:519990,rating:4.9,rc:388,stock:8,tint:'#7FA7C9',tags:['hit'],specs:{'Экран':'6,1″ Super Retina XDR','Процессор':'A18','Память':'128 ГБ','Камера':'48 + 12 Мп','Разъём':'USB-C'},desc:'Новая кнопка управления камерой, быстрый процессор и хорошая автономность. Официальная гарантия 12 месяцев.'},
+ {id:'rn14',name:'Xiaomi Redmi Note 14 Pro 8/256 ГБ',cat:'phone',art:'phone',brand:'Xiaomi',price:159990,old:179990,rating:4.6,rc:521,stock:25,tint:'#6B4FA0',tags:['sale'],specs:{'Экран':'6,67″ AMOLED, 120 Гц','Память':'8 / 256 ГБ','Камера':'200 Мп','Аккумулятор':'5500 мА·ч','Защита':'IP68'},desc:'Самый популярный смартфон среднего класса: большой экран, камера 200 Мп и батарея на два дня.'},
+ {id:'a56',name:'Samsung Galaxy A56 8/256 ГБ',cat:'phone',art:'phone',brand:'Samsung',price:219990,rating:4.5,rc:97,stock:0,tint:'#8FB3A0',tags:['new'],specs:{'Экран':'6,7″ AMOLED, 120 Гц','Память':'8 / 256 ГБ','Камера':'50 + 12 + 5 Мп','Аккумулятор':'5000 мА·ч'},desc:'Надёжный смартфон с шестью годами обновлений системы. Новая поставка ожидается в ближайшее время.'},
+ {id:'mba',name:'Apple MacBook Air 13″ M3 16/256 ГБ',cat:'laptop',art:'laptop',brand:'Apple',price:599990,old:649990,rating:4.9,rc:142,stock:5,tint:'#8A8F98',tags:['sale'],specs:{'Экран':'13,6″ Liquid Retina','Процессор':'Apple M3','Память':'16 ГБ / 256 ГБ SSD','Вес':'1,24 кг','Автономность':'до 18 часов'},desc:'Тонкий и бесшумный ноутбук для учёбы и работы. Без вентилятора, держит заряд весь день.'},
+ {id:'vivo15',name:'ASUS Vivobook 15 i5 / 16 / 512 ГБ',cat:'laptop',art:'laptop',brand:'ASUS',price:289990,rating:4.4,rc:76,stock:9,tint:'#5A6B7D',tags:[],specs:{'Экран':'15,6″ IPS Full HD','Процессор':'Intel Core i5-1335U','Память':'16 ГБ / 512 ГБ SSD','Вес':'1,7 кг'},desc:'Недорогой ноутбук для учёбы, офиса и онлайн-уроков. Полноразмерная клавиатура с цифровым блоком.'},
+ {id:'legion',name:'Lenovo Legion 5 Ryzen 7 / RTX 4060',cat:'laptop',art:'laptop',brand:'Lenovo',price:749990,rating:4.7,rc:58,stock:3,tint:'#2F3A48',tags:['new'],specs:{'Экран':'16″ 2,5K, 165 Гц','Процессор':'AMD Ryzen 7 7840HS','Видеокарта':'RTX 4060 8 ГБ','Память':'16 ГБ / 1 ТБ SSD'},desc:'Игровой ноутбук, который тянет современные игры на высоких настройках и подходит для монтажа.'},
+ {id:'ipad',name:'Apple iPad 11″ 128 ГБ Wi-Fi',cat:'tablet',art:'tablet',brand:'Apple',price:229990,rating:4.8,rc:133,stock:7,tint:'#D9A5B3',tags:[],specs:{'Экран':'11″ Liquid Retina','Процессор':'A16','Память':'128 ГБ','Поддержка':'Apple Pencil (USB-C)'},desc:'Планшет для учёбы, конспектов и фильмов. Поддерживает стилус и клавиатуру.'},
+ {id:'tabs9',name:'Samsung Galaxy Tab S9 FE 128 ГБ',cat:'tablet',art:'tablet',brand:'Samsung',price:179990,old:199990,rating:4.6,rc:64,stock:6,tint:'#9CB7D1',tags:['sale'],specs:{'Экран':'10,9″ 90 Гц','Память':'6 / 128 ГБ','Стилус':'S Pen в комплекте','Защита':'IP68'},desc:'Планшет со стилусом в комплекте и защитой от воды. Удобен для рисования и заметок.'},
+ {id:'xm5',name:'Sony WH-1000XM5',cat:'audio',art:'headphones',brand:'Sony',price:179990,old:209990,rating:4.8,rc:302,stock:14,tint:'#2B2F36',tags:['hit','sale'],specs:{'Тип':'полноразмерные, беспроводные','Шумоподавление':'активное','Автономность':'до 30 часов','Зарядка':'3 мин = 3 часа'},desc:'Одно из лучших шумоподавлений на рынке: тишина в самолёте, автобусе и open space.'},
+ {id:'app2',name:'Apple AirPods Pro 2 (USB-C)',cat:'audio',art:'earbuds',brand:'Apple',price:129990,rating:4.8,rc:410,stock:20,tint:'#AEB5C0',tags:['hit'],specs:{'Тип':'внутриканальные, TWS','Шумоподавление':'активное','Автономность':'до 6 ч (30 ч с кейсом)','Защита':'IP54'},desc:'Беспроводные наушники с шумоподавлением и режимом прозрачности.'},
+ {id:'jbl520',name:'JBL Tune 520BT',cat:'audio',art:'headphones',brand:'JBL',price:24990,rating:4.5,rc:689,stock:40,tint:'#E0662C',tags:[],specs:{'Тип':'накладные, беспроводные','Автономность':'до 57 часов','Вес':'157 г'},desc:'Лёгкие беспроводные наушники с фирменным звуком JBL и огромной автономностью.'},
+ {id:'aw10',name:'Apple Watch Series 10 42 мм',cat:'watch',art:'watch',brand:'Apple',price:229990,rating:4.8,rc:91,stock:6,tint:'#C7A27A',tags:['new'],specs:{'Экран':'OLED, всегда включён','Датчики':'пульс, ЭКГ, сон','Защита':'WR50','Автономность':'до 18 часов'},desc:'Самые тонкие Apple Watch с большим экраном и быстрой зарядкой.'},
+ {id:'band9',name:'Xiaomi Smart Band 9',cat:'watch',art:'band',brand:'Xiaomi',price:19990,old:24990,rating:4.6,rc:1204,stock:60,tint:'#3A3F47',tags:['sale'],specs:{'Экран':'1,62″ AMOLED','Датчики':'пульс, SpO2, сон','Автономность':'до 21 дня'},desc:'Фитнес-браслет, который заряжается раз в три недели.'},
+ {id:'tv55',name:'Samsung 55″ Crystal UHD 4K',cat:'tv',art:'tv',brand:'Samsung',price:289990,old:329990,rating:4.6,rc:187,stock:4,tint:'#3E4552',tags:['sale'],specs:{'Диагональ':'55″ (139 см)','Разрешение':'4K UHD','Smart TV':'Tizen','HDR':'HDR10+'},desc:'Большой 4K-телевизор со Smart TV: YouTube, Netflix и Kinopoisk из коробки.'},
+ {id:'tv43',name:'Xiaomi TV A 43″ 2025',cat:'tv',art:'tv',brand:'Xiaomi',price:149990,rating:4.5,rc:256,stock:10,tint:'#4B5563',tags:[],specs:{'Диагональ':'43″ (109 см)','Разрешение':'4K UHD','Smart TV':'Google TV'},desc:'Недорогой 4K-телевизор с Google TV и голосовым поиском.'},
+ {id:'ps5',name:'Sony PlayStation 5 Slim',cat:'game',art:'console',brand:'Sony',price:329990,rating:4.9,rc:512,stock:0,tint:'#B9C3D1',tags:['hit'],specs:{'Накопитель':'1 ТБ SSD','Разрешение':'до 4K 120 Гц','Привод':'Blu-ray'},desc:'Игровая консоль нового поколения. Сейчас нет в наличии — оставьте заявку, и мы сообщим о поставке.'},
+ {id:'charge5',name:'JBL Charge 5',cat:'speaker',art:'speaker',brand:'JBL',price:69990,rating:4.8,rc:344,stock:18,tint:'#2E7DBA',tags:[],specs:{'Мощность':'40 Вт','Автономность':'до 20 часов','Защита':'IP67','Функция':'powerbank'},desc:'Громкая портативная колонка, которой не страшны вода и пыль.'},
+ {id:'emb2',name:'Marshall Emberton II',cat:'speaker',art:'speaker',brand:'Marshall',price:79990,rating:4.7,rc:121,stock:7,tint:'#3A322C',tags:[],specs:{'Звук':'360°','Автономность':'более 30 часов','Защита':'IP67'},desc:'Компактная колонка в фирменном стиле Marshall с объёмным звуком.'},
+ {id:'anker',name:'Anker PowerCore 20000 мА·ч',cat:'acc',art:'powerbank',brand:'Anker',price:19990,rating:4.7,rc:233,stock:35,tint:'#1F2937',tags:[],specs:{'Ёмкость':'20000 мА·ч','Выходы':'USB-C + USB-A','Быстрая зарядка':'20 Вт'},desc:'Зарядит смартфон 4–5 раз. Удобно в дороге и на учёбе.'}
+ ,{id:'ip16pro',name:'Apple iPhone 16 Pro 256 ГБ',cat:'phone',art:'phone',brand:'Apple',price:699990,rating:4.9,rc:176,stock:6,tint:'#8C8375',tags:['new'],specs:{'Экран':'6,3″ ProMotion 120 Гц','Процессор':'A18 Pro','Память':'256 ГБ','Камера':'48 + 48 + 12 Мп, зум 5×','Корпус':'титан'},desc:'Титановый корпус, камера с пятикратным зумом и запись видео 4K 120 кадров/с.'}
+ ,{id:'s25u',name:'Samsung Galaxy S25 Ultra 12/512 ГБ',cat:'phone',art:'phone',brand:'Samsung',price:749990,old:799990,rating:4.9,rc:143,stock:5,tint:'#4A4F57',tags:['hit','sale'],specs:{'Экран':'6,9″ AMOLED, 120 Гц','Процессор':'Snapdragon 8 Elite','Память':'12 / 512 ГБ','Камера':'200 + 50 + 50 + 10 Мп','Стилус':'S Pen'},desc:'Самый мощный Galaxy: камера 200 Мп, стилус S Pen и большой экран с антибликовым покрытием.'}
+ ,{id:'x14t',name:'Xiaomi 14T 12/256 ГБ',cat:'phone',art:'phone',brand:'Xiaomi',price:279990,rating:4.7,rc:88,stock:11,tint:'#5C7C99',tags:[],specs:{'Экран':'6,67″ AMOLED, 144 Гц','Камера':'50 Мп Leica','Память':'12 / 256 ГБ','Зарядка':'67 Вт'},desc:'Камера с оптикой Leica, яркий экран 144 Гц и быстрая зарядка за 50 минут.'}
+ ,{id:'x7pro',name:'POCO X7 Pro 12/256 ГБ',cat:'phone',art:'phone',brand:'POCO',price:169990,rating:4.6,rc:203,stock:19,tint:'#D9A63A',tags:['new'],specs:{'Процессор':'Dimensity 8400 Ultra','Экран':'6,67″ AMOLED, 120 Гц','Аккумулятор':'6000 мА·ч','Зарядка':'90 Вт'},desc:'Флагманская производительность по цене среднего класса. Отличный выбор для игр.'}
+ ,{id:'a16',name:'Samsung Galaxy A16 4/128 ГБ',cat:'phone',art:'phone',brand:'Samsung',price:89990,old:99990,rating:4.4,rc:612,stock:40,tint:'#6E87A8',tags:['sale'],specs:{'Экран':'6,7″ AMOLED','Память':'4 / 128 ГБ','Камера':'50 Мп','Аккумулятор':'5000 мА·ч'},desc:'Доступный смартфон с большим AMOLED-экраном и шестью годами обновлений.'}
+ ,{id:'honor200',name:'HONOR 200 8/256 ГБ',cat:'phone',art:'phone',brand:'HONOR',price:199990,rating:4.6,rc:131,stock:9,tint:'#9FC1BA',tags:[],specs:{'Экран':'6,7″ OLED, 120 Гц','Камера':'50 + 50 + 12 Мп','Аккумулятор':'5200 мА·ч','Зарядка':'100 Вт'},desc:'Портретная камера студийного уровня и зарядка 100 Вт.'}
+ ,{id:'rm13',name:'realme 13 Pro+ 12/512 ГБ',cat:'phone',art:'phone',brand:'realme',price:229990,rating:4.5,rc:74,stock:8,tint:'#8FAE62',tags:[],specs:{'Экран':'6,7″ AMOLED, 120 Гц','Камера':'50 Мп перископ 3×','Память':'12 / 512 ГБ','Зарядка':'80 Вт'},desc:'Перископическая камера с трёхкратным зумом и много памяти для фото.'}
+ ,{id:'mbp14',name:'Apple MacBook Pro 14″ M4 16/512 ГБ',cat:'laptop',art:'laptop',brand:'Apple',price:1049990,rating:4.9,rc:47,stock:4,tint:'#3C3F45',tags:['new'],specs:{'Экран':'14,2″ Liquid Retina XDR','Процессор':'Apple M4','Память':'16 ГБ / 512 ГБ SSD','Автономность':'до 24 часов'},desc:'Профессиональный ноутбук для монтажа, дизайна и программирования.'}
+ ,{id:'hp15',name:'HP Pavilion 15 Ryzen 5 / 16 / 512 ГБ',cat:'laptop',art:'laptop',brand:'HP',price:279990,old:309990,rating:4.5,rc:95,stock:10,tint:'#9AA4AE',tags:['sale'],specs:{'Экран':'15,6″ IPS Full HD','Процессор':'AMD Ryzen 5 7530U','Память':'16 ГБ / 512 ГБ SSD','Вес':'1,75 кг'},desc:'Универсальный ноутбук для учёбы и работы с металлической крышкой.'}
+ ,{id:'aspire5',name:'Acer Aspire 5 i3 / 8 / 512 ГБ',cat:'laptop',art:'laptop',brand:'Acer',price:199990,rating:4.3,rc:128,stock:14,tint:'#6D7680',tags:[],specs:{'Экран':'15,6″ IPS Full HD','Процессор':'Intel Core i3-1315U','Память':'8 ГБ / 512 ГБ SSD'},desc:'Недорогой ноутбук для учёбы, документов и видеоуроков.'}
+ ,{id:'rog16',name:'ASUS ROG Strix G16 i7 / RTX 4070',cat:'laptop',art:'laptop',brand:'ASUS',price:999990,rating:4.8,rc:39,stock:2,tint:'#22262D',tags:['hit'],specs:{'Экран':'16″ 2,5K, 240 Гц','Процессор':'Intel Core i7-14650HX','Видеокарта':'RTX 4070 8 ГБ','Память':'16 ГБ / 1 ТБ SSD'},desc:'Мощный игровой ноутбук с экраном 240 Гц и подсветкой RGB.'}
+ ,{id:'mated16',name:'HUAWEI MateBook D 16 i5 / 16 / 512 ГБ',cat:'laptop',art:'laptop',brand:'HUAWEI',price:339990,rating:4.6,rc:61,stock:7,tint:'#8B9BB0',tags:[],specs:{'Экран':'16″ IPS 1920×1200','Процессор':'Intel Core i5-13420H','Память':'16 ГБ / 512 ГБ SSD','Вес':'1,68 кг'},desc:'Большой экран 16 дюймов в лёгком металлическом корпусе.'}
+ ,{id:'ideapad3',name:'Lenovo IdeaPad Slim 3 Ryzen 5 / 8 / 512 ГБ',cat:'laptop',art:'laptop',brand:'Lenovo',price:229990,rating:4.4,rc:154,stock:12,tint:'#7C8794',tags:[],specs:{'Экран':'15,6″ IPS Full HD','Процессор':'AMD Ryzen 5 7520U','Память':'8 ГБ / 512 ГБ SSD'},desc:'Тонкий и лёгкий ноутбук на каждый день.'}
+ ,{id:'ipadair',name:'Apple iPad Air 11″ M2 128 ГБ',cat:'tablet',art:'tablet',brand:'Apple',price:339990,rating:4.9,rc:72,stock:5,tint:'#A8B7D6',tags:[],specs:{'Экран':'11″ Liquid Retina','Процессор':'Apple M2','Память':'128 ГБ','Поддержка':'Apple Pencil Pro'},desc:'Планшет с процессором от ноутбука для учёбы, рисования и монтажа.'}
+ ,{id:'pad6s',name:'Xiaomi Pad 6S Pro 8/256 ГБ',cat:'tablet',art:'tablet',brand:'Xiaomi',price:249990,rating:4.7,rc:58,stock:6,tint:'#5B6470',tags:['new'],specs:{'Экран':'12,4″ 3K, 144 Гц','Процессор':'Snapdragon 8 Gen 2','Аккумулятор':'10 000 мА·ч'},desc:'Большой экран 3K и мощный процессор. Отлично для фильмов и работы.'}
+ ,{id:'taba9',name:'Samsung Galaxy Tab A9+ 8/128 ГБ',cat:'tablet',art:'tablet',brand:'Samsung',price:119990,old:129990,rating:4.5,rc:233,stock:15,tint:'#AEB8C4',tags:['sale'],specs:{'Экран':'11″ 90 Гц','Память':'8 / 128 ГБ','Звук':'4 динамика'},desc:'Недорогой планшет для учёбы, видео и детей.'}
+ ,{id:'tabm11',name:'Lenovo Tab M11 4/128 ГБ',cat:'tablet',art:'tablet',brand:'Lenovo',price:99990,rating:4.4,rc:117,stock:13,tint:'#8292A6',tags:[],specs:{'Экран':'11″ 90 Гц','Память':'4 / 128 ГБ','Стилус':'в комплекте'},desc:'Простой планшет со стилусом в комплекте для конспектов.'}
+ ,{id:'g5',name:'Samsung Odyssey G5 27″ 2K 165 Гц',cat:'monitor',art:'monitor',brand:'Samsung',price:149990,rating:4.7,rc:141,stock:9,tint:'#2C3036',tags:['hit'],specs:{'Диагональ':'27″','Разрешение':'2560×1440','Частота':'165 Гц','Матрица':'VA, изогнутая'},desc:'Изогнутый игровой монитор с высокой частотой обновления.'}
+ ,{id:'lg27',name:'LG UltraGear 27″ 2K 180 Гц',cat:'monitor',art:'monitor',brand:'LG',price:179990,rating:4.8,rc:96,stock:6,tint:'#3A3F47',tags:[],specs:{'Диагональ':'27″','Разрешение':'2560×1440','Частота':'180 Гц','Матрица':'IPS, 1 мс'},desc:'Быстрая IPS-матрица с точной цветопередачей для игр и работы.'}
+ ,{id:'a27i',name:'Xiaomi Monitor A27i 27″',cat:'monitor',art:'monitor',brand:'Xiaomi',price:69990,old:79990,rating:4.5,rc:208,stock:20,tint:'#4B5563',tags:['sale'],specs:{'Диагональ':'27″','Разрешение':'1920×1080','Частота':'100 Гц','Матрица':'IPS'},desc:'Недорогой большой монитор для дома и офиса.'}
+ ,{id:'dell24',name:'Dell 24″ P2425H',cat:'monitor',art:'monitor',brand:'Dell',price:109990,rating:4.6,rc:44,stock:8,tint:'#5B636D',tags:[],specs:{'Диагональ':'23,8″','Разрешение':'1920×1080','Частота':'100 Гц','Подставка':'регулируется по высоте'},desc:'Офисный монитор с удобной подставкой и защитой глаз.'}
+ ,{id:'airpods4',name:'Apple AirPods 4',cat:'audio',art:'earbuds',brand:'Apple',price:89990,rating:4.7,rc:265,stock:22,tint:'#C4C9D1',tags:['new'],specs:{'Тип':'вкладыши, TWS','Автономность':'до 5 ч (30 ч с кейсом)','Разъём':'USB-C'},desc:'Новая форма для удобной посадки и чистый звук.'}
+ ,{id:'buds3',name:'Samsung Galaxy Buds3 Pro',cat:'audio',art:'earbuds',brand:'Samsung',price:119990,rating:4.6,rc:83,stock:10,tint:'#9EA5AF',tags:[],specs:{'Тип':'внутриканальные, TWS','Шумоподавление':'активное','Защита':'IP57'},desc:'Беспроводные наушники с шумоподавлением для смартфонов Galaxy.'}
+ ,{id:'wf5',name:'Sony WF-1000XM5',cat:'audio',art:'earbuds',brand:'Sony',price:139990,old:159990,rating:4.8,rc:119,stock:7,tint:'#3A3A3A',tags:['sale'],specs:{'Тип':'внутриканальные, TWS','Шумоподавление':'активное','Автономность':'до 8 ч (24 ч с кейсом)'},desc:'Маленькие наушники с одним из лучших шумоподавлений.'}
+ ,{id:'beam2',name:'JBL Tune Beam 2',cat:'audio',art:'earbuds',brand:'JBL',price:49990,rating:4.5,rc:97,stock:25,tint:'#3D6FB6',tags:[],specs:{'Тип':'TWS','Шумоподавление':'активное','Автономность':'до 48 ч с кейсом'},desc:'Недорогие наушники с шумоподавлением и сенсорным кейсом.'}
+ ,{id:'rbuds6',name:'Xiaomi Redmi Buds 6 Active',cat:'audio',art:'earbuds',brand:'Xiaomi',price:12990,rating:4.4,rc:941,stock:80,tint:'#7A8B9E',tags:['hit'],specs:{'Тип':'вкладыши, TWS','Автономность':'до 30 ч с кейсом','Bluetooth':'5.4'},desc:'Самые доступные беспроводные наушники в каталоге.'}
+ ,{id:'major5',name:'Marshall Major V',cat:'audio',art:'headphones',brand:'Marshall',price:89990,rating:4.7,rc:66,stock:9,tint:'#2F2A26',tags:[],specs:{'Тип':'накладные, беспроводные','Автономность':'более 100 часов','Зарядка':'беспроводная'},desc:'Легендарный дизайн и больше 100 часов музыки без подзарядки.'}
+ ,{id:'hd450',name:'Sennheiser ACCENTUM Wireless',cat:'audio',art:'headphones',brand:'Sennheiser',price:69990,rating:4.6,rc:51,stock:6,tint:'#3E434B',tags:[],specs:{'Тип':'полноразмерные, беспроводные','Шумоподавление':'гибридное','Автономность':'до 50 часов'},desc:'Фирменный звук Sennheiser и шумоподавление по разумной цене.'}
+ ,{id:'gw7',name:'Samsung Galaxy Watch7 44 мм',cat:'watch',art:'watch',brand:'Samsung',price:159990,rating:4.6,rc:77,stock:8,tint:'#8995A3',tags:[],specs:{'Экран':'1,5″ AMOLED','Датчики':'пульс, ЭКГ, давление, сон','Защита':'5ATM + IP68'},desc:'Умные часы с продвинутым мониторингом здоровья.'}
+ ,{id:'awse',name:'Apple Watch SE 40 мм',cat:'watch',art:'watch',brand:'Apple',price:139990,rating:4.7,rc:189,stock:10,tint:'#D8C3A5',tags:[],specs:{'Экран':'Retina OLED','Датчики':'пульс, сон, падение','Защита':'WR50'},desc:'Доступные Apple Watch со всеми главными функциями.'}
+ ,{id:'gt5',name:'HUAWEI Watch GT 5 46 мм',cat:'watch',art:'watch',brand:'HUAWEI',price:119990,old:134990,rating:4.7,rc:102,stock:9,tint:'#6D5A4B',tags:['sale'],specs:{'Экран':'1,43″ AMOLED','Автономность':'до 14 дней','Защита':'5ATM'},desc:'Классический дизайн и две недели работы без зарядки.'}
+ ,{id:'bip5',name:'Amazfit Bip 5',cat:'watch',art:'watch',brand:'Amazfit',price:39990,rating:4.4,rc:321,stock:30,tint:'#3E4A5A',tags:[],specs:{'Экран':'1,91″','GPS':'встроенный','Автономность':'до 10 дней'},desc:'Лёгкие часы с GPS и звонками по Bluetooth.'}
+ ,{id:'rw5',name:'Xiaomi Redmi Watch 5 Active',cat:'watch',art:'watch',brand:'Xiaomi',price:19990,rating:4.3,rc:455,stock:45,tint:'#5E6773',tags:[],specs:{'Экран':'2″ LCD','Автономность':'до 18 дней','Звонки':'Bluetooth'},desc:'Большой экран и почти три недели без подзарядки.'}
+ ,{id:'lgc4',name:'LG 65″ OLED evo C4',cat:'tv',art:'tv',brand:'LG',price:1199990,old:1299990,rating:4.9,rc:34,stock:2,tint:'#2A2D33',tags:['sale'],specs:{'Диагональ':'65″ (165 см)','Матрица':'OLED','Частота':'до 144 Гц','Smart TV':'webOS'},desc:'Идеальный чёрный цвет и кинематографическая картинка.'}
+ ,{id:'q60d',name:'Samsung 50″ QLED Q60D',cat:'tv',art:'tv',brand:'Samsung',price:339990,rating:4.7,rc:92,stock:5,tint:'#394049',tags:[],specs:{'Диагональ':'50″ (127 см)','Матрица':'QLED','Разрешение':'4K UHD','Smart TV':'Tizen'},desc:'Яркие цвета квантовых точек и тонкий корпус.'}
+ ,{id:'tcl55',name:'TCL 55″ QLED C655',cat:'tv',art:'tv',brand:'TCL',price:259990,rating:4.6,rc:118,stock:8,tint:'#434A55',tags:['new'],specs:{'Диагональ':'55″ (139 см)','Матрица':'QLED','Разрешение':'4K UHD','Smart TV':'Google TV'},desc:'Большой QLED-телевизор с Google TV по доступной цене.'}
+ ,{id:'his43',name:'Hisense 43″ A6N 4K',cat:'tv',art:'tv',brand:'Hisense',price:139990,rating:4.4,rc:167,stock:12,tint:'#4F5763',tags:[],specs:{'Диагональ':'43″ (109 см)','Разрешение':'4K UHD','Smart TV':'VIDAA'},desc:'Недорогой 4K-телевизор для кухни или спальни.'}
+ ,{id:'xsx',name:'Xbox Series X 1 ТБ',cat:'game',art:'console',brand:'Microsoft',price:349990,rating:4.8,rc:143,stock:0,tint:'#2B2F33',tags:[],specs:{'Накопитель':'1 ТБ SSD','Разрешение':'до 4K 120 Гц','Подписка':'Game Pass'},desc:'Самая мощная консоль Xbox. Сейчас нет в наличии, оставьте заявку.'}
+ ,{id:'switch',name:'Nintendo Switch OLED',cat:'game',art:'handheld',brand:'Nintendo',price:189990,rating:4.8,rc:201,stock:7,tint:'#5B6470',tags:['hit'],specs:{'Экран':'7″ OLED','Память':'64 ГБ','Режимы':'портативный и ТВ'},desc:'Играйте дома на телевизоре или в дороге.'}
+ ,{id:'dualsense',name:'Геймпад Sony DualSense',cat:'game',art:'gamepad',brand:'Sony',price:39990,rating:4.8,rc:388,stock:24,tint:'#B8C2D0',tags:[],specs:{'Совместимость':'PS5, ПК','Вибрация':'адаптивные курки','Автономность':'до 12 часов'},desc:'Фирменный геймпад PlayStation 5 с тактильной отдачей.'}
+ ,{id:'xboxpad',name:'Геймпад Xbox Wireless Controller',cat:'game',art:'gamepad',brand:'Microsoft',price:34990,rating:4.7,rc:276,stock:18,tint:'#2E7D4F',tags:[],specs:{'Совместимость':'Xbox, ПК, смартфон','Подключение':'Bluetooth / USB-C'},desc:'Удобный геймпад для Xbox, компьютера и смартфона.'}
+ ,{id:'flip6',name:'JBL Flip 6',cat:'speaker',art:'speaker',brand:'JBL',price:49990,old:59990,rating:4.8,rc:512,stock:26,tint:'#C0392B',tags:['hit','sale'],specs:{'Мощность':'30 Вт','Автономность':'до 12 часов','Защита':'IP67'},desc:'Самая популярная портативная колонка: громкая и защищённая от воды.'}
+ ,{id:'stmidi',name:'Яндекс Станция Миди',cat:'speaker',art:'speaker',brand:'Яндекс',price:79990,rating:4.7,rc:143,stock:10,tint:'#6A5ACD',tags:[],specs:{'Мощность':'24 Вт','Ассистент':'Алиса','Функция':'хаб умного дома'},desc:'Умная колонка с Алисой, которая управляет умным домом.'}
+ ,{id:'xb100',name:'Sony SRS-XB100',cat:'speaker',art:'speaker',brand:'Sony',price:24990,rating:4.6,rc:188,stock:30,tint:'#2F6DB5',tags:[],specs:{'Автономность':'до 16 часов','Защита':'IP67','Вес':'274 г'},desc:'Компактная колонка с ремешком для прогулок и поездок.'}
+ ,{id:'encore',name:'JBL PartyBox Encore',cat:'speaker',art:'speaker',brand:'JBL',price:149990,rating:4.7,rc:57,stock:4,tint:'#1F2328',tags:['new'],specs:{'Мощность':'100 Вт','Подсветка':'световое шоу','Микрофон':'в комплекте'},desc:'Колонка для вечеринок и караоке со световым шоу.'}
+ ,{id:'gopro13',name:'GoPro HERO13 Black',cat:'photo',art:'camera',brand:'GoPro',price:229990,rating:4.7,rc:63,stock:6,tint:'#2A2D31',tags:['new'],specs:{'Видео':'5,3K 60 к/с','Стабилизация':'HyperSmooth 6.0','Защита':'водонепроницаемая до 10 м'},desc:'Экшн-камера для путешествий, спорта и влогов.'}
+ ,{id:'zve10',name:'Sony ZV-E10 II Kit 16–50 мм',cat:'photo',art:'camera',brand:'Sony',price:489990,rating:4.8,rc:29,stock:3,tint:'#3A3D42',tags:[],specs:{'Матрица':'APS-C 26 Мп','Видео':'4K 60 к/с','Экран':'поворотный'},desc:'Беззеркальная камера для блогеров с поворотным экраном.'}
+ ,{id:'instax12',name:'Fujifilm Instax Mini 12',cat:'photo',art:'camera',brand:'Fujifilm',price:44990,rating:4.6,rc:214,stock:15,tint:'#8DB5D9',tags:[],specs:{'Тип':'моментальная печать','Формат':'Instax Mini','Питание':'2 батарейки AA'},desc:'Фотоаппарат, который печатает снимки сразу. Отличный подарок.'}
+ ,{id:'ad20',name:'Apple 20W USB-C адаптер',cat:'acc',art:'charger',brand:'Apple',price:12990,rating:4.8,rc:702,stock:60,tint:'#C9CED6',tags:[],specs:{'Мощность':'20 Вт','Разъём':'USB-C','Совместимость':'iPhone, iPad'},desc:'Оригинальная быстрая зарядка для iPhone.'}
+ ,{id:'nano65',name:'Anker Nano 65W GaN',cat:'acc',art:'charger',brand:'Anker',price:24990,rating:4.7,rc:167,stock:25,tint:'#4C5563',tags:[],specs:{'Мощность':'65 Вт','Разъёмы':'2 × USB-C, USB-A','Технология':'GaN'},desc:'Маленькая зарядка, которая заряжает ноутбук, телефон и часы одновременно.'}
+ ,{id:'mx3s',name:'Logitech MX Master 3S',cat:'acc',art:'mouse',brand:'Logitech',price:59990,rating:4.9,rc:231,stock:14,tint:'#3F454D',tags:['hit'],specs:{'Сенсор':'8000 DPI','Клики':'бесшумные','Подключение':'Bluetooth / Logi Bolt'},desc:'Эргономичная мышь для работы, бесшумная и точная.'}
+ ,{id:'mxkeys',name:'Logitech MX Keys S',cat:'acc',art:'keyboard',brand:'Logitech',price:64990,rating:4.8,rc:118,stock:9,tint:'#4A5058',tags:[],specs:{'Подсветка':'умная','Устройства':'до 3 одновременно','Автономность':'до 10 дней с подсветкой'},desc:'Тихая клавиатура с подсветкой для компьютера и планшета.'}
+ ,{id:'t7',name:'Samsung T7 SSD 1 ТБ',cat:'acc',art:'ssd',brand:'Samsung',price:54990,old:64990,rating:4.8,rc:195,stock:16,tint:'#3B6BA5',tags:['sale'],specs:{'Объём':'1 ТБ','Скорость':'до 1050 МБ/с','Разъём':'USB-C'},desc:'Быстрый внешний диск размером с визитку.'}
+ ,{id:'pb10',name:'Xiaomi Power Bank 10000 мА·ч 22,5 Вт',cat:'acc',art:'powerbank',brand:'Xiaomi',price:9990,rating:4.6,rc:844,stock:70,tint:'#6C7A89',tags:[],specs:{'Ёмкость':'10 000 мА·ч','Мощность':'22,5 Вт','Выходы':'USB-C + USB-A'},desc:'Лёгкий внешний аккумулятор для каждого дня.'}
+ ,{id:'s20',name:'Xiaomi Robot Vacuum S20',cat:'home',art:'vacuum',brand:'Xiaomi',price:159990,rating:4.6,rc:96,stock:7,tint:'#9AA3AD',tags:['new'],specs:{'Уборка':'сухая и влажная','Навигация':'лазерная LDS','Управление':'приложение Mi Home'},desc:'Робот-пылесос, который сам убирает и моет полы по расписанию.'}
+ ,{id:'purifier',name:'Xiaomi Smart Air Purifier 4 Compact',cat:'home',art:'purifier',brand:'Xiaomi',price:49990,rating:4.6,rc:151,stock:12,tint:'#C3C9D1',tags:[],specs:{'Площадь':'до 27 м²','Фильтр':'HEPA','Управление':'приложение, голос'},desc:'Очиститель воздуха для спальни или детской. Особенно полезен зимой.'}
+ ,{id:'c200',name:'TP-Link Tapo C200 камера',cat:'home',art:'ipcam',brand:'TP-Link',price:14990,rating:4.5,rc:367,stock:35,tint:'#D5D9DF',tags:[],specs:{'Разрешение':'Full HD','Обзор':'360° поворот','Ночное видение':'до 9 м'},desc:'Домашняя Wi-Fi камера: смотрите, что происходит дома, со смартфона.'}
+];
+const CITIES=[['Алматы','Алматы','1 день',1,43.238,76.946],['Астана','Астану','2–3 дня',3,51.169,71.449],['Шымкент','Шымкент','2–3 дня',3,42.341,69.590],['Караганда','Караганду','2–3 дня',3,49.806,73.085],['Тараз','Тараз','2 дня',2,42.900,71.378],['Талдыкорган','Талдыкорган','1–2 дня',2,45.017,78.383],['Кызылорда','Кызылорду','3–4 дня',4,44.853,65.509],['Туркестан','Туркестан','3 дня',3,43.297,68.252],['Павлодар','Павлодар','3–4 дня',4,52.287,76.967],['Усть-Каменогорск','Усть-Каменогорск','3–4 дня',4,49.948,82.628],['Семей','Семей','3–4 дня',4,50.411,80.228],['Кокшетау','Кокшетау','3–4 дня',4,53.283,69.383],['Петропавловск','Петропавловск','4–5 дней',5,54.866,69.135],['Костанай','Костанай','4–5 дней',5,53.214,63.624],['Актобе','Актобе','4–5 дней',5,50.283,57.167],['Уральск','Уральск','5–6 дней',6,51.233,51.367],['Атырау','Атырау','4–6 дней',6,47.094,51.924],['Актау','Актау','5–6 дней',6,43.652,51.197]];
+const DETAILS={
+ s25:{d:'Galaxy S25 — компактный флагман Samsung 2025 года. Алюминиевая рамка и стекло Gorilla Glass Victus 2 с двух сторон, защита от воды и пыли IP68. Процессор Snapdragon 8 Elite for Galaxy одинаково быстро справляется с играми, камерой и функциями Galaxy AI: переводом звонков, умным редактированием фото и пересказом текстов. Samsung обещает 7 лет обновлений Android и безопасности, поэтому телефон прослужит долго.',f:['7 лет обновлений системы','Функции Galaxy AI','Беспроводная и обратная зарядка','Защита IP68'],box:'смартфон, кабель USB-C — USB-C, скрепка для SIM, документация',s:{'Операционная система':'Android 15, One UI 7','Разрешение экрана':'2340 × 1080','Фронтальная камера':'12 Мп','Видео':'до 8K 30 к/с','Зарядка':'25 Вт, беспроводная 15 Вт','SIM':'nano-SIM + eSIM','Связь':'5G, Wi-Fi 7, Bluetooth 5.4, NFC','Защита':'IP68','Вес':'162 г'}},
+ ip16:{d:'iPhone 16 получил новую кнопку «Управление камерой»: одно нажатие открывает камеру, лёгкое касание меняет зум и экспозицию. Основная камера 48 Мп делает детальные снимки и даёт двукратное приближение без потери качества, а сверхширокоугольная научилась снимать макро. Процессор A18 работает быстро и экономно, а зарядка идёт через универсальный USB-C.',f:['Кнопка «Управление камерой»','Настраиваемая кнопка действия','Разъём USB-C','Зарядка MagSafe'],box:'iPhone, кабель USB-C в оплётке, документация',s:{'Операционная система':'iOS 18','Разрешение экрана':'2556 × 1179','Фронтальная камера':'12 Мп','Видео':'4K 60 к/с, Dolby Vision','Зарядка':'проводная, MagSafe, Qi2','SIM':'nano-SIM + eSIM','Связь':'5G, Wi-Fi 7, NFC','Защита':'IP68','Вес':'170 г'}},
+ rn14:{d:'Redmi Note 14 Pro — самый популярный смартфон среднего класса в нашем каталоге. Главная камера 200 Мп снимает детальные фото даже при увеличении, а большой AMOLED-экран с частотой 120 Гц плавно прокручивает ленты и видео. Батарея на 5500 мА·ч спокойно держит два дня обычного использования, а быстрая зарядка 45 Вт выручает, когда времени мало.',f:['Камера 200 Мп с оптической стабилизацией','Экран AMOLED 120 Гц','Батарея на 2 дня','Стекло Gorilla Glass Victus 2'],box:'смартфон, зарядное устройство, кабель USB-C, чехол, скрепка для SIM',s:{'Операционная система':'Xiaomi HyperOS','Процессор':'MediaTek Helio G100-Ultra','Разрешение экрана':'2712 × 1220','Камера':'200 + 8 + 2 Мп','Фронтальная камера':'32 Мп','Зарядка':'45 Вт','SIM':'2 × nano-SIM','Защита':'IP64'}},
+ a56:{d:'Galaxy A56 — надёжный смартфон с флагманскими чертами: металлическая рамка, защита IP67 и 6 лет обновлений системы. Экран Super AMOLED 6,7″ с частотой 120 Гц хорошо виден на солнце, а камера 50 Мп с оптической стабилизацией снимает чёткие фото ночью. Быстрая зарядка 45 Вт заряжает телефон примерно за час.',f:['6 лет обновлений Android','Защита IP67','Зарядка 45 Вт','Функции Awesome Intelligence'],box:'смартфон, кабель USB-C, скрепка для SIM, документация',s:{'Операционная система':'Android 15, One UI 7','Процессор':'Exynos 1580','Разрешение экрана':'2340 × 1080','Фронтальная камера':'12 Мп','Зарядка':'45 Вт','Связь':'5G, Wi-Fi 6, NFC','Защита':'IP67'}},
+ ip16pro:{d:'iPhone 16 Pro — самый продвинутый iPhone для съёмки. Три камеры 48, 48 и 12 Мп, пятикратный оптический зум и запись видео 4K со скоростью 120 кадров в секунду для плавного замедления. Корпус из титана лёгкий и прочный, экран ProMotion 120 Гц с режимом «Всегда включён». Порт USB-C поддерживает скорость до 10 Гбит/с для быстрой передачи видео.',f:['Пятикратный оптический зум','Видео 4K 120 к/с','Титановый корпус','Экран ProMotion 120 Гц'],box:'iPhone, кабель USB-C в оплётке, документация',s:{'Операционная система':'iOS 18','Разрешение экрана':'2622 × 1206','Фронтальная камера':'12 Мп','Разъём':'USB-C (USB 3, до 10 Гбит/с)','Зарядка':'проводная, MagSafe, Qi2','SIM':'nano-SIM + eSIM','Защита':'IP68','Вес':'199 г'}},
+ s25u:{d:'Galaxy S25 Ultra — максимальный флагман Samsung. Четыре камеры, включая основную на 200 Мп и перископ с пятикратным зумом, позволяют снимать от широких пейзажей до далёких деталей. Встроенный стилус S Pen удобен для заметок и подписей документов. Титановая рамка, антибликовое стекло Gorilla Armor 2 и 7 лет обновлений.',f:['Стилус S Pen в корпусе','Камера 200 Мп и зум 5×','Антибликовое стекло','7 лет обновлений'],box:'смартфон, стилус S Pen, кабель USB-C, скрепка для SIM',s:{'Операционная система':'Android 15, One UI 7','Разрешение экрана':'3120 × 1440','Фронтальная камера':'12 Мп','Аккумулятор':'5000 мА·ч','Зарядка':'45 Вт, беспроводная 15 Вт','Корпус':'титан, Gorilla Armor 2','Защита':'IP68','Вес':'218 г'}},
+ x14t:{d:'Xiaomi 14T создан вместе с Leica: камеры с фирменными цветовыми профилями дают «плёночную» картинку прямо из телефона. Экран 1,5K с частотой 144 Гц очень плавный, а процессор Dimensity 8300-Ultra тянет игры на высоких настройках. Зарядка 67 Вт восполняет батарею примерно за 50 минут.',f:['Оптика и стили Leica','Экран 144 Гц','Защита IP68','Зарядка 67 Вт'],box:'смартфон, зарядное устройство 67 Вт, кабель, чехол, скрепка для SIM',s:{'Операционная система':'Xiaomi HyperOS','Процессор':'MediaTek Dimensity 8300-Ultra','Камера':'50 + 50 (2×) + 12 Мп','Фронтальная камера':'32 Мп','Аккумулятор':'5000 мА·ч','Защита':'IP68'}},
+ x7pro:{d:'POCO X7 Pro — выбор для тех, кто играет на телефоне. Процессор Dimensity 8400-Ultra и продуманное охлаждение держат высокий FPS без перегрева. Огромная батарея 6000 мА·ч и зарядка 90 Вт: полдня игр — это примерно 20 минут у розетки. Корпус защищён от воды по стандарту IP68.',f:['Производительность флагманского уровня','Батарея 6000 мА·ч','Зарядка 90 Вт','Защита IP68'],box:'смартфон, зарядное устройство 90 Вт, кабель, чехол, скрепка для SIM',s:{'Операционная система':'Xiaomi HyperOS 2','Разрешение экрана':'2712 × 1220','Камера':'50 + 8 Мп','Фронтальная камера':'20 Мп','SIM':'2 × nano-SIM','Связь':'5G, Wi-Fi 6, NFC'}},
+ a16:{d:'Galaxy A16 — недорогой смартфон, который не стыдно подарить. Большой экран Super AMOLED 6,7″ с насыщенными цветами, камера 50 Мп и батарея 5000 мА·ч на целый день. Главное преимущество в своём классе — 6 лет обновлений Android, так что телефон долго останется актуальным и безопасным.',f:['6 лет обновлений','Экран Super AMOLED','Батарея 5000 мА·ч','Слот для карты памяти'],box:'смартфон, кабель USB-C, скрепка для SIM',s:{'Операционная система':'Android 14, One UI','Разрешение экрана':'2340 × 1080','Частота экрана':'90 Гц','Камера':'50 + 5 + 2 Мп','Фронтальная камера':'13 Мп','Зарядка':'25 Вт','Карта памяти':'microSD до 1,5 ТБ'}},
+ honor200:{d:'HONOR 200 создан для портретов: камеры настроены вместе со студией Harcourt и дают мягкий свет и красивое размытие фона. Телеобъектив 50 Мп снимает портреты с 2,5-кратным приближением без искажений. Экран OLED с высокой яркостью и зарядка 100 Вт, которая заполняет батарею примерно за 40 минут.',f:['Портретная камера Harcourt','Телеобъектив 50 Мп','Зарядка 100 Вт','Изогнутый OLED-экран'],box:'смартфон, зарядное устройство 100 Вт, кабель, чехол, скрепка для SIM',s:{'Операционная система':'MagicOS 8','Процессор':'Snapdragon 7 Gen 3','Разрешение экрана':'2664 × 1200','Фронтальная камера':'50 Мп','SIM':'2 × nano-SIM','Связь':'5G, Wi-Fi 6, NFC'}},
+ rm13:{d:'realme 13 Pro+ — смартфон с перископической камерой в среднем классе. Трёхкратный оптический зум позволяет снимать концерты и архитектуру издалека, а основная камера Sony 50 Мп хорошо справляется ночью. 512 ГБ памяти хватит на тысячи фото и видео, изогнутый экран AMOLED выглядит премиально.',f:['Перископ 3× оптический зум','512 ГБ памяти','Изогнутый AMOLED 120 Гц','Зарядка 80 Вт'],box:'смартфон, зарядное устройство 80 Вт, кабель, чехол, скрепка для SIM',s:{'Операционная система':'realme UI 5','Процессор':'Snapdragon 7s Gen 2','Камера':'50 + 50 (3×) + 8 Мп','Фронтальная камера':'32 Мп','Аккумулятор':'5200 мА·ч','Защита':'IP65'}},
+ mba:{d:'MacBook Air на чипе M3 — тонкий ноутбук без вентилятора, поэтому он работает абсолютно бесшумно. Весит 1,24 кг и держит заряд до 18 часов: можно взять на пары или в поездку без зарядки. 16 ГБ памяти хватает для учёбы, офиса, фото и лёгкого монтажа. Экран Liquid Retina яркий и чёткий, а Touch ID разблокирует ноутбук касанием.',f:['Бесшумный, без вентилятора','До 18 часов работы','Touch ID','Поддержка двух внешних мониторов (с закрытой крышкой)'],box:'ноутбук, адаптер питания USB-C 30 Вт, кабель USB-C — MagSafe 3',s:{'Операционная система':'macOS','Разрешение экрана':'2560 × 1664','Яркость':'500 нит','Графика':'8-ядерная GPU','Порты':'2 × Thunderbolt / USB 4, MagSafe 3, 3,5 мм','Камера':'1080p FaceTime HD','Беспроводная связь':'Wi-Fi 6E, Bluetooth 5.3'}},
+ vivo15:{d:'ASUS Vivobook 15 — рабочая лошадка для учёбы и офиса. Процессор Intel Core i5 13-го поколения и 16 ГБ памяти позволяют держать открытыми десятки вкладок, Word, Excel и видеоконференцию одновременно. Полноразмерная клавиатура с цифровым блоком удобна для таблиц, а шарнир раскрывается на 180 градусов.',f:['16 ГБ оперативной памяти','Клавиатура с цифровым блоком','Экран раскрывается на 180°','Шторка веб-камеры'],box:'ноутбук, адаптер питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'1920 × 1080','Графика':'Intel Iris Xe','Порты':'USB-C, 2 × USB-A, HDMI, 3,5 мм','Беспроводная связь':'Wi-Fi 6, Bluetooth 5.3'}},
+ legion:{d:'Lenovo Legion 5 — игровой ноутбук с балансом мощности и цены. Видеокарта RTX 4060 с поддержкой трассировки лучей и DLSS 3 уверенно запускает современные игры на высоких настройках. Экран 16″ с разрешением 2,5K и частотой 165 Гц даёт чёткую и плавную картинку, а система охлаждения Legion Coldfront держит температуры под контролем.',f:['RTX 4060 с DLSS 3','Экран 2,5K 165 Гц','Клавиатура с подсветкой','Продвинутое охлаждение'],box:'ноутбук, блок питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'2560 × 1600','Оперативная память':'16 ГБ DDR5','Порты':'USB-C, 3 × USB-A, HDMI 2.1, RJ-45','Беспроводная связь':'Wi-Fi 6, Bluetooth 5.1','Вес':'около 2,4 кг'}},
+ mbp14:{d:'MacBook Pro 14″ на чипе M4 рассчитан на профессиональную работу: монтаж 4K-видео, дизайн, разработку и 3D. Экран Liquid Retina XDR с частотой 120 Гц и очень высокой яркостью в HDR показывает детали в тенях и светах. Набор портов позволяет обходиться без переходников: Thunderbolt, HDMI и слот для SD-карт. Автономность до 24 часов.',f:['Экран XDR 120 Гц','До 24 часов работы','HDMI и слот SD','Камера 12 Мп с «Центром внимания»'],box:'ноутбук, адаптер питания USB-C 70 Вт, кабель USB-C — MagSafe 3',s:{'Операционная система':'macOS','Разрешение экрана':'3024 × 1964','Процессор':'Apple M4, 10 ядер','Порты':'3 × Thunderbolt 4, HDMI, SDXC, MagSafe 3, 3,5 мм','Беспроводная связь':'Wi-Fi 6E, Bluetooth 5.3','Вес':'1,55 кг'}},
+ hp15:{d:'HP Pavilion 15 — универсальный ноутбук для дома и учёбы. Шестиядерный процессор Ryzen 5 и 16 ГБ памяти справляются с учёбой, работой в браузере и простым монтажом. Металлическая крышка выглядит аккуратно, а динамики настроены вместе с B&O для фильмов и звонков.',f:['16 ГБ оперативной памяти','Звук B&O','Металлическая крышка','Быстрая зарядка'],box:'ноутбук, адаптер питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'1920 × 1080','Графика':'AMD Radeon','Порты':'USB-C, 2 × USB-A, HDMI, 3,5 мм','Беспроводная связь':'Wi-Fi 6, Bluetooth 5.3'}},
+ aspire5:{d:'Acer Aspire 5 — доступный ноутбук для школы, колледжа и работы с документами. Экран Full HD 15,6″, быстрый SSD на 512 ГБ и свежий процессор Intel Core i3 обеспечивают быстрый запуск системы и программ. Хороший выбор, если нужен надёжный ноутбук без переплаты.',f:['Быстрый SSD 512 ГБ','Экран Full HD IPS','Клавиатура с подсветкой','Wi-Fi 6'],box:'ноутбук, адаптер питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'1920 × 1080','Графика':'Intel UHD','Порты':'USB-C, USB-A, HDMI, 3,5 мм','Вес':'около 1,7 кг'}},
+ rog16:{d:'ASUS ROG Strix G16 — мощная игровая машина. 16-ядерный Intel Core i7 и видеокарта RTX 4070 выдают высокий FPS в требовательных играх, а экран 2,5K с частотой 240 Гц показывает каждое движение без смазывания. Охлаждение с жидким металлом на процессоре и подсветка Aura Sync делают ноутбук и быстрым, и эффектным.',f:['Экран 240 Гц','RTX 4070 8 ГБ','Жидкий металл в охлаждении','RGB-подсветка'],box:'ноутбук, блок питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'2560 × 1600','Оперативная память':'16 ГБ DDR5','Порты':'Thunderbolt 4, USB-C, 2 × USB-A, HDMI 2.1, RJ-45','Беспроводная связь':'Wi-Fi 6E','Вес':'около 2,5 кг'}},
+ mated16:{d:'HUAWEI MateBook D 16 сочетает большой экран 16″ формата 16:10 и лёгкий металлический корпус. Высокий экран вмещает больше строк текста и удобнее для таблиц. Процессор Intel Core i5 серии H работает быстрее обычных офисных чипов, а сканер отпечатка в кнопке питания включает ноутбук и сразу входит в систему.',f:['Экран 16″ формата 16:10','Металлический корпус','Отпечаток пальца в кнопке питания','Зарядка через USB-C'],box:'ноутбук, адаптер питания USB-C, кабель',s:{'Операционная система':'Windows 11','Разрешение экрана':'1920 × 1200','Порты':'USB-C, 2 × USB-A, HDMI, 3,5 мм','Беспроводная связь':'Wi-Fi 6, Bluetooth 5.1'}},
+ ideapad3:{d:'Lenovo IdeaPad Slim 3 — тонкий и лёгкий ноутбук на каждый день. Подходит для учёбы, онлайн-уроков, фильмов и работы в браузере. Шторка приватности закрывает веб-камеру, а быстрая зарядка восполняет батарею за короткий перерыв.',f:['Тонкий корпус','Шторка веб-камеры','Быстрая зарядка','Экран Full HD'],box:'ноутбук, адаптер питания, документация',s:{'Операционная система':'Windows 11','Разрешение экрана':'1920 × 1080','Графика':'AMD Radeon','Порты':'USB-C, 2 × USB-A, HDMI, 3,5 мм','Вес':'около 1,6 кг'}},
+ ipad:{d:'iPad 11″ — универсальный планшет для учёбы, чтения и фильмов. Экран Liquid Retina, процессор A16 и 128 ГБ памяти. Поддерживает Apple Pencil (USB-C) и клавиатуру Magic Keyboard Folio, поэтому легко превращается в тетрадь или мини-ноутбук. Фронтальная камера расположена по длинной стороне — удобно для видеозвонков.',f:['Поддержка Apple Pencil','Разъём USB-C','Touch ID в кнопке','Камера для звонков по длинной стороне'],box:'iPad, кабель USB-C, документация',s:{'Операционная система':'iPadOS 18','Разрешение экрана':'2360 × 1640','Камеры':'12 Мп основная и фронтальная','Беспроводная связь':'Wi-Fi 6','Автономность':'до 10 часов','Вес':'477 г'}},
+ tabs9:{d:'Galaxy Tab S9 FE — планшет со стилусом S Pen в комплекте и защитой от воды IP68. Можно рисовать, делать конспекты и подписывать документы, не докупая аксессуары. Экран 10,9″ с частотой 90 Гц, двойные динамики и поддержка карт памяти.',f:['S Pen в комплекте','Защита IP68','Поддержка карт памяти','Режим Samsung DeX'],box:'планшет, стилус S Pen, кабель USB-C, скрепка',s:{'Операционная система':'Android, One UI','Процессор':'Exynos 1380','Разрешение экрана':'2304 × 1440','Аккумулятор':'8000 мА·ч','Камеры':'8 Мп основная, 12 Мп фронтальная'}},
+ ipadair:{d:'iPad Air на чипе M2 обладает производительностью ноутбука в корпусе толщиной 6 мм. Подходит для рисования в Procreate, монтажа видео и учёбы. Поддерживает Apple Pencil Pro и клавиатуру Magic Keyboard, а фронтальная камера расположена по длинной стороне.',f:['Чип M2','Apple Pencil Pro','Magic Keyboard','Wi-Fi 6E'],box:'iPad, кабель USB-C, документация',s:{'Операционная система':'iPadOS 18','Разрешение экрана':'2360 × 1640','Камеры':'12 Мп основная и фронтальная','Разъём':'USB-C','Вес':'462 г'}},
+ pad6s:{d:'Xiaomi Pad 6S Pro — большой планшет с экраном 12,4″ разрешения 3K и частотой 144 Гц. Процессор Snapdragon 8 Gen 2 справляется с любыми играми, а шесть динамиков создают объёмный звук для фильмов. Батарея 10 000 мА·ч и очень быстрая зарядка.',f:['Экран 3K 144 Гц','6 динамиков','Батарея 10 000 мА·ч','Поддержка стилуса и клавиатуры'],box:'планшет, зарядное устройство, кабель USB-C',s:{'Операционная система':'Xiaomi HyperOS','Разрешение экрана':'3048 × 2032','Камера':'50 Мп','Зарядка':'до 120 Вт'}},
+ taba9:{d:'Galaxy Tab A9+ — недорогой планшет для всей семьи. Экран 11″ с частотой 90 Гц подходит для фильмов и учёбы, четыре динамика с Dolby Atmos дают объёмный звук. Детский режим Samsung Kids позволяет безопасно дать планшет ребёнку.',f:['Экран 11″ 90 Гц','4 динамика Dolby Atmos','Детский режим Samsung Kids','Слот microSD'],box:'планшет, кабель USB-C, скрепка',s:{'Операционная система':'Android, One UI','Процессор':'Snapdragon 695','Разрешение экрана':'1920 × 1200','Аккумулятор':'7040 мА·ч'}},
+ tabm11:{d:'Lenovo Tab M11 — планшет для учёбы со стилусом Lenovo Tab Pen в комплекте. Экран 11″ с частотой 90 Гц и режимом защиты глаз, четыре динамика Dolby Atmos. Удобен для конспектов, чтения учебников и видеоуроков.',f:['Стилус в комплекте','Режим защиты глаз','4 динамика','Слот microSD'],box:'планшет, стилус Lenovo Tab Pen, кабель USB-C',s:{'Операционная система':'Android','Процессор':'MediaTek Helio G88','Разрешение экрана':'1920 × 1200','Аккумулятор':'7040 мА·ч'}},
+ g5:{d:'Samsung Odyssey G5 — изогнутый игровой монитор 27″ с разрешением 2K. Изгиб 1000R повторяет поле зрения и лучше погружает в игру, а частота 165 Гц и отклик 1 мс делают движение плавным и чётким. Поддержка HDR10 и FreeSync Premium.',f:['Изгиб 1000R','165 Гц и 1 мс','FreeSync Premium','HDR10'],box:'монитор, подставка, кабель питания, кабель DisplayPort',s:{'Матрица':'VA','Время отклика':'1 мс (MPRT)','Разъёмы':'DisplayPort, HDMI, 3,5 мм','Крепление VESA':'75 × 75'}},
+ lg27:{d:'LG UltraGear 27″ — быстрый IPS-монитор с разрешением 2560 × 1440 и частотой 180 Гц. IPS-матрица даёт точные цвета под любым углом, поэтому монитор подходит и для игр, и для работы с фото. Совместим с G-Sync и FreeSync.',f:['IPS 180 Гц','Отклик 1 мс','Покрытие sRGB 99%','G-Sync Compatible'],box:'монитор, подставка, блок питания, кабель HDMI',s:{'Время отклика':'1 мс (GtG)','HDR':'HDR10','Разъёмы':'2 × HDMI, DisplayPort, 3,5 мм','Крепление VESA':'100 × 100'}},
+ a27i:{d:'Xiaomi Monitor A27i — большой и недорогой монитор для дома и офиса. IPS-матрица 27″ с тонкими рамками, частота 100 Гц делает прокрутку плавнее обычных 60 Гц. Режим защиты глаз снижает синий свет при долгой работе.',f:['27″ IPS','100 Гц','Тонкие рамки','Защита глаз'],box:'монитор, подставка, кабель питания, кабель HDMI',s:{'Покрытие цвета':'sRGB 99%','Разъёмы':'HDMI, DisplayPort','Крепление VESA':'75 × 75'}},
+ dell24:{d:'Dell P2425H — офисный монитор, за который не жалко заплатить. Подставка регулируется по высоте, наклону и повороту, экран можно развернуть вертикально для документов. Технология ComfortView Plus снижает синий свет без искажения цветов, а порт USB-C передаёт изображение с ноутбука одним кабелем.',f:['Регулировка высоты и поворот','ComfortView Plus','USB-C с зарядкой','Встроенный USB-хаб'],box:'монитор, подставка, кабель питания, кабели HDMI и USB-C',s:{'Матрица':'IPS','Разъёмы':'HDMI, DisplayPort, VGA, USB-C, USB-хаб','Крепление VESA':'100 × 100'}},
+ xm5:{d:'Sony WH-1000XM5 — одни из лучших наушников с шумоподавлением. Восемь микрофонов и два процессора подстраивают подавление шума под окружение: самолёт, автобус или офис. Драйверы 30 мм дают детальный звук, а поддержка LDAC передаёт музыку в высоком качестве. Лёгкие, мягкие и удобные даже в долгих поездках.',f:['Адаптивное шумоподавление','Кодек LDAC','Подключение к двум устройствам','3 минуты зарядки = 3 часа музыки'],box:'наушники, чехол, кабель USB-C, аудиокабель 3,5 мм',s:{'Драйверы':'30 мм','Кодеки':'SBC, AAC, LDAC','Bluetooth':'5.2, мультипоинт','Вес':'250 г'}},
+ app2:{d:'AirPods Pro 2 с чипом H2 подавляют шум вдвое эффективнее прошлого поколения. Адаптивный режим сам смешивает шумоподавление и прозрачность в зависимости от обстановки. Пространственное аудио с отслеживанием головы создаёт эффект кинотеатра. Кейс заряжается от USB-C, MagSafe и имеет динамик для поиска.',f:['Активное шумоподавление','Адаптивное аудио','Пространственный звук','Кейс с динамиком и USB-C'],box:'наушники, зарядный кейс, 4 пары амбушюр, кабель USB-C',s:{'Чип':'Apple H2','Защита':'IP54 (наушники и кейс)','Зарядка кейса':'USB-C, MagSafe, Qi'}},
+ jbl520:{d:'JBL Tune 520BT — лёгкие накладные наушники с фирменным басом JBL Pure Bass. До 57 часов музыки без подзарядки, а 5 минут зарядки хватит на 3 часа. Складываются для переноски и подключаются сразу к двум устройствам.',f:['До 57 часов работы','Быстрая зарядка','Подключение к двум устройствам','Складная конструкция'],box:'наушники, кабель USB-C',s:{'Драйверы':'33 мм','Bluetooth':'5.3','Микрофон':'встроенный, для звонков'}},
+ airpods4:{d:'AirPods 4 — новая форма вкладышей, которая лучше сидит в ушах. Чип H2 улучшает качество звонков и звука, есть пространственное аудио. Кейс стал меньше и заряжается через USB-C.',f:['Новая эргономичная форма','Пространственное аудио','Кейс USB-C','Защита IP54'],box:'наушники, зарядный кейс, документация',s:{'Чип':'Apple H2','Защита':'IP54','Управление':'сенсорное, кивки головой'}},
+ buds3:{d:'Galaxy Buds3 Pro — наушники-вкладыши нового дизайна с двумя динамиками в каждом наушнике. Активное шумоподавление, прозрачный режим и поддержка звука 24 бит со смартфонами Galaxy. Защита IP57 от воды и пыли.',f:['Двухполосные динамики','Шумоподавление','Звук 24 бит с Galaxy','Защита IP57'],box:'наушники, зарядный кейс, амбушюры, кабель USB-C',s:{'Автономность':'до 6 ч с шумоподавлением, до 26 ч с кейсом','Bluetooth':'5.4'}},
+ wf5:{d:'Sony WF-1000XM5 — самые маленькие и лёгкие наушники Sony с флагманским шумоподавлением. Драйвер Dynamic Driver X даёт насыщенный бас и чистые вокалы, есть поддержка LDAC. Амбушюры из пены с памятью лучше изолируют шум.',f:['Флагманское шумоподавление','Кодек LDAC','Амбушюры с памятью формы','Беспроводная зарядка кейса'],box:'наушники, зарядный кейс, 4 размера амбушюр, кабель USB-C',s:{'Драйверы':'8,4 мм','Кодеки':'SBC, AAC, LDAC','Защита':'IPX4'}},
+ beam2:{d:'JBL Tune Beam 2 — недорогие наушники-вкладыши с активным шумоподавлением. Четыре микрофона делают звонки чище, а режим Ambient Aware позволяет слышать окружение на улице. Приложение JBL Headphones даёт настроить эквалайзер под себя.',f:['Активное шумоподавление','4 микрофона','Приложение с эквалайзером','Защита IP54'],box:'наушники, зарядный кейс, амбушюры, кабель USB-C',s:{'Bluetooth':'5.3','Защита':'IP54'}},
+ rbuds6:{d:'Redmi Buds 6 Active — простые и доступные беспроводные наушники. Динамик 14,2 мм даёт громкий звук, а шумоподавление микрофонов делает голос в звонках разборчивым. До 30 часов музыки с кейсом.',f:['Крупный драйвер 14,2 мм','До 30 часов с кейсом','Шумоподавление при звонках','Защита IPX4'],box:'наушники, зарядный кейс, кабель USB-C',s:{'Драйвер':'14,2 мм','Защита':'IPX4'}},
+ major5:{d:'Marshall Major V — культовые накладные наушники в узнаваемом стиле. Более 100 часов музыки без подзарядки и беспроводная зарядка. Кнопка M настраивается на эквалайзер или голосового помощника, а складная конструкция удобна в дороге.',f:['Более 100 часов работы','Беспроводная зарядка','Настраиваемая кнопка M','Складная конструкция'],box:'наушники, кабель USB-C',s:{'Драйверы':'40 мм','Bluetooth':'5.3'}},
+ hd450:{d:'Sennheiser ACCENTUM Wireless — полноразмерные наушники с гибридным шумоподавлением и фирменным звуком Sennheiser. До 50 часов работы, быстрая зарядка через USB-C и подключение к двум устройствам. Хороший вариант для офиса и путешествий.',f:['Гибридное шумоподавление','До 50 часов','Кодек aptX HD','Подключение к двум устройствам'],box:'наушники, кабель USB-C',s:{'Драйверы':'37 мм','Кодеки':'SBC, AAC, aptX, aptX HD','Bluetooth':'5.2','Вес':'222 г'}},
+ aw10:{d:'Apple Watch Series 10 — самые тонкие Apple Watch с самым большим экраном. Широкоугольный OLED-экран лучше виден сбоку, а быстрая зарядка восполняет 80% примерно за 30 минут. Часы отслеживают пульс, сон, тренировки, делают ЭКГ и распознают падения.',f:['Широкоугольный OLED-экран','ЭКГ и уведомления о пульсе','Быстрая зарядка','Распознавание падений и аварий'],box:'часы, ремешок, магнитный кабель USB-C',s:{'Совместимость':'iPhone','Экран':'OLED, всегда включён','Чип':'S10'}},
+ band9:{d:'Xiaomi Smart Band 9 — фитнес-браслет с ярким AMOLED-экраном и автономностью до 21 дня. Измеряет пульс, кислород в крови, сон и стресс, поддерживает более 150 режимов тренировок. Водозащита 5 ATM позволяет плавать.',f:['До 21 дня работы','Более 150 режимов спорта','Мониторинг сна','Водозащита 5 ATM'],box:'браслет, ремешок, зарядный кабель',s:{'Водозащита':'5 ATM','Совместимость':'Android, iOS'}},
+ gw7:{d:'Galaxy Watch7 — умные часы на Wear OS с продвинутым мониторингом здоровья. Датчик BioActive измеряет пульс, ЭКГ, состав тела и качество сна. Сапфировое стекло защищает экран от царапин, а защита 5 ATM и IP68 позволяет плавать.',f:['Датчик BioActive','Сапфировое стекло','Wear OS: Google Карты и приложения','Защита 5 ATM + IP68'],box:'часы, ремешок, беспроводная зарядка',s:{'Процессор':'Exynos W1000','Совместимость':'Android'}},
+ awse:{d:'Apple Watch SE — самый доступный способ получить Apple Watch. Отслеживание активности и сна, уведомления, оплата, распознавание падений и аварий. Отлично подходят как первые смарт-часы.',f:['Распознавание падений','Мониторинг сна','Бесконтактная оплата','Водозащита WR50'],box:'часы, ремешок, магнитный кабель',s:{'Совместимость':'iPhone','Чип':'S8'}},
+ gt5:{d:'HUAWEI Watch GT 5 — часы с классическим дизайном и долгой автономностью до 14 дней. Точный двухчастотный GPS для бега и велосипеда, продвинутый датчик пульса TruSense и более 100 режимов тренировок.',f:['До 14 дней работы','Двухчастотный GPS','Датчик TruSense','Совместимость с Android и iOS'],box:'часы, ремешок, беспроводная зарядка',s:{'Разрешение экрана':'466 × 466','Водозащита':'5 ATM'}},
+ bip5:{d:'Amazfit Bip 5 — лёгкие часы с большим экраном 1,91″. Встроенный GPS записывает маршрут без телефона, есть звонки по Bluetooth и более 120 спортивных режимов. Весят всего 26 граммов.',f:['Встроенный GPS','Звонки по Bluetooth','Большой экран 1,91″','До 10 дней работы'],box:'часы, ремешок, зарядный кабель',s:{'Водозащита':'5 ATM','Вес':'26 г'}},
+ rw5:{d:'Redmi Watch 5 Active — недорогие часы с большим экраном 2″ и автономностью до 18 дней. Принимают звонки по Bluetooth, показывают уведомления и следят за пульсом, сном и тренировками.',f:['Экран 2″','До 18 дней работы','Звонки по Bluetooth','Более 140 режимов спорта'],box:'часы, ремешок, зарядный кабель',s:{'Водозащита':'5 ATM'}},
+ tv55:{d:'Samsung Crystal UHD 55″ — большой 4K-телевизор с технологией Crystal Processor 4K, которая улучшает изображение до 4K-качества. Smart TV на Tizen даёт доступ к YouTube, Netflix и другим сервисам без приставки. Тонкий дизайн, поддержка HDR10+ и игрового режима.',f:['Разрешение 4K','HDR10+','Smart TV Tizen','Игровой режим с низкой задержкой'],box:'телевизор, ножки, пульт, кабель питания, документация',s:{'Частота':'50/60 Гц','Порты':'3 × HDMI, 2 × USB, LAN','Беспроводная связь':'Wi-Fi 5, Bluetooth','Звук':'20 Вт','Крепление VESA':'200 × 200'}},
+ tv43:{d:'Xiaomi TV A 43″ 2025 — компактный 4K-телевизор на Google TV. Голосовой поиск по пульту, Chromecast для трансляции с телефона и тысячи приложений из Google Play. Подходит для кухни, спальни или детской.',f:['4K UHD','Google TV и Chromecast','Голосовой поиск','Тонкие рамки'],box:'телевизор, ножки, пульт, кабель питания',s:{'Порты':'HDMI, USB, LAN','Беспроводная связь':'Wi-Fi, Bluetooth','Звук':'Dolby Audio'}},
+ lgc4:{d:'LG OLED evo C4 65″ — эталон изображения для кино и игр. Каждый пиксель OLED светится сам, поэтому чёрный цвет по-настоящему чёрный, а контраст бесконечный. Процессор α9 Gen7 с ИИ улучшает детали и звук, частота до 144 Гц и четыре порта HDMI 2.1 делают телевизор идеальным для PS5, Xbox и ПК.',f:['OLED evo: идеальный чёрный','До 144 Гц для игр','4 × HDMI 2.1','Dolby Vision и Dolby Atmos'],box:'телевизор, подставка, пульт Magic Remote, кабель питания',s:{'Процессор':'α9 Gen7 AI','Smart TV':'webOS','Совместимость':'G-Sync, FreeSync Premium','Звук':'40 Вт, Dolby Atmos'}},
+ q60d:{d:'Samsung QLED Q60D 50″ — телевизор с квантовыми точками, которые дают яркие и насыщенные цвета. Дизайн AirSlim делает его очень тонким, так что он красиво смотрится на стене. Поддержка Quantum HDR и Smart TV Tizen.',f:['Квантовые точки QLED','Тонкий дизайн AirSlim','Quantum HDR','Smart TV Tizen'],box:'телевизор, ножки, пульт, кабель питания',s:{'Порты':'3 × HDMI, 2 × USB, LAN','Беспроводная связь':'Wi-Fi 5, Bluetooth','Звук':'20 Вт'}},
+ tcl55:{d:'TCL C655 55″ — QLED-телевизор с отличным соотношением цены и качества. Поддерживает Dolby Vision, HDR10+ и Dolby Atmos, работает на Google TV с голосовым поиском. Режим Game Master снижает задержку в играх.',f:['QLED','Dolby Vision и HDR10+','Google TV','Dolby Atmos'],box:'телевизор, ножки, пульт, кабель питания',s:{'Порты':'3 × HDMI, USB, LAN','Беспроводная связь':'Wi-Fi, Bluetooth'}},
+ his43:{d:'Hisense A6N 43″ — простой и недорогой 4K-телевизор. Поддерживает Dolby Vision и HDR10, работает на системе VIDAA с популярными приложениями. Хороший вариант для второй комнаты.',f:['4K UHD','Dolby Vision','Smart TV VIDAA','Тонкие рамки'],box:'телевизор, ножки, пульт, кабель питания',s:{'Порты':'3 × HDMI, 2 × USB, LAN','Беспроводная связь':'Wi-Fi, Bluetooth'}},
+ ps5:{d:'PlayStation 5 Slim — более компактная версия PS5 с дисководом Blu-ray. SSD на 1 ТБ почти мгновенно загружает игры, а геймпад DualSense передаёт отдачу от оружия и поверхностей через адаптивные курки и вибрацию. Игры в 4K с трассировкой лучей и до 120 кадров в секунду.',f:['SSD 1 ТБ','Дисковод Blu-ray 4K','Геймпад DualSense в комплекте','До 120 кадров в секунду'],box:'консоль, геймпад DualSense, кабель HDMI, кабель питания, кабель USB-C',s:{'Разрешение':'до 4K, 120 Гц','Беспроводная связь':'Wi-Fi 6, Bluetooth 5.1','Порты':'HDMI 2.1, USB-C, USB-A, LAN'}},
+ xsx:{d:'Xbox Series X — самая мощная консоль Microsoft. Игры в 4K до 120 кадров в секунду, функция Quick Resume позволяет переключаться между несколькими играми за секунды. Подписка Game Pass даёт доступ к сотням игр.',f:['4K до 120 к/с','Quick Resume','Дисковод Blu-ray 4K','Обратная совместимость с прошлыми Xbox'],box:'консоль, геймпад, кабель HDMI, кабель питания',s:{'Производительность':'12 терафлопс','Порты':'HDMI 2.1, 3 × USB, LAN'}},
+ switch:{d:'Nintendo Switch OLED — консоль, которую можно подключить к телевизору или взять с собой. Яркий OLED-экран 7″, док-станция с LAN-портом и 64 ГБ памяти. Два контроллера Joy-Con позволяют сразу играть вдвоём.',f:['OLED-экран 7″','Режимы ТВ и портативный','Два Joy-Con в комплекте','Слот microSD'],box:'консоль, 2 Joy-Con, док-станция, держатель Joy-Con, ремешки, кабель HDMI, блок питания',s:{'Разрешение':'1280 × 720 (портативный), до 1080p (ТВ)','Автономность':'от 4,5 до 9 часов'}},
+ dualsense:{d:'DualSense — фирменный геймпад PlayStation 5. Адаптивные курки меняют сопротивление в зависимости от игры, а тактильная отдача передаёт ощущение поверхностей. Встроенный микрофон и разъём для наушников. Работает с PS5 и ПК.',f:['Адаптивные курки','Тактильная отдача','Встроенный микрофон','Разъём 3,5 мм'],box:'геймпад, кабель USB-C',s:{'Подключение':'Bluetooth, USB-C'}},
+ xboxpad:{d:'Xbox Wireless Controller — удобный геймпад с текстурированными рукоятками и кнопкой «Поделиться». Работает с Xbox, компьютером, планшетом и смартфоном по Bluetooth или кабелю USB-C.',f:['Кнопка «Поделиться»','Текстурированные рукоятки','Bluetooth и USB-C','Разъём 3,5 мм'],box:'геймпад, 2 батарейки AA',s:{'Питание':'2 × AA или аккумулятор'}},
+ charge5:{d:'JBL Charge 5 — громкая портативная колонка мощностью 40 Вт с отдельным твитером для чистых высоких частот. Защита IP67 от воды и пыли: не страшны дождь, пляж и бассейн. Может заряжать телефон как пауэрбанк, а через PartyBoost объединяется с другими колонками JBL.',f:['40 Вт звука','Защита IP67','Функция пауэрбанка','PartyBoost'],box:'колонка, кабель USB-C',s:{'Bluetooth':'5.1','Вес':'около 960 г'}},
+ emb2:{d:'Marshall Emberton II — компактная колонка с объёмным звуком 360°. Звучит одинаково хорошо со всех сторон, работает более 30 часов и защищена по IP67. Через Stack Mode объединяется с другими колонками Marshall.',f:['Звук 360°','Более 30 часов работы','Защита IP67','Stack Mode'],box:'колонка, кабель USB-C',s:{'Bluetooth':'5.1','Вес':'около 700 г'}},
+ flip6:{d:'JBL Flip 6 — самая популярная колонка JBL. Двухполосная акустика с отдельным твитером даёт чистый звук и мощный бас. Защита IP67 и прочная ткань выдерживают походы и пляж, до 12 часов музыки.',f:['Двухполосная акустика','Защита IP67','До 12 часов','PartyBoost'],box:'колонка, кабель USB-C',s:{'Мощность':'30 Вт','Вес':'около 550 г'}},
+ stmidi:{d:'Яндекс Станция Миди — умная колонка с Алисой и встроенным хабом умного дома Zigbee. Можно управлять лампами, розетками и датчиками без отдельного шлюза. Экран-подсветка показывает время и погоду.',f:['Алиса','Хаб Zigbee','Световой экран','Хороший бас'],box:'колонка, адаптер питания',s:{'Подключение':'Wi-Fi, Bluetooth'}},
+ xb100:{d:'Sony SRS-XB100 — маленькая колонка с ремешком для рюкзака или велосипеда. Защита IP67, до 16 часов работы и встроенный микрофон для звонков.',f:['Компактная, с ремешком','Защита IP67','До 16 часов','Микрофон для звонков'],box:'колонка, кабель USB-C',s:{'Bluetooth':'5.3'}},
+ encore:{d:'JBL PartyBox Encore — колонка для вечеринок и караоке. 100 Вт мощного звука, световое шоу в такт музыке и беспроводной микрофон. Работает от аккумулятора, так что вечеринку можно устроить где угодно.',f:['100 Вт звука','Световое шоу','Беспроводной микрофон','Работа от аккумулятора'],box:'колонка, беспроводной микрофон, кабель питания',s:{'Защита':'IPX4'}},
+ gopro13:{d:'GoPro HERO13 Black — экшн-камера для путешествий, спорта и влогов. Видео 5,3K 60 к/с и 4K 120 к/с, стабилизация HyperSmooth 6.0 убирает тряску даже на велосипеде. Водонепроницаема до 10 метров без бокса, есть два экрана для селфи-съёмки.',f:['Видео 5,3K','Стабилизация HyperSmooth 6.0','Водонепроницаемость 10 м','Два экрана'],box:'камера, аккумулятор Enduro, крепление, кабель USB-C',s:{'Фото':'27 Мп','Аккумулятор':'Enduro 1900 мА·ч'}},
+ zve10:{d:'Sony ZV-E10 II — беззеркальная камера для блогеров. Матрица APS-C 26 Мп, видео 4K 60 к/с с 10-битным цветом, поворотный экран для селфи. Режимы «Показ товара» и «Размытие фона» включаются одной кнопкой.',f:['Матрица APS-C 26 Мп','4K 60 к/с 10 бит','Поворотный экран','Объектив 16–50 мм в комплекте'],box:'камера, объектив 16–50 мм, аккумулятор, кабель USB-C',s:{'Аккумулятор':'NP-FZ100'}},
+ instax12:{d:'Fujifilm Instax Mini 12 — фотоаппарат моментальной печати. Нажали кнопку, и через пару минут в руках готовое фото. Автоматическая экспозиция и режим крупного плана — никаких сложных настроек.',f:['Моментальная печать','Автоэкспозиция','Режим крупного плана','Яркие цвета корпуса'],box:'фотоаппарат, ремешок, 2 батарейки AA',s:{'Картридж':'Instax Mini (продаётся отдельно)'}},
+ ad20:{d:'Оригинальный адаптер Apple 20 Вт с разъёмом USB-C. Быстро заряжает iPhone: до 50% примерно за 30 минут. Подходит для iPhone, iPad и AirPods.',f:['Быстрая зарядка','Оригинал Apple','Компактный'],box:'адаптер (кабель продаётся отдельно)',s:{'Совместимость':'iPhone 8 и новее, iPad, AirPods'}},
+ nano65:{d:'Anker Nano 65 Вт на технологии GaN — маленькая зарядка, которая заменяет три адаптера. Заряжает ноутбук, телефон и часы одновременно, умно распределяя мощность.',f:['Технология GaN','3 порта','Заряжает ноутбуки'],box:'зарядное устройство',s:{'Разъёмы':'2 × USB-C, USB-A'}},
+ mx3s:{d:'Logitech MX Master 3S — эргономичная мышь для работы. Бесшумные клики, датчик 8000 DPI работает даже на стекле, колесо MagSpeed прокручивает 1000 строк в секунду. Переключается между тремя устройствами.',f:['Бесшумные клики','Датчик 8000 DPI','Колесо MagSpeed','До 3 устройств'],box:'мышь, приёмник Logi Bolt, кабель USB-C',s:{'Автономность':'до 70 дней','Вес':'141 г'}},
+ mxkeys:{d:'Logitech MX Keys S — тихая клавиатура с подсветкой, которая включается при приближении рук. Клавиши с углублениями под пальцы, переключение между тремя устройствами, настройка горячих клавиш в Logi Options+.',f:['Умная подсветка','До 3 устройств','Программируемые клавиши','Зарядка USB-C'],box:'клавиатура, кабель USB-C',s:{'Автономность':'до 10 дней с подсветкой, до 5 месяцев без'}},
+ t7:{d:'Samsung T7 — быстрый внешний SSD размером с визитку. Скорость до 1050 МБ/с, алюминиевый корпус выдерживает падение с высоты до 2 метров. Работает с ПК, Mac, консолями и смартфонами.',f:['До 1050 МБ/с','Ударопрочный корпус','USB-C','Весит 58 г'],box:'диск, кабели USB-C — USB-C и USB-C — USB-A',s:{'Интерфейс':'USB 3.2 Gen 2','Гарантия производителя':'3 года'}},
+ anker:{d:'Anker PowerCore 20000 мА·ч — надёжный внешний аккумулятор для поездок. Заряжает смартфон 4–5 раз, поддерживает быструю зарядку и имеет два выхода.',f:['20 000 мА·ч','Быстрая зарядка','2 выхода'],box:'аккумулятор, кабель, чехол',s:{}},
+ pb10:{d:'Xiaomi Power Bank 10000 мА·ч — лёгкий карманный аккумулятор. Быстрая зарядка 22,5 Вт, два выхода и защита от перегрева.',f:['22,5 Вт','Карманный размер','Защита от перегрева'],box:'аккумулятор, кабель',s:{}},
+ s20:{d:'Xiaomi Robot Vacuum S20 — робот-пылесос с сухой и влажной уборкой. Лазерная навигация строит карту квартиры, в приложении можно задать комнаты и расписание. Мощное всасывание собирает пыль и шерсть с ковров.',f:['Сухая и влажная уборка','Лазерная карта квартиры','Расписание в приложении','Голосовое управление'],box:'робот, зарядная станция, модуль для влажной уборки, салфетка',s:{'Мощность всасывания':'до 5000 Па'}},
+ purifier:{d:'Xiaomi Smart Air Purifier 4 Compact очищает воздух в комнате до 27 м² с помощью фильтра HEPA. Особенно полезен в сезон отопления и смога. Управляется из приложения и голосом.',f:['Фильтр HEPA','Комнаты до 27 м²','Тихий ночной режим','Управление из приложения'],box:'очиститель, фильтр, кабель питания',s:{}},
+ c200:{d:'TP-Link Tapo C200 — домашняя Wi-Fi камера с поворотом на 360°. Смотрите, что происходит дома, со смартфона, разговаривайте через встроенный динамик и получайте уведомления о движении. Ночное видение до 9 метров.',f:['Поворот на 360°','Двусторонняя связь','Уведомления о движении','Запись на microSD'],box:'камера, адаптер питания, крепление',s:{'Хранение':'microSD до 512 ГБ'}}
+};
+
+const BRANDS={Samsung:['Южная Корея','Один из крупнейших производителей смартфонов, телевизоров и памяти в мире.'],Apple:['США','Создатель iPhone, iPad и Mac. Известна единой экосистемой устройств.'],Xiaomi:['Китай','Производит смартфоны, умную технику и электронику с хорошим соотношением цены и качества.'],POCO:['Китай','Суббренд Xiaomi для тех, кому важна производительность за разумные деньги.'],HONOR:['Китай','Производитель смартфонов и ноутбуков, выделяется камерами и быстрой зарядкой.'],realme:['Китай','Молодой бренд смартфонов с упором на камеры и дизайн.'],ASUS:['Тайвань','Известна ноутбуками, игровой серией ROG и компьютерными комплектующими.'],Lenovo:['Китай','Один из крупнейших производителей ноутбуков и планшетов в мире.'],HP:['США','Производитель ноутбуков, компьютеров и принтеров с многолетней историей.'],Acer:['Тайвань','Производит доступные ноутбуки и мониторы для учёбы и работы.'],HUAWEI:['Китай','Производитель смартфонов, ноутбуков, часов и сетевого оборудования.'],Sony:['Япония','Легендарный бренд аудио, камер, телевизоров и PlayStation.'],JBL:['США','Специализируется на наушниках и портативных колонках с мощным басом.'],Marshall:['Великобритания','Знаменита гитарными усилителями и аудиотехникой в узнаваемом стиле.'],Anker:['Китай','Лидер в зарядных устройствах, кабелях и внешних аккумуляторах.'],LG:['Южная Корея','Известна OLED-телевизорами, мониторами и бытовой техникой.'],Dell:['США','Производит надёжные ноутбуки и мониторы для офисов и компаний.'],Sennheiser:['Германия','Производитель профессиональной и домашней аудиотехники с 1945 года.'],Amazfit:['Китай','Бренд умных часов с долгой автономностью.'],TCL:['Китай','Один из крупнейших производителей телевизоров в мире.'],Hisense:['Китай','Производит телевизоры и бытовую технику.'],Microsoft:['США','Создатель Windows и игровых консолей Xbox.'],Nintendo:['Япония','Создатель Mario, Zelda и консоли Switch.'],'Яндекс':['Россия','Разработчик голосового помощника Алиса и умных колонок.'],GoPro:['США','Создатель экшн-камер для спорта и путешествий.'],Fujifilm:['Япония','Производитель фотокамер и фотоплёнки, в том числе Instax.'],Logitech:['Швейцария','Производит мыши, клавиатуры и аксессуары для компьютеров.'],'TP-Link':['Китай','Производитель роутеров, сетевого оборудования и умных камер.']};
+const CATINFO={
+ phone:{who:'Смартфон — главный гаджет каждый день: звонки, мессенджеры, фото, банковские приложения и учёба. Модели из этого раздела подойдут и школьнику, и студенту, и тем, кто работает с телефона.',tips:['Для долгой работы смотрите на ёмкость батареи: 5000 мА·ч и больше хватает на полный день и дольше.','Если много снимаете, важны оптическая стабилизация (OIS) и телеобъектив.','Для игр выбирайте процессор уровня Snapdragon 8 или Dimensity 8000 и выше и экран 120 Гц.','Количество лет обновлений показывает, как долго телефон будет получать новые функции и защиту.'],qa:[['Есть ли в телефоне казахский язык?','Да, все смартфоны в каталоге поддерживают казахский и русский языки интерфейса и клавиатуры.'],['Работают ли смартфоны с казахстанскими операторами?','Да, все модели работают с Beeline, Kcell, Activ, Tele2 и Altel, включая 4G. Модели с 5G поддерживают сети 5G там, где они доступны.'],['Можно ли перенести данные со старого телефона?','Да. Samsung, Xiaomi и Apple имеют бесплатные приложения для переноса контактов, фото и чатов.']]},
+ laptop:{who:'Ноутбуки для учёбы, работы, игр и творчества. Лёгкие модели удобно носить на пары, мощные справляются с монтажом, программированием и современными играми.',tips:['Для учёбы и офиса хватит процессора Core i3/i5 или Ryzen 3/5 и 8–16 ГБ памяти.','Выбирайте SSD от 512 ГБ: он делает загрузку системы и программ быстрой.','Для игр нужна дискретная видеокарта (RTX 4050 и выше) и экран 144 Гц и выше.','Если часто носите ноутбук с собой, смотрите на вес до 1,6 кг и автономность от 10 часов.'],qa:[['Установлена ли Windows?','Ноутбуки с Windows поставляются с установленной системой. MacBook работают на macOS.'],['Можно ли увеличить память?','Во многих моделях с Windows можно добавить SSD или оперативную память. В MacBook память не расширяется, выбирайте объём сразу.'],['Есть ли казахская раскладка на клавиатуре?','Раскладка на клавишах зависит от поставки. Казахскую раскладку можно включить в настройках системы на любом ноутбуке.']]},
+ tablet:{who:'Планшеты для учёбы, конспектов, рисования, чтения и фильмов. С клавиатурой и стилусом многие из них заменяют ноутбук.',tips:['Для конспектов и рисования выбирайте модель с поддержкой стилуса.','Экран 11″ — универсальный размер, 12″ и больше удобнее для фильмов и работы.','Если планшет для ребёнка, обратите внимание на детский режим и прочный чехол.'],qa:[['Можно ли вставить SIM-карту?','Модели в каталоге — версии Wi-Fi, без SIM-карты. Интернет можно раздать с телефона.'],['Продаётся ли стилус отдельно?','У Galaxy Tab S9 FE и Lenovo Tab M11 стилус в комплекте, для iPad его нужно покупать отдельно.'],['Подойдёт ли для онлайн-уроков?','Да, у всех моделей есть фронтальная камера и микрофон для Zoom, Teams и Google Meet.']]},
+ monitor:{who:'Мониторы для учёбы, работы и игр. Большой экран облегчает работу с таблицами и документами, а высокая частота делает игры плавными.',tips:['Для работы с текстом и таблицами удобнее разрешение 2K на 27″.','Для игр важны частота от 144 Гц и время отклика около 1 мс.','Матрица IPS даёт точные цвета, VA — глубокий чёрный и высокий контраст.','Проверьте разъёмы: HDMI, DisplayPort или USB-C должны совпадать с вашим компьютером.'],qa:[['Есть ли кабель в комплекте?','Да, в комплекте есть кабель для подключения (HDMI или DisplayPort) и кабель питания.'],['Можно ли повесить на стену?','Да, если у монитора есть крепление VESA. Размер крепления указан в характеристиках.'],['Подойдёт ли к ноутбуку?','Да, через HDMI или USB-C. Для MacBook удобнее мониторы с USB-C.']]},
+ audio:{who:'Наушники для музыки, звонков, спорта и поездок. Модели с шумоподавлением спасают в транспорте и опен-спейсе.',tips:['Активное шумоподавление (ANC) полезно в транспорте и шумных местах.','Для спорта выбирайте вкладыши с защитой от пота IPX4 и выше.','Если у вас iPhone, удобнее AirPods, для Samsung — Galaxy Buds: быстрее подключаются и дают больше функций.','Для долгих поездок смотрите на автономность от 30 часов.'],qa:[['Можно ли подключить к ноутбуку?','Да, все беспроводные наушники подключаются по Bluetooth к ноутбуку, планшету и смартфону.'],['Можно ли вернуть наушники?','Внутриканальные наушники относятся к товарам личной гигиены. Возврат возможен только при заводском браке.'],['Есть ли микрофон?','Да, во всех моделях есть микрофон для звонков.']]},
+ watch:{who:'Умные часы и фитнес-браслеты следят за пульсом, сном и тренировками, показывают уведомления и помогают двигаться больше.',tips:['Apple Watch работают только с iPhone, Galaxy Watch — с Android.','Если не хотите заряжать часто, выбирайте модели с автономностью от 10 дней.','Для бега и велосипеда нужен встроенный GPS.','Для плавания нужна водозащита 5 ATM.'],qa:[['Можно ли плавать в часах?','Да, если указана водозащита 5 ATM или WR50: можно плавать в бассейне и в открытой воде.'],['Работает ли бесконтактная оплата?','На Apple Watch работает Apple Pay, на Galaxy Watch — Samsung Wallet, если ваш банк их поддерживает.'],['Можно ли поменять ремешок?','Да, у всех моделей ремешки стандартные и легко меняются.']]},
+ tv:{who:'Телевизоры для кино, сериалов, спорта и игр. Smart TV заменяет приставку: YouTube и онлайн-кинотеатры работают сразу.',tips:['Размер выбирайте по расстоянию до дивана: 43″ — до 2 метров, 55″ — 2–2,5 метра, 65″ — от 2,5 метра.','Для игр на PS5 и Xbox нужны HDMI 2.1 и частота 120 Гц.','OLED даёт лучший контраст и чёрный цвет, QLED — высокую яркость.','Проверьте, есть ли нужные вам приложения в Smart TV.'],qa:[['Есть ли в комплекте настенное крепление?','Нет, в комплекте ножки или подставка. Кронштейн подбирается по стандарту VESA из характеристик.'],['Поможете с установкой?','Курьер доставит телевизор до квартиры. Установку на стену можно заказать у партнёров.'],['Работают ли казахстанские каналы?','Да, через антенну, кабельное ТВ или приложения операторов в Smart TV.']]},
+ game:{who:'Консоли и геймпады для игр дома, с друзьями и в дороге.',tips:['PS5 и Xbox Series X — для игр в 4K на большом телевизоре.','Nintendo Switch удобна для игр вместе и в дороге.','Геймпад для ПК лучше брать от Xbox: он подключается без дополнительных программ.'],qa:[['Есть ли игры в комплекте?','Нет, игры покупаются отдельно в магазинах PlayStation Store, Microsoft Store и Nintendo eShop или на дисках.'],['Нужен ли интернет?','Для первой настройки и онлайн-игр нужен интернет. Большинство одиночных игр работают и без него.'],['Подключается ли геймпад к ПК?','Да, DualSense и Xbox Controller работают с Windows по Bluetooth или кабелю USB-C.']]},
+ speaker:{who:'Колонки для дома, пикников, поездок и вечеринок.',tips:['Для дома и пикника хватит 20–40 Вт, для вечеринок — от 100 Вт.','Защита IP67 нужна, если берёте колонку к воде или на природу.','Функции PartyBoost и Stack Mode позволяют объединить две колонки в стерео.'],qa:[['Можно ли подключить две колонки?','Да, колонки JBL объединяются через PartyBoost, Marshall — через Stack Mode.'],['Работает ли без интернета?','Портативные колонки работают по Bluetooth без интернета. Умной колонке с Алисой нужен Wi-Fi.'],['Как долго работает от батареи?','От 12 до 30 часов в зависимости от модели и громкости.']]},
+ photo:{who:'Камеры для путешествий, спорта, блогов и памятных фото.',tips:['Для спорта и воды выбирайте экшн-камеру со стабилизацией.','Для блога нужна камера с поворотным экраном и разъёмом для микрофона.','Моментальная камера — лучший подарок для вечеринок и праздников.'],qa:[['Нужна ли карта памяти?','Да, для GoPro и Sony нужна карта microSD или SD, она продаётся отдельно.'],['Где купить картриджи Instax?','Картриджи Instax Mini продаются в фотомагазинах и на маркетплейсах.'],['Подходит ли для съёмки на телефон?','Камеры передают фото и видео на смартфон через фирменные приложения.']]},
+ home:{who:'Умная техника берёт на себя домашние дела и делает дом безопаснее.',tips:['Робот-пылесос с лазерной навигацией убирает по карте и не пропускает комнаты.','Очиститель воздуха подбирайте по площади комнаты.','Wi-Fi камера должна поддерживать ночную съёмку и запись на карту памяти.'],qa:[['Нужен ли Wi-Fi?','Да, для управления из приложения нужен домашний Wi-Fi 2,4 ГГц.'],['Работает ли приложение на русском?','Да, Mi Home и Tapo поддерживают русский язык.'],['Как часто менять фильтр?','Фильтр очистителя воздуха обычно меняют раз в 6–12 месяцев.']]},
+ acc:{who:'Зарядки, аккумуляторы, мыши, клавиатуры и накопители для ваших устройств.',tips:['Для быстрой зарядки мощность адаптера должна совпадать с возможностями телефона.','Адаптер 65 Вт и выше может заряжать и ноутбук.','Внешний аккумулятор на 10 000 мА·ч заряжает смартфон 2 раза, на 20 000 — 4–5 раз.'],qa:[['Можно ли брать аккумулятор в самолёт?','Да, в ручной клади можно везти аккумуляторы до 100 Вт·ч. Все модели в каталоге подходят.'],['Подойдёт ли зарядка к моему телефону?','Да, все зарядки в каталоге работают по стандарту USB Power Delivery и подходят для современных смартфонов.'],['Есть ли кабель в комплекте?','Это указано в разделе «Комплектация» на странице товара.']]}
+};
+const artNo=p=>'TLP-'+String(P.indexOf(p)+1001);
+
+P.forEach(p=>{const d=DETAILS[p.id];if(d){p.long=d.d;p.feat=d.f;p.box=d.box;p.specs={...p.specs,...d.s};}});
+function distKm(a,b){const R=6371,r=Math.PI/180,dLat=(b[4]-a[4])*r,dLon=(b[5]-a[5])*r;const h=Math.sin(dLat/2)**2+Math.cos(a[4]*r)*Math.cos(b[4]*r)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+
+const FREE=50000, STEP=30000;
+const PROMOS={TULPAR10:{label:'−10% на заказ',calc:s=>Math.round(s*.1)},WELCOME5000:{label:'−5 000 ₸ от 30 000 ₸',calc:s=>s>=30000?5000:0}};
+
+/* ================= STATE ================= */
+const KEY='tulpar-store-v1';
+const DEF={cart:{},fav:[],user:null,addresses:[],cards:[],orders:[],viewed:[],promo:null,reviews:{},notify:[],sold:{},seenPromo:false,subscribed:false,city:null,cityAsked:false,fast:false,bonus:0,spent:0,nextId:100241,chat:[]};
+function load(){try{const raw=localStorage.getItem(KEY);if(raw)return Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(raw));}catch(e){}return JSON.parse(JSON.stringify(DEF));}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let S=load();
+const PAGE=16;
+const UI={limit:PAGE,q:'',cat:'all',brands:[],max:null,stock:false,sort:'pop',ptab:'data',co:null,errs:{}};
+
+/* ================= HELPERS ================= */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('ru-RU')+' ₸';
+const byId=id=>P.find(p=>p.id===id);
+const stockOf=p=>Math.max(0,p.stock-(S.sold[p.id]||0));
+const city=n=>CITIES.find(c=>c[0]===n)||CITIES[0];
+const curCity=()=>S.city||'Алматы';
+const dt=t=>new Date(t).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+const dday=t=>new Date(t).toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+const plural=(n,a,b,c)=>{n=Math.abs(n)%100;const m=n%10;return n>10&&n<20?c:m>1&&m<5?b:m===1?a:c};
+function toast(t){const el=document.createElement('div');el.className='toast';el.textContent=t;$('#toasts').appendChild(el);setTimeout(()=>el.remove(),3200);}
+function deliveryCost(c,method,sub){if(method==='self')return 0;if(sub>=FREE)return 0;if(method==='courier')return c==='Алматы'?1000:2000;return c==='Алматы'?500:1200;}
+function level(){const s=S.spent;if(s>=700000)return{n:'Золото',r:.05,i:2,next:null};if(s>=200000)return{n:'Серебро',r:.03,i:1,next:700000};return{n:'Бронза',r:.02,i:0,next:200000};}
+function cartLines(){return Object.entries(S.cart).map(([id,q])=>({p:byId(id),q})).filter(l=>l.p);}
+function cartCount(){return Object.values(S.cart).reduce((a,b)=>a+b,0);}
+
+const ICON={
+ heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>'
+};
+function art(p){
+ const t='var(--tint)',s='var(--screen)';
+ const A={
+  phone:`<rect x="70" y="14" width="60" height="132" rx="13" fill="${t}"/><rect x="75" y="21" width="50" height="118" rx="8" fill="${s}"/><rect x="92" y="25" width="16" height="4" rx="2" fill="${t}"/><path d="M78 110 L122 60 V80 L78 130z" fill="#fff" opacity=".07"/>`,
+  laptop:`<rect x="42" y="26" width="116" height="78" rx="7" fill="${t}"/><rect x="48" y="32" width="104" height="66" rx="3" fill="${s}"/><path d="M26 108h148l-9 14H35z" fill="${t}"/><rect x="88" y="108" width="24" height="4" rx="2" fill="${s}" opacity=".35"/>`,
+  tablet:`<rect x="48" y="18" width="104" height="126" rx="11" fill="${t}"/><rect x="55" y="25" width="90" height="112" rx="5" fill="${s}"/><path d="M60 120 L140 40 V70 L70 132z" fill="#fff" opacity=".06"/>`,
+  headphones:`<path d="M58 98V76a42 42 0 0 1 84 0v22" fill="none" stroke="${t}" stroke-width="10" stroke-linecap="round"/><rect x="44" y="86" width="30" height="50" rx="12" fill="${t}"/><rect x="126" y="86" width="30" height="50" rx="12" fill="${t}"/><rect x="52" y="94" width="14" height="34" rx="6" fill="${s}" opacity=".45"/><rect x="134" y="94" width="14" height="34" rx="6" fill="${s}" opacity=".45"/>`,
+  earbuds:`<rect x="58" y="58" width="84" height="66" rx="26" fill="${t}"/><path d="M58 84h84" stroke="${s}" stroke-width="2.5" opacity=".5"/><circle cx="100" cy="100" r="3" fill="${s}" opacity=".6"/>`,
+  watch:`<rect x="84" y="12" width="32" height="136" rx="10" fill="${t}" opacity=".55"/><rect x="68" y="44" width="64" height="72" rx="17" fill="${t}"/><rect x="75" y="51" width="50" height="58" rx="11" fill="${s}"/><rect x="132" y="66" width="5" height="14" rx="2" fill="${t}"/>`,
+  band:`<rect x="34" y="70" width="132" height="24" rx="12" fill="${t}" opacity=".55"/><rect x="76" y="60" width="48" height="44" rx="16" fill="${t}"/><rect x="82" y="66" width="36" height="32" rx="11" fill="${s}"/>`,
+  tv:`<rect x="24" y="22" width="152" height="94" rx="6" fill="${t}"/><rect x="29" y="27" width="142" height="84" rx="3" fill="${s}"/><path d="M78 116l-10 22M122 116l10 22" stroke="${t}" stroke-width="6" stroke-linecap="round"/>`,
+  console:`<path d="M80 16h40c9 0 12 6 13 14l7 112H60l7-112c1-8 4-14 13-14z" fill="${t}"/><rect x="93" y="20" width="14" height="122" rx="4" fill="${s}" opacity=".85"/>`,
+  speaker:`<rect x="40" y="52" width="120" height="66" rx="33" fill="${t}"/><circle cx="100" cy="85" r="22" fill="${s}"/><circle cx="100" cy="85" r="8" fill="${t}"/>`,
+  monitor:`<rect x="28" y="18" width="144" height="88" rx="5" fill="${t}"/><rect x="33" y="23" width="134" height="78" rx="2" fill="${s}"/><rect x="94" y="106" width="12" height="20" fill="${t}"/><rect x="66" y="126" width="68" height="8" rx="4" fill="${t}"/>`,
+  handheld:`<rect x="22" y="50" width="26" height="62" rx="13" fill="#E1453C"/><rect x="152" y="50" width="26" height="62" rx="13" fill="#2E9BD6"/><rect x="46" y="50" width="108" height="62" rx="4" fill="${t}"/><rect x="52" y="56" width="96" height="50" rx="3" fill="${s}"/>`,
+  gamepad:`<path d="M62 56h76c18 0 28 14 32 34l7 28c2 10-8 18-16 12l-19-16H58l-19 16c-8 6-18-2-16-12l7-28c4-20 14-34 32-34z" fill="${t}"/><circle cx="72" cy="84" r="10" fill="${s}" opacity=".55"/><circle cx="128" cy="84" r="10" fill="${s}" opacity=".55"/><rect x="90" y="68" width="20" height="6" rx="3" fill="${s}" opacity=".4"/>`,
+  camera:`<rect x="56" y="36" width="40" height="18" rx="4" fill="${t}"/><rect x="32" y="48" width="136" height="82" rx="12" fill="${t}"/><circle cx="100" cy="89" r="30" fill="${s}"/><circle cx="100" cy="89" r="17" fill="${t}" opacity=".6"/><circle cx="150" cy="64" r="5" fill="${s}" opacity=".6"/>`,
+  charger:`<rect x="66" y="36" width="68" height="80" rx="14" fill="${t}"/><rect x="84" y="116" width="8" height="18" rx="2" fill="${s}"/><rect x="108" y="116" width="8" height="18" rx="2" fill="${s}"/><rect x="90" y="54" width="20" height="6" rx="3" fill="${s}" opacity=".5"/>`,
+  mouse:`<rect x="70" y="22" width="60" height="116" rx="30" fill="${t}"/><path d="M100 24v38" stroke="${s}" stroke-width="3" opacity=".6"/><rect x="95" y="38" width="10" height="18" rx="5" fill="${s}"/>`,
+  keyboard:`<rect x="16" y="52" width="168" height="60" rx="8" fill="${t}"/><g fill="${s}" opacity=".55">${[0,1,2].map(r=>[...Array(12)].map((_,c)=>`<rect x="${24+c*13}" y="${60+r*14}" width="10" height="10" rx="2"/>`).join('')).join('')}<rect x="50" y="102" width="100" height="6" rx="2"/></g>`,
+  ssd:`<rect x="54" y="38" width="92" height="84" rx="12" fill="${t}"/><rect x="68" y="52" width="64" height="8" rx="4" fill="${s}" opacity=".5"/><circle cx="100" cy="98" r="8" fill="${s}" opacity=".35"/>`,
+  vacuum:`<circle cx="100" cy="82" r="60" fill="${t}"/><circle cx="100" cy="82" r="47" fill="none" stroke="${s}" stroke-width="2" opacity=".35"/><circle cx="100" cy="46" r="12" fill="${s}"/>`,
+  purifier:`<rect x="64" y="14" width="72" height="134" rx="20" fill="${t}"/><circle cx="100" cy="44" r="17" fill="${s}"/><g fill="${s}" opacity=".3">${[0,1,2,3,4].map(i=>`<rect x="76" y="${76+i*12}" width="48" height="5" rx="2.5"/>`).join('')}</g>`,
+  ipcam:`<circle cx="100" cy="64" r="40" fill="${t}"/><circle cx="100" cy="64" r="22" fill="${s}"/><circle cx="100" cy="64" r="9" fill="${t}" opacity=".6"/><path d="M76 106h48l7 30H69z" fill="${t}"/>`,
+  powerbank:`<rect x="62" y="24" width="76" height="116" rx="14" fill="${t}"/><g fill="#7FE0A7"><circle cx="86" cy="120" r="3"/><circle cx="96" cy="120" r="3"/><circle cx="106" cy="120" r="3"/><circle cx="116" cy="120" r="3" opacity=".3"/></g>`
+ };
+ return `<svg viewBox="0 0 200 160" aria-hidden="true">${A[p.art]||A.phone}</svg><img src="img/${p.id}.jpg" alt="" loading="lazy" data-n="0" onload="imgOk(this)" onerror="imgNext(this,'${p.id}')">`;
+}
+/* Фото товаров: положите файлы в папку img/ рядом с index.html (img/s25.jpg, img/s25.png или img/s25.webp). Если фото нет, показывается рисунок. */
+const IMG_EXT=['jpg','png','webp','jpeg'];
+function imgOk(el){el.parentNode.classList.add('ph');}
+function imgNext(el,id){const n=+el.dataset.n+1;if(n<IMG_EXT.length){el.dataset.n=n;el.src=`img/${id}.${IMG_EXT[n]}`;}else el.remove();}
+const RVN=['Айгерим','Данияр','Мадина','Ерлан','Асель','Нурлан','Жанар','Тимур','Алия','Руслан'];
+const RVT=['Доставили в Астану за два дня, всё целое, упаковка отличная.','Качество отличное, пользуюсь месяц — никаких нареканий.','Брал в рассрочку, оформили быстро. Товар оригинальный, гарантия есть.','Цена ниже, чем в торговом центре. Курьер позвонил заранее и приехал вовремя.','Хорошая вещь за свои деньги. Хотелось бы больше цветов на выбор.','Статус заказа было видно на каждом этапе, очень удобно.'];
+function reviewsOf(p){const h=[...p.id].reduce((a,c)=>a+c.charCodeAt(0),0);const seed=[0,1,2].map(i=>({name:RVN[(h+i*3)%10],r:i===2&&p.rating<4.7?4:5,text:RVT[(h+i*2)%6],t:Date.now()-(i+1)*86400000*(3+h%5)}));return [...(S.reviews[p.id]||[]),...seed];}
+
+/* ================= ORDERS & STATUS ================= */
+function stagesFor(o){
+ const c=city(o.city);
+ if(o.method==='self')return[['Заказ принят','Проверили наличие и оплату'],['Собран на складе в Алматы','Товар упакован и промаркирован'],['Готов к выдаче','Склад Tulpar, Алматы. Возьмите удостоверение личности'],['Получен','Спасибо за покупку!']];
+ const s=[['Заказ принят','Проверили наличие и оплату'],['Собран на складе в Алматы','Товар упакован и промаркирован'],['Передан в службу доставки','Трек-номер '+o.track],['Сортировочный центр, Алматы','Посылка прошла сортировку']];
+ if(c[0]!=='Алматы'){s.push(['Отправлен в '+c[1],'Посылка в пути, срок '+c[2]]);s.push(['Сортировочный центр, '+c[0],'Посылка прибыла в ваш город']);}
+ s.push(o.method==='pickup'?['Прибыл в пункт выдачи',c[0]+', хранение 7 дней']:['Передан курьеру','Курьер позвонит за час до приезда']);
+ s.push(['Доставлен','Заказ получен. Бонусы начислены']);
+ return s;
+}
+const curStage=o=>o.hist.length-1;
+const isDone=o=>o.hist.length===stagesFor(o).length;
+function statusText(o){if(o.cancelled)return 'Отменён';return stagesFor(o)[curStage(o)][0];}
+function finishIfDone(o){if(isDone(o)&&!o.bonusDone&&!o.cancelled){o.bonusDone=true;S.bonus+=o.earn;S.spent+=o.totals.total;}}
+function planHours(o){
+ const c=city(o.city),D=c[3];
+ if(o.method==='self')return[0,1,2,26];
+ if(c[0]==='Алматы')return[0,2,4,7,12,20];
+ return[0,2,5,9,12,D*24-18,D*24-6,D*24-2];
+}
+const anchor=o=>o.base??o.created;
+function offMs(o,i){return S.fast?i*STEP:planHours(o)[i]*3600000;}
+function workTime(t){const d=new Date(t),h=d.getHours();if(h>=21){d.setDate(d.getDate()+1);d.setHours(10,0,0,0);}else if(h<9)d.setHours(10,0,0,0);return d.getTime();}
+function stageTime(o,i){
+ const raw=anchor(o)+offMs(o,i);if(S.fast)return raw;
+ const n=stagesFor(o).length;
+ if(i<n-2)return raw;
+ if(i===n-2)return workTime(raw);
+ return Math.max(workTime(raw),stageTime(o,n-2)+3*3600000);
+}
+function reAnchor(o){o.base=Date.now()-offMs(o,curStage(o));}
+function tick(notify=true){
+ const now=Date.now();let last=null;
+ S.orders.forEach(o=>{
+  if(o.cancelled||!o.auto)return;
+  const n=stagesFor(o).length;
+  for(let i=o.hist.length;i<n;i++){const t=stageTime(o,i);if(t<=now){o.hist.push(Math.max(t,o.hist[o.hist.length-1]));last=o;}else break;}
+  finishIfDone(o);
+ });
+ if(last){save();if(notify)toast(`Заказ №${last.id}: ${statusText(last)}`);}
+ return !!last;
+}
+/* где сейчас посылка */
+function where(o){
+ const c=city(o.city),A=CITIES[0],k=curStage(o),now=Date.now();
+ if(o.cancelled)return{frac:0,text:'Заказ отменён'};
+ if(isDone(o))return{frac:1,text:o.method==='self'?'Заказ получен на складе в Алматы':`Доставлен: ${c[0]}`};
+ if(o.method==='self')return{frac:0,text:k>=2?'Ждёт вас на складе в Алматы':'На складе в Алматы, идёт сборка'};
+ if(c[0]==='Алматы'){const t=['На складе в Алматы','На складе в Алматы','У службы доставки, Алматы','В сортировочном центре, Алматы',o.method==='pickup'?'В пункте выдачи':'У курьера, едет к вам'];return{frac:0,text:t[k]||''};}
+ const km=Math.round(distKm(A,c)*1.2);
+ if(k<4)return{frac:0,text:k<2?'На складе в Алматы':k===2?'У службы доставки, Алматы':'В сортировочном центре, Алматы',km};
+ if(k>=5)return{frac:1,text:k===5?`В сортировочном центре, ${c[0]}`:o.method==='pickup'?`В пункте выдачи, ${c[0]}`:`У курьера, ${c[0]}`,km};
+ let f=.5;if(o.auto){const t0=o.hist[4],t1=stageTime(o,5);f=Math.min(.97,Math.max(.03,(now-t0)/(t1-t0)));}
+ const left=Math.round(km*(1-f));
+ return{frac:f,text:`В пути из Алматы в ${c[1]}: осталось около ${left} км`,km};
+}
+/* схема Казахстана */
+const KZ=[[46.5,48.4],[47.2,49.2],[46.9,50.1],[48.7,50.6],[48.6,51.3],[50.2,51.7],[52.3,51.8],[54.0,51.2],[55.6,50.6],[57.5,51.0],[59.5,50.6],[61.4,50.8],[61.0,52.3],[61.2,53.6],[62.5,54.1],[65.3,54.6],[68.2,55.4],[70.8,55.3],[71.2,54.2],[73.5,54.0],[76.5,54.3],[77.8,53.3],[79.9,51.0],[82.5,50.8],[83.5,51.0],[85.0,49.9],[86.8,49.8],[87.3,49.1],[85.5,48.4],[85.6,47.2],[83.0,47.2],[82.3,45.5],[80.0,45.0],[80.4,44.1],[80.2,42.2],[79.2,42.8],[76.9,43.0],[75.6,42.9],[74.2,43.2],[73.4,42.5],[71.2,42.2],[70.4,41.4],[69.1,41.4],[68.4,40.6],[67.9,41.1],[66.6,41.2],[66.0,42.9],[64.0,43.6],[62.0,43.5],[61.0,44.4],[58.5,45.6],[56.0,45.0],[56.0,41.3],[55.0,41.3],[53.0,42.1],[52.5,42.4],[51.3,43.2],[51.1,43.8],[50.3,44.5],[50.9,44.9],[51.3,45.3],[52.8,45.4],[53.2,46.3],[51.5,46.9],[49.2,46.4],[48.6,46.7],[48.9,47.4],[48.0,47.8],[47.1,48.1]];
+const MX=lon=>(lon-45.5)*14.6,MY=lat=>(56-lat)*21.8;
+function kzMap(o){
+ const c=city(o.city),A=CITIES[0],w=where(o);
+ const ax=MX(A[5]),ay=MY(A[4]),bx=MX(c[5]),by=MY(c[4]);
+ const px=ax+(bx-ax)*w.frac,py=ay+(by-ay)*w.frac;
+ const land='M'+KZ.map(([x,y])=>`${MX(x).toFixed(1)} ${MY(y).toFixed(1)}`).join(' L')+'Z';
+ return `<svg class="kzmap" viewBox="0 0 640 360" role="img" aria-label="Схема маршрута: Алматы — ${esc(c[0])}. ${esc(w.text)}">
+  <path class="land" d="${land}"/>
+  ${CITIES.map(x=>`<circle class="cdot" cx="${MX(x[5])}" cy="${MY(x[4])}" r="3"/>`).join('')}
+  <line class="rest" x1="${px}" y1="${py}" x2="${bx}" y2="${by}"/>
+  <line class="done" x1="${ax}" y1="${ay}" x2="${px}" y2="${py}"/>
+  <circle class="end" cx="${ax}" cy="${ay}" r="6"/><circle class="end" cx="${bx}" cy="${by}" r="6"/>
+  <text x="${ax}" y="${ay+22}" text-anchor="middle">Алматы</text>
+  <text x="${bx}" y="${by+(by>ay?22:-12)}" text-anchor="middle">${esc(c[0])}</text>
+  <circle class="pulse" cx="${px}" cy="${py}" r="16"/>
+  <circle class="pkg" cx="${px}" cy="${py}" r="9"/>
+ </svg>`;
+}
+function setStage(o,k){const now=Date.now();if(k+1<o.hist.length)o.hist=o.hist.slice(0,k+1);while(o.hist.length<k+1)o.hist.push(now);o.auto=false;reAnchor(o);finishIfDone(o);save();}
+
+/* ================= VIEWS ================= */
+function stars(r){return `<span class="star">★</span> ${r.toFixed(1)}`;}
+function card(p){
+ const q=S.cart[p.id]||0,st=stockOf(p),fav=S.fav.includes(p.id);
+ const tags=p.tags.map(t=>`<span class="tag ${t}">${t==='sale'?'−'+Math.round((1-p.price/p.old)*100)+'%':t==='new'?'Новинка':'Хит'}</span>`).join('');
+ let cta;
+ if(!st)cta=`<button class="btn ghost block" data-action="notify" data-id="${p.id}">Сообщить о поступлении</button>`;
+ else if(q)cta=`<div class="qty"><button data-action="dec" data-id="${p.id}" aria-label="Уменьшить">−</button><span>${q} в корзине</span><button data-action="inc" data-id="${p.id}" aria-label="Увеличить">+</button></div>`;
+ else cta=`<button class="btn block" data-action="add" data-id="${p.id}">В корзину</button>`;
+ return `<article class="card">
+  <a class="art" href="#/p/${p.id}" style="--tint:${p.tint}" aria-label="${esc(p.name)}">${art(p)}<span class="tags">${tags}</span></a>
+  <button class="favbtn ${fav?'on':''}" data-action="fav" data-id="${p.id}" aria-label="${fav?'Убрать из избранного':'В избранное'}" aria-pressed="${fav}">${ICON.heart}</button>
+  <div class="card-body">
+   <a class="card-name" href="#/p/${p.id}">${esc(p.name)}</a>
+   <div class="keyspec">${Object.entries(p.specs).slice(0,2).map(([k,v])=>`<span>${esc(k)}: ${esc(v)}</span>`).join('')}</div>
+   <div class="rating">${stars(p.rating)} · ${p.rc} ${plural(p.rc,'отзыв','отзыва','отзывов')}</div>
+   <div class="price"><b>${fmt(p.price)}</b>${p.old?`<s>${fmt(p.old)}</s>`:''}</div>
+   <div class="inst">${st?`от ${fmt(p.price/12)}/мес в рассрочку 0-0-12`:'Нет в наличии'}</div>
+   <div class="card-cta">${cta}</div>
+  </div></article>`;
+}
+function routeSVG(labels,cur,opts={}){
+ const n=labels.length,W=640,H=70,x0=28,x1=W-28,y=40;
+ const xs=labels.map((_,i)=>x0+(x1-x0)*i/(n-1));
+ const done=cur>0?xs[cur]:x0;
+ const pts=xs.map((x,i)=>`<circle cx="${x}" cy="${y}" r="${i===cur?9:6}" class="pt ${i<cur?'ok':i===cur?'cur':''}"/>`).join('');
+ const shown=opts.labelsAll?labels:[labels[0],labels[n-1]];
+ const txt=`<div class="route-labels" aria-hidden="true">${shown.map((l,i)=>`<span class="${i===0||i===shown.length-1?'strong':''}">${esc(l)}</span>`).join('')}</div>`;
+ return `<div class="route-wrap"><svg class="route" viewBox="0 0 ${W} ${H}" role="img" aria-label="Маршрут: ${esc(labels.join(' → '))}">
+  <path class="hills" d="M0 ${y+6} Q70 ${y-14} 150 ${y+2} T310 ${y-2} T470 ${y+4} T640 ${y-6} V${y+14} H0Z"/>
+  <line class="base" x1="${x0}" y1="${y}" x2="${x1}" y2="${y}"/>
+  ${cur>0?`<line class="done" x1="${x0}" y1="${y}" x2="${done}" y2="${y}"/>`:''}
+  ${cur>=0?`<circle class="pulse" cx="${xs[cur]}" cy="${y}" r="14"/>`:''}
+  ${pts}</svg>${txt}</div>`;
+}
+function estimator(){
+ const cn=UI.estCity||curCity(),c=city(cn);
+ const eta=dday(Date.now()+c[3]*86400000);
+ return `<div class="estimator">
+  <div class="est-head"><h3>Доставка со склада в Алматы</h3>
+   <label class="sr" for="estCity">Город доставки</label>
+   <select class="input" id="estCity" data-change="estCity">${CITIES.map(x=>`<option ${x[0]===cn?'selected':''}>${x[0]}</option>`).join('')}</select></div>
+  ${routeSVG(['Склад, Алматы','Сортировка',cn==='Алматы'?'Ваш адрес':cn],0,{labelsAll:true})}
+  <div class="est-facts">
+   <div><small>Срок</small><b>${c[2]}</b></div>
+   <div><small>Курьером</small><b>${fmt(deliveryCost(cn,'courier',0))}</b></div>
+   <div><small>Закажите сейчас, получите</small><b>к ${eta}</b></div>
+  </div>
+  <p class="muted" style="margin:12px 0 0;font-size:14px">Бесплатно при заказе от ${fmt(FREE)}. Статус видно на каждом этапе пути.</p>
+ </div>`;
+}
+function filtered(){
+ const q=UI.q.trim().toLowerCase();
+ let a=P.filter(p=>(UI.cat==='all'||p.cat===UI.cat)&&(!q||(p.name+' '+p.brand).toLowerCase().includes(q))&&(!UI.brands.length||UI.brands.includes(p.brand))&&(!UI.max||p.price<=UI.max)&&(!UI.stock||stockOf(p)>0));
+ const f={pop:(x,y)=>y.rc-x.rc,cheap:(x,y)=>x.price-y.price,exp:(x,y)=>y.price-x.price,rate:(x,y)=>y.rating-x.rating,sale:(x,y)=>((y.old?1-y.price/y.old:0)-(x.old?1-x.price/x.old:0))}[UI.sort];
+ return a.sort(f);
+}
+function gridHTML(){
+ const a=filtered();
+ if(!a.length)return `<div class="empty" style="grid-column:1/-1"><h3>Ничего не нашлось</h3><p>Попробуйте другой запрос или сбросьте фильтры.</p><button class="btn ghost" data-action="reset">Сбросить фильтры</button></div>`;
+ return a.slice(0,UI.limit).map(card).join('');
+}
+function moreHTML(){const n=filtered().length-UI.limit;return n>0?`<button class="btn ghost" data-action="more">Показать ещё ${Math.min(n,PAGE)} из ${n}</button>`:'';}
+function renderGrid(reset){if(reset)UI.limit=PAGE;const g=$('#grid');if(!g)return;g.innerHTML=gridHTML();$('#found').textContent=`Найдено: ${filtered().length}`;$('#more').innerHTML=moreHTML();}
+function viewHome(){
+ const brands=[...new Set(P.map(p=>p.brand))].sort();
+ const maxP=Math.max(...P.map(p=>p.price));const cur=UI.max||maxP;
+ const viewed=S.viewed.map(byId).filter(Boolean).slice(0,4);
+ return `
+ <section class="hero"><div class="wrap hero-grid">
+  <div>
+   <h1>Техника со склада в Алматы с доставкой в любой город Казахстана</h1>
+   <p>Оригинальная электроника с официальной гарантией, рассрочка 0-0-12 и отслеживание заказа от склада до вашей двери.</p>
+   <div class="hero-actions"><a class="btn" href="#/catalog">Смотреть каталог</a><a class="btn ghost" href="#/info/delivery">Условия доставки</a></div>
+  </div>
+  ${estimator()}
+ </div></section>
+ <div class="wrap">
+  <div class="trust">
+   <div><b>Только оригинал</b><span>Гарантия производителя от 12 месяцев</span></div>
+   <div><b>Рассрочка 0-0-12</b><span>Без переплат, решение за минуту</span></div>
+   <div><b>Возврат 14 дней</b><span>Если товар не подошёл</span></div>
+   <div><b>Бонусы до 5%</b><span>Возвращаем баллами с каждой покупки</span></div>
+  </div>
+  <section id="catalog" aria-label="Каталог">
+   <div class="section-head"><h2>Каталог</h2></div>
+   <div class="cats" role="tablist" aria-label="Категории">${CATS.map(([k,v])=>`<button class="chip ${UI.cat===k?'on':''}" data-action="cat" data-cat="${k}" role="tab" aria-selected="${UI.cat===k}">${v}</button>`).join('')}</div>
+   <div class="cat-layout">
+    <aside class="filters"><details ${window.innerWidth>860?'open':''}><summary>Фильтры <span class="muted" aria-hidden="true">⌄</span></summary>
+     <span class="flabel" style="display:block;margin:16px 0 8px">Бренд</span><div class="fgroup brands" style="margin-top:0">${brands.map(b=>`<label class="chk"><input type="checkbox" data-filter="brand" value="${b}" ${UI.brands.includes(b)?'checked':''}> ${b}</label>`).join('')}</div>
+     <div class="fgroup"><label class="flabel" for="maxp">Цена до: <span id="maxv">${fmt(cur)}</span></label><input class="range" id="maxp" type="range" min="10000" max="${maxP}" step="10000" value="${cur}" data-filter="max"></div>
+     <div class="fgroup"><label class="chk"><input type="checkbox" data-filter="stock" ${UI.stock?'checked':''}> Только в наличии</label></div>
+     <button class="link" data-action="reset" style="margin-top:14px">Сбросить фильтры</button>
+    </details></aside>
+    <div>
+     <div class="grid-head"><span class="muted" id="found">Найдено: ${filtered().length}</span>
+      <label><span class="sr">Сортировка</span><select class="input" data-filter="sort">
+       ${[['pop','Сначала популярные'],['cheap','Сначала дешёвые'],['exp','Сначала дорогие'],['rate','По рейтингу'],['sale','По размеру скидки']].map(([k,v])=>`<option value="${k}" ${UI.sort===k?'selected':''}>${v}</option>`).join('')}
+      </select></label></div>
+     <div class="grid" id="grid">${gridHTML()}</div><div class="more" id="more">${moreHTML()}</div>
+    </div>
+   </div>
+  </section>
+  ${viewed.length?`<section class="section"><div class="section-head"><h2>Вы недавно смотрели</h2></div><div class="grid">${viewed.map(card).join('')}</div></section>`:''}
+ </div>`;
+}
+function viewProduct(id){
+ const p=byId(id);if(!p)return notFound();
+ S.viewed=[id,...S.viewed.filter(x=>x!==id)].slice(0,8);save();
+ const st=stockOf(p),q=S.cart[p.id]||0,fav=S.fav.includes(p.id);
+ const cn=UI.estCity||curCity(),c=city(cn);
+ const rv=reviewsOf(p),cat=CATS.find(x=>x[0]===p.cat)[1];
+ const sim=P.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+ let buy;
+ if(!st)buy=`<button class="btn" data-action="notify" data-id="${p.id}">Сообщить о поступлении</button>`;
+ else if(q)buy=`<div class="qty"><button data-action="dec" data-id="${p.id}" aria-label="Уменьшить">−</button><span>${q} в корзине</span><button data-action="inc" data-id="${p.id}" aria-label="Увеличить">+</button></div><a class="btn" href="#/cart">Перейти в корзину</a>`;
+ else buy=`<button class="btn" data-action="add" data-id="${p.id}">Добавить в корзину</button>`;
+ return `<div class="wrap page">
+  <nav class="crumbs"><a href="#/">Главная</a> / <a href="#/catalog" data-action="cat" data-cat="${p.cat}">${cat}</a> / ${esc(p.brand)}</nav>
+  <div class="pd">
+   <div class="art pd-art" style="--tint:${p.tint}">${art(p)}<span class="tags">${p.tags.map(t=>`<span class="tag ${t}">${t==='sale'?'−'+Math.round((1-p.price/p.old)*100)+'%':t==='new'?'Новинка':'Хит'}</span>`).join('')}</span></div>
+   <div>
+    <span class="muted">${esc(p.brand)}</span>
+    <h1>${esc(p.name)}</h1>
+    <div class="rating">${stars(p.rating)} · <a href="#reviews">${rv.length+p.rc-3} ${plural(p.rc,'отзыв','отзыва','отзывов')}</a></div>
+    <div class="price" style="margin-top:14px"><b>${fmt(p.price)}</b>${p.old?`<s>${fmt(p.old)}</s>`:''}</div>
+    <div class="inst" style="margin-top:4px">Рассрочка 0-0-12: ${fmt(p.price/12)} в месяц</div>
+    <div class="stock ${st?'ok':'no'}">${st?`В наличии на складе в Алматы: ${st} шт.`:'Нет в наличии'}</div>
+    <div class="facts"><div><small>Артикул</small>${artNo(p)}</div><div><small>Бренд</small>${esc(p.brand)}${BRANDS[p.brand]?', '+BRANDS[p.brand][0]:''}</div><div><small>Гарантия</small>12 месяцев</div><div><small>Бонусы за покупку</small>+${Math.floor(p.price*level().r)} ₸</div></div>
+    <div class="pd-actions">${buy}<button class="btn ghost" data-action="fav" data-id="${p.id}" aria-pressed="${fav}">${fav?'В избранном':'В избранное'}</button></div>
+    <div class="pd-deliv">Доставка в <select class="input" data-change="estCity" aria-label="Город">${CITIES.map(x=>`<option ${x[0]===cn?'selected':''}>${x[0]}</option>`).join('')}</select>
+     <div style="margin-top:8px">Курьером: <b>${p.price>=FREE?'бесплатно':fmt(deliveryCost(cn,'courier',p.price))}</b>, ${c[2]}. Ожидаемая дата: <b>${dday(Date.now()+c[3]*86400000)}</b></div></div>
+    <p>${esc(p.desc)}</p>
+   </div>
+  </div>
+  <nav class="pnav" aria-label="Разделы товара"><a href="#/p/${p.id}" data-jump="about">Описание</a><a href="#/p/${p.id}" data-jump="specs">Характеристики</a><a href="#/p/${p.id}" data-jump="choose">Как выбрать</a><a href="#/p/${p.id}" data-jump="service">Доставка и гарантия</a><a href="#/p/${p.id}" data-jump="faq">Вопросы</a><a href="#/p/${p.id}" data-jump="reviews">Отзывы (${rv.length})</a></nav>
+  <div class="two" style="margin-top:12px">
+   <div>
+    ${p.long?`<div class="panel" id="about"><h3>Описание</h3><p style="margin-top:0">${esc(p.long)}</p>${p.feat?`<h3 style="margin:18px 0 8px">Особенности</h3><ul class="feat">${p.feat.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}${p.box?`<h3 style="margin:18px 0 8px">Комплектация</h3><p style="margin:0">${esc(p.box[0].toUpperCase()+p.box.slice(1))}.</p>`:''}</div>`:''}
+    ${CATINFO[p.cat]?`<div class="panel"><h3>Кому подойдёт</h3><p style="margin:0">${esc(CATINFO[p.cat].who)}</p></div>`:''}
+    <div class="panel" id="specs"><h3>Характеристики</h3><table class="specs"><tr><td>Бренд</td><td>${esc(p.brand)}</td></tr><tr><td>Категория</td><td>${cat}</td></tr><tr><td>Артикул</td><td>${artNo(p)}</td></tr>${Object.entries(p.specs).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}<tr><td>Гарантия магазина</td><td>12 месяцев</td></tr></table></div>
+    ${CATINFO[p.cat]?`<div class="panel" id="choose"><h3>Как выбрать: ${cat.toLowerCase()}</h3><ul class="tips">${CATINFO[p.cat].tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>`:''}
+    <div class="panel" id="service"><h3>Доставка, оплата и гарантия</h3>
+     <table class="specs"><tr><td>Доставка в ${esc(city(cn)[1])}</td><td>${c[2]}, курьером ${p.price>=FREE?'бесплатно':fmt(deliveryCost(cn,'courier',p.price))}, в пункт выдачи ${p.price>=FREE?'бесплатно':fmt(deliveryCost(cn,'pickup',p.price))}</td></tr>
+     <tr><td>Самовывоз</td><td>Склад в Алматы, через 2 часа после заказа</td></tr>
+     <tr><td>Оплата</td><td>Картой Visa и Mastercard, при получении, рассрочка 0-0-12 (${fmt(p.price/12)} в месяц), бонусами до 30%</td></tr>
+     <tr><td>Гарантия</td><td>12 месяцев от магазина. Ремонт в авторизованном сервисном центре, забираем и возвращаем технику сами</td></tr>
+     <tr><td>Возврат</td><td>14 дней, если сохранены упаковка и товарный вид</td></tr></table></div>
+    ${CATINFO[p.cat]?`<div class="panel faq" id="faq"><h3>Вопросы и ответы</h3>${CATINFO[p.cat].qa.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>`:''}
+    ${BRANDS[p.brand]?`<div class="panel"><h3>О бренде ${esc(p.brand)}</h3><p style="margin:0">${esc(BRANDS[p.brand][1])} Страна бренда: ${esc(BRANDS[p.brand][0])}.</p></div>`:''}
+    <div class="panel" id="reviews"><h3>Отзывы покупателей</h3><div class="reviews">${rv.map(r=>`<article class="review"><header><b>${esc(r.name)} <span class="star" aria-label="Оценка ${r.r}">${'★'.repeat(r.r)}</span></b><span class="muted">${dday(r.t)}</span></header><p>${esc(r.text)}</p></article>`).join('')}</div></div>
+   </div>
+   <form class="panel" data-form="review" data-id="${p.id}">
+    <h3>Оставить отзыв</h3>
+    <div class="field"><label for="rvName">Имя</label><input class="input" id="rvName" name="name" required value="${esc(S.user?.name||'')}"></div>
+    <div class="field"><label for="rvR">Оценка</label><select class="input" id="rvR" name="r">${[5,4,3,2,1].map(n=>`<option value="${n}">${'★'.repeat(n)} ${n}</option>`).join('')}</select></div>
+    <div class="field"><label for="rvT">Отзыв</label><textarea class="input" id="rvT" name="text" required placeholder="Что понравилось, что нет"></textarea></div>
+    <button class="btn block" type="submit">Опубликовать отзыв</button>
+   </form>
+  </div>
+  ${sim.length?`<section class="section"><div class="section-head"><h2>Похожие товары</h2></div><div class="grid">${sim.map(card).join('')}</div></section>`:''}
+ </div>`;
+}
+function calc(opt={}){
+ const lines=cartLines();
+ const sub=lines.reduce((a,l)=>a+l.p.price*l.q,0);
+ const disc=S.promo&&PROMOS[S.promo]?PROMOS[S.promo].calc(sub):0;
+ const after=sub-disc;
+ const bonusMax=Math.min(S.bonus,Math.floor(after*.3));
+ const bonus=opt.useBonus?bonusMax:0;
+ const deliv=deliveryCost(opt.city||'Алматы',opt.method||'courier',after);
+ const gift=opt.gift?1500:0;
+ return{lines,sub,disc,bonus,bonusMax,deliv,gift,total:Math.max(0,after-bonus+deliv+gift),count:lines.reduce((a,l)=>a+l.q,0)};
+}
+function summaryRows(t,opt={}){
+ return `<div class="sum-row"><span>Товары (${t.count} шт.)</span><span>${fmt(t.sub)}</span></div>
+ ${t.disc?`<div class="sum-row"><span>Промокод ${esc(S.promo)}</span><span class="minus">−${fmt(t.disc)}</span></div>`:''}
+ ${t.bonus?`<div class="sum-row"><span>Бонусами</span><span class="minus">−${fmt(t.bonus)}</span></div>`:''}
+ <div class="sum-row"><span>Доставка${opt.city?' в '+esc(city(opt.city)[1]):''}</span><span>${t.deliv?fmt(t.deliv):'бесплатно'}</span></div>
+ ${t.gift?`<div class="sum-row"><span>Подарочная упаковка</span><span>${fmt(t.gift)}</span></div>`:''}
+ <div class="sum-row total"><span>Итого</span><span>${fmt(t.total)}</span></div>`;
+}
+function freeBar(after){
+ if(after>=FREE)return `<div class="freebar"><b>Доставка бесплатная</b><div class="bar"><i style="width:100%"></i></div></div>`;
+ return `<div class="freebar">До бесплатной доставки осталось <b>${fmt(FREE-after)}</b><div class="bar"><i style="width:${Math.round(after/FREE*100)}%"></i></div></div>`;
+}
+function promoBox(){
+ if(S.promo)return `<div class="promo-on"><span>${esc(S.promo)}: ${PROMOS[S.promo].label}</span><button class="link" data-action="promo-rm">Убрать</button></div>`;
+ return `<form class="promo" data-form="promo"><label class="sr" for="promoIn">Промокод</label><input class="input" id="promoIn" name="code" placeholder="Промокод"><button class="btn ghost sm" style="height:40px" type="submit">Применить</button></form>${UI.errs.promo?`<p class="err">${UI.errs.promo}</p>`:''}`;
+}
+function viewCart(){
+ const cn=curCity();
+ const t=calc({city:cn,method:'courier'});
+ if(!t.lines.length)return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:20px">Корзина</h1><div class="empty"><h3>Корзина пуста</h3><p>Добавьте товары из каталога, а мы доставим их в любой город Казахстана.</p><a class="btn" href="#/catalog">Перейти в каталог</a></div></div>`;
+ return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:20px">Корзина <span class="muted" style="font-size:18px">${t.lines.length} ${plural(t.lines.length,'позиция','позиции','позиций')}, ${t.count} шт.</span></h1>
+ <div class="two">
+  <div class="panel">
+   ${t.lines.map(({p,q})=>`<div class="line">
+    <a class="art" href="#/p/${p.id}" style="--tint:${p.tint}" aria-label="${esc(p.name)}">${art(p)}</a>
+    <div><a class="card-name" href="#/p/${p.id}">${esc(p.name)}</a><div class="muted" style="font-size:14px">${fmt(p.price)} за шт.</div>
+     <div class="line-meta"><div class="qty sm"><button data-action="dec" data-id="${p.id}" aria-label="Уменьшить">−</button><span>${q}</span><button data-action="inc" data-id="${p.id}" aria-label="Увеличить">+</button></div>
+     <button class="link" data-action="fav" data-id="${p.id}">${S.fav.includes(p.id)?'В избранном':'В избранное'}</button>
+     <button class="link" style="color:var(--danger)" data-action="rm" data-id="${p.id}">Удалить</button></div></div>
+    <div class="line-sum">${fmt(p.price*q)}</div></div>`).join('')}
+  </div>
+  <aside class="panel summary">
+   <h3>Ваш заказ</h3>
+   ${freeBar(t.sub-t.disc)}
+   ${summaryRows(t,{city:cn})}
+   ${promoBox()}
+   <p class="muted" style="font-size:13px;margin:0 0 12px">Город и способ доставки выберете при оформлении. Бонусов на счёте: ${S.bonus}.</p>
+   <a class="btn block" href="#/checkout">Перейти к оформлению</a>
+  </aside>
+ </div></div>`;
+}
+function initCo(){
+ if(UI.co)return;
+ const u=S.user||{};const def=S.addresses.find(a=>a.def)||S.addresses[0];
+ UI.co={name:u.name||'',phone:u.phone||'',email:u.email||'',city:def?.city||curCity(),method:'courier',addrId:def?.id||'new',street:'',apt:'',pay:'card',cardId:S.cards[0]?.id||'',gift:false,useBonus:false,comment:''};
+}
+function viewCheckout(){
+ if(!cartLines().length){location.hash='#/cart';return '';}
+ initCo();const c=UI.co,e=UI.errs;
+ const t=calc(c);
+ const addrs=S.addresses.filter(a=>a.city===c.city);
+ if(c.addrId!=='new'&&!addrs.find(a=>a.id===c.addrId))c.addrId=addrs[0]?.id||'new';
+ const ci=city(c.city);
+ return `<div class="wrap page"><nav class="crumbs"><a href="#/cart">Корзина</a> / Оформление</nav><h1 style="font-size:28px;margin-bottom:20px">Оформление заказа</h1>
+ <div class="two"><div>
+  <section class="panel"><div class="step-title"><span>1</span><h3 style="margin:0">Получатель</h3></div>
+   <div class="row2"><div class="field"><label for="coName">Имя и фамилия</label><input class="input" id="coName" data-co="name" value="${esc(c.name)}" autocomplete="name"></div>
+   <div class="field"><label for="coPhone">Телефон</label><input class="input" id="coPhone" data-co="phone" value="${esc(c.phone)}" placeholder="+7 700 000 00 00" inputmode="tel" autocomplete="tel"></div></div>
+   ${e.contact?`<p class="err">${e.contact}</p>`:''}
+   <div class="field"><label for="coEmail">Email для чека и уведомлений о статусе</label><input class="input" id="coEmail" data-co="email" type="email" value="${esc(c.email)}" autocomplete="email"></div>
+  </section>
+  <section class="panel"><div class="step-title"><span>2</span><h3 style="margin:0">Доставка</h3></div>
+   <div class="field"><label for="coCity">Город</label><select class="input" id="coCity" data-cochange="city">${CITIES.map(x=>`<option ${x[0]===c.city?'selected':''}>${x[0]}</option>`).join('')}</select></div>
+   <label class="choice"><input type="radio" name="m" value="courier" data-cochange="method" ${c.method==='courier'?'checked':''}><div><b>Курьером до двери · ${deliveryCost(c.city,'courier',t.sub-t.disc)?fmt(deliveryCost(c.city,'courier',t.sub-t.disc)):'бесплатно'}</b><small>${ci[2]}, курьер позвонит за час</small></div></label>
+   <label class="choice"><input type="radio" name="m" value="pickup" data-cochange="method" ${c.method==='pickup'?'checked':''}><div><b>Пункт выдачи · ${deliveryCost(c.city,'pickup',t.sub-t.disc)?fmt(deliveryCost(c.city,'pickup',t.sub-t.disc)):'бесплатно'}</b><small>${ci[2]}, хранение 7 дней</small></div></label>
+   ${c.city==='Алматы'?`<label class="choice"><input type="radio" name="m" value="self" data-cochange="method" ${c.method==='self'?'checked':''}><div><b>Самовывоз со склада · бесплатно</b><small>Через 2 часа после оформления</small></div></label>`:''}
+   ${c.method==='courier'?`<div style="margin-top:14px">${addrs.map(a=>`<label class="choice"><input type="radio" name="a" value="${a.id}" data-cochange="addrId" ${c.addrId===a.id?'checked':''}><div><b>${esc(a.street)}${a.apt?', кв. '+esc(a.apt):''}</b><small>${esc(a.city)}${a.note?' · '+esc(a.note):''}</small></div></label>`).join('')}
+     <label class="choice"><input type="radio" name="a" value="new" data-cochange="addrId" ${c.addrId==='new'?'checked':''}><div><b>Новый адрес</b></div></label>
+     ${c.addrId==='new'?`<div class="row2" style="margin-top:8px"><div class="field"><label for="coStreet">Улица и дом</label><input class="input" id="coStreet" data-co="street" value="${esc(c.street)}"></div><div class="field"><label for="coApt">Квартира / офис</label><input class="input" id="coApt" data-co="apt" value="${esc(c.apt)}"></div></div>`:''}
+     ${e.addr?`<p class="err">${e.addr}</p>`:''}</div>`:''}
+  </section>
+  <section class="panel"><div class="step-title"><span>3</span><h3 style="margin:0">Оплата</h3></div>
+   <label class="choice"><input type="radio" name="p" value="card" data-cochange="pay" ${c.pay==='card'?'checked':''}><div><b>Банковской картой онлайн</b><small>Visa, Mastercard</small></div></label>
+   ${c.pay==='card'?`<div style="padding:4px 0 10px 28px">${S.cards.map(k=>`<label class="chk" style="margin-bottom:8px"><input type="radio" name="card" value="${k.id}" data-cochange="cardId" ${c.cardId===k.id?'checked':''}> ${k.brand} •••• ${k.last4} <span class="muted">до ${k.exp}</span></label>`).join('')}<button class="link" data-action="add-card">+ Добавить карту</button>${e.card?`<p class="err" style="margin-top:8px">${e.card}</p>`:''}</div>`:''}
+   <label class="choice"><input type="radio" name="p" value="inst" data-cochange="pay" ${c.pay==='inst'?'checked':''}><div><b>Рассрочка 0-0-12 (Kaspi)</b><small>${fmt(t.total/12)} в месяц, без переплаты</small></div></label>
+   <label class="choice"><input type="radio" name="p" value="cod" data-cochange="pay" ${c.pay==='cod'?'checked':''}><div><b>При получении</b><small>Картой или наличными курьеру / в пункте выдачи</small></div></label>
+  </section>
+  <section class="panel">
+   <label class="chk" style="margin-bottom:10px"><input type="checkbox" data-cochange="gift" ${c.gift?'checked':''}> Подарочная упаковка с открыткой (+1 500 ₸)</label>
+   ${S.bonus?`<label class="chk" style="margin-bottom:10px"><input type="checkbox" data-cochange="useBonus" ${c.useBonus?'checked':''}> Списать бонусы: ${t.bonusMax} ₸ (до 30% заказа)</label>`:''}
+   <div class="field" style="margin:10px 0 0"><label for="coComment">Комментарий к заказу</label><textarea class="input" id="coComment" data-co="comment" placeholder="Например: позвонить за 30 минут">${esc(c.comment)}</textarea></div>
+  </section>
+ </div>
+ <aside class="panel summary"><h3>Ваш заказ</h3>
+  ${t.lines.map(l=>`<div class="mini"><span>${esc(l.p.name)} × ${l.q}</span><span>${fmt(l.p.price*l.q)}</span></div>`).join('')}
+  <div style="height:10px"></div>
+  ${freeBar(t.sub-t.disc)}${summaryRows(t,c)}${promoBox()}
+  <p class="muted" style="font-size:13px;margin:0 0 12px">После доставки начислим ${Math.floor(t.total*level().r)} бонусов (${level().n}, ${level().r*100}%).</p>
+  <button class="btn block" data-action="place">${c.pay==='card'?'Оплатить '+fmt(t.total):c.pay==='inst'?'Оформить в рассрочку':'Оформить заказ'}</button>
+  <p class="muted" style="font-size:12px;margin:10px 0 0">Демо: деньги не списываются.</p>
+ </aside></div></div>`;
+}
+function placeOrder(){
+ const c=UI.co;UI.errs={};
+ const digits=(c.phone||'').replace(/\D/g,'');
+ if(!c.name.trim()||digits.length<11)UI.errs.contact='Укажите имя и телефон в формате +7 700 000 00 00.';
+ let addr=null;
+ if(c.method==='courier'){
+  if(c.addrId==='new'){if(!c.street.trim())UI.errs.addr='Укажите улицу и дом.';else{addr={id:'a'+Date.now(),city:c.city,street:c.street.trim(),apt:c.apt.trim(),note:'',def:!S.addresses.length};}}
+  else addr=S.addresses.find(a=>a.id===c.addrId);
+ }
+ if(c.pay==='card'&&!S.cards.find(k=>k.id===c.cardId))UI.errs.card='Добавьте или выберите карту.';
+ if(Object.keys(UI.errs).length){render(true);toast('Проверьте выделенные поля');return;}
+ if(addr&&c.addrId==='new'){S.addresses.push(addr);}
+ if(!S.user)S.user={name:c.name.trim(),phone:c.phone.trim(),email:c.email.trim(),city:c.city,since:Date.now()};
+ const t=calc(c);const card=S.cards.find(k=>k.id===c.cardId);
+ const id=S.nextId++;
+ const o={id,created:Date.now(),items:t.lines.map(l=>({id:l.p.id,name:l.p.name,price:l.p.price,q:l.q})),totals:{sub:t.sub,disc:t.disc,bonus:t.bonus,deliv:t.deliv,gift:t.gift,total:t.total},promo:S.promo,city:c.city,method:c.method,
+  address:c.method==='courier'?`${addr.street}${addr.apt?', кв. '+addr.apt:''}`:c.method==='pickup'?'Пункт выдачи':'Склад Tulpar, Алматы',
+  pay:c.pay==='card'?`${card.brand} •••• ${card.last4}`:c.pay==='inst'?'Рассрочка 0-0-12':'При получении',
+  name:c.name.trim(),phone:c.phone.trim(),comment:c.comment.trim(),track:'TLP'+String(Math.floor(Math.random()*9e7)+1e7)+'KZ',hist:[Date.now()],auto:true,earn:Math.floor(t.total*level().r),cancelled:false};
+ S.orders.unshift(o);S.bonus-=t.bonus;
+ t.lines.forEach(l=>S.sold[l.p.id]=(S.sold[l.p.id]||0)+l.q);
+ S.cart={};S.promo=null;UI.co=null;save();
+ location.hash=`#/order/${id}/new`;
+}
+function viewOrders(){
+ tick(false);
+ if(!S.orders.length)return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:20px">Мои заказы</h1><div class="empty"><h3>Заказов пока нет</h3><p>Оформите первый заказ, и здесь появится его путь от склада до вашей двери. Код <span class="code">TULPAR10</span> даст скидку 10%.</p><a class="btn" href="#/catalog">Перейти в каталог</a></div></div>`;
+ return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:20px">Мои заказы</h1>
+  <div class="note">${S.fast?'Включён ускоренный режим: каждый этап доставки проходит за 30 секунд.':'Статусы меняются по реальному графику доставки: сборка в течение пары часов, дорога по сроку для вашего города.'} Режим и статусы можно менять в <a href="#/admin">панели продавца</a>.</div>
+  <div class="olist">${S.orders.map(o=>{const n=stagesFor(o).length,k=curStage(o);return `<a class="ocard" href="#/order/${o.id}">
+   <div><b>Заказ №${o.id}</b> <span class="muted">от ${dday(o.created)}</span><div class="muted" style="font-size:14px">${o.items.reduce((a,i)=>a+i.q,0)} шт. · ${esc(o.city)} · ${fmt(o.totals.total)}</div>${o.cancelled||isDone(o)?'':`<div style="font-size:14px;margin-top:4px">${esc(where(o).text)}</div>`}</div>
+   <div><span class="pill ${o.cancelled?'bad':isDone(o)?'ok':''}">${esc(statusText(o))}</span></div>
+   ${o.cancelled?'':`<div class="progress" aria-hidden="true"><i style="width:${Math.round(k/(n-1)*100)}%"></i></div>`}</a>`}).join('')}</div></div>`;
+}
+function viewOrder(id,isNew){
+ tick(false);
+ const o=S.orders.find(x=>String(x.id)===id);if(!o)return notFound();
+ const st=stagesFor(o),k=curStage(o),c=city(o.city);
+ const eta=stageTime(o,st.length-1);const w=where(o);
+ const routeLabels=st.map((s,i)=>i===0?'Алматы':i===st.length-1?(o.method==='self'?'Выдача':o.city):s[0]);
+ return `<div class="wrap page"><nav class="crumbs"><a href="#/orders">Мои заказы</a> / №${o.id}</nav>
+  ${isNew?`<div class="banner-ok">Заказ №${o.id} оформлен. Мы пришлём уведомление, когда статус изменится.</div>`:''}
+  <div class="panel">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="muted">Заказ №${o.id} от ${dt(o.created)}</span><span class="muted">Трек-номер: <b style="color:var(--ink)">${o.track}</b></span></div>
+   <div class="status-now">${esc(statusText(o))}</div>
+   <div class="muted">${o.cancelled?'Заказ отменён, деньги вернутся на карту в течение 3 рабочих дней.':isDone(o)?`Получен ${dt(o.hist[k])}. Начислено ${o.earn} бонусов.`:`Ожидаемая доставка: ${dt(eta)}`}</div>
+   ${o.cancelled?'':`<div class="whereis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Где сейчас: ${esc(w.text)}</span></div>
+   ${city(o.city)[0]!=='Алматы'&&o.method!=='self'?kzMap(o):`<div style="margin-top:14px">${routeSVG(routeLabels,k)}</div>`}`}
+  </div>
+  <div class="two" style="margin-top:16px">
+   <div class="panel"><h3>История доставки</h3>
+    <ol class="timeline">${st.map((s,i)=>`<li class="${o.cancelled?'todo':i<k?'ok':i===k?'cur':'todo'}"><span class="dot"></span><b>${esc(s[0])}</b><small>${esc(s[1])}</small>${o.cancelled?'':o.hist[i]?`<small>${dt(o.hist[i])}</small>`:o.auto?`<small>ожидается ${dt(stageTime(o,i))}</small>`:''}</li>`).join('')}</ol>
+   </div>
+   <aside class="panel"><h3>Состав заказа</h3>
+    ${o.items.map(i=>`<div class="mini"><a href="#/p/${i.id}">${esc(i.name)} × ${i.q}</a><span>${fmt(i.price*i.q)}</span></div>`).join('')}
+    <div style="height:8px"></div>
+    <div class="sum-row"><span>Товары</span><span>${fmt(o.totals.sub)}</span></div>
+    ${o.totals.disc?`<div class="sum-row"><span>Промокод ${esc(o.promo)}</span><span class="minus">−${fmt(o.totals.disc)}</span></div>`:''}
+    ${o.totals.bonus?`<div class="sum-row"><span>Бонусами</span><span class="minus">−${fmt(o.totals.bonus)}</span></div>`:''}
+    <div class="sum-row"><span>Доставка</span><span>${o.totals.deliv?fmt(o.totals.deliv):'бесплатно'}</span></div>
+    ${o.totals.gift?`<div class="sum-row"><span>Упаковка</span><span>${fmt(o.totals.gift)}</span></div>`:''}
+    <div class="sum-row total"><span>Итого</span><span>${fmt(o.totals.total)}</span></div>
+    <div style="margin-top:14px;font-size:14px"><div class="muted">Получатель</div>${esc(o.name)}, ${esc(o.phone)}<div class="muted" style="margin-top:8px">Адрес</div>${esc(o.city)}, ${esc(o.address)}<div class="muted" style="margin-top:8px">Оплата</div>${esc(o.pay)}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+     <button class="btn sm" data-action="repeat" data-id="${o.id}">Повторить заказ</button>
+     ${!o.cancelled&&k<2?`<button class="btn danger sm" data-action="cancel" data-id="${o.id}">Отменить</button>`:''}
+     ${isDone(o)&&!o.cancelled?(o.returnReq?`<span class="pill">Заявка на возврат принята</span>`:`<button class="btn ghost sm" data-action="return" data-id="${o.id}">Вернуть товар</button>`):''}
+    </div>
+   </aside>
+  </div></div>`;
+}
+function viewProfile(){
+ if(!S.user)return `<div class="wrap page"><div class="panel" style="max-width:460px;margin:0 auto">
+  <h1 style="font-size:24px;margin-bottom:6px">Вход и регистрация</h1><p class="muted" style="margin:0 0 18px">Профиль хранит адреса, карты, бонусы и историю заказов.</p>
+  <form data-form="login">
+   <div class="field"><label for="lgName">Имя</label><input class="input" id="lgName" name="name" required autocomplete="name"></div>
+   <div class="field"><label for="lgPhone">Телефон</label><input class="input" id="lgPhone" name="phone" required placeholder="+7 700 000 00 00" inputmode="tel" autocomplete="tel"></div>
+   <div class="field"><label for="lgEmail">Email</label><input class="input" id="lgEmail" name="email" type="email" autocomplete="email"></div>
+   <div class="field"><label for="lgCity">Город</label><select class="input" id="lgCity" name="city">${CITIES.map(x=>`<option ${x[0]===curCity()?'selected':''}>${x[0]}</option>`).join('')}</select></div>
+   ${UI.errs.login?`<p class="err">${UI.errs.login}</p>`:''}
+   <button class="btn block" type="submit">Создать профиль</button>
+   <p class="hint" style="margin:12px 0 0">Демо: вход без пароля, данные остаются только в этом браузере.</p>
+  </form></div></div>`;
+ const u=S.user,lv=level(),tab=UI.ptab;
+ const tabs=[['data','Личные данные'],['addr','Адреса'],['cards','Карты'],['bonus','Бонусы']];
+ let body='';
+ if(tab==='data')body=`<form class="panel" data-form="profile" style="max-width:560px">
+   <div class="row2"><div class="field"><label for="pfName">Имя</label><input class="input" id="pfName" name="name" value="${esc(u.name)}" required></div>
+   <div class="field"><label for="pfPhone">Телефон</label><input class="input" id="pfPhone" name="phone" value="${esc(u.phone)}" required></div></div>
+   <div class="row2"><div class="field"><label for="pfEmail">Email</label><input class="input" id="pfEmail" name="email" type="email" value="${esc(u.email||'')}"></div>
+   <div class="field"><label for="pfCity">Город</label><select class="input" id="pfCity" name="city">${CITIES.map(x=>`<option ${x[0]===u.city?'selected':''}>${x[0]}</option>`).join('')}</select></div></div>
+   <label class="chk" style="margin-bottom:16px"><input type="checkbox" name="sms" ${u.sms!==false?'checked':''}> Уведомлять о статусе заказа по SMS и email</label>
+   <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit">Сохранить изменения</button><button class="btn ghost" type="button" data-action="logout">Выйти</button></div></form>`;
+ if(tab==='addr')body=`<div class="tiles">${S.addresses.map(a=>`<div class="tile"><b>${esc(a.street)}${a.apt?', кв. '+esc(a.apt):''}</b><div class="muted" style="font-size:14px">${esc(a.city)}${a.note?' · '+esc(a.note):''}</div>${a.def?'<span class="pill" style="margin-top:10px">Основной</span>':''}
+   <div style="display:flex;gap:12px;margin-top:12px">${a.def?'':`<button class="link" data-action="addr-def" data-id="${a.id}">Сделать основным</button>`}<button class="link" style="color:var(--danger)" data-action="addr-rm" data-id="${a.id}">Удалить</button></div></div>`).join('')}
+   <button class="addtile" data-action="add-addr">+ Добавить адрес</button></div>`;
+ if(tab==='cards')body=`<div class="tiles">${S.cards.map(k=>`<div class="tile bank"><button class="rm" data-action="card-rm" data-id="${k.id}" aria-label="Удалить карту ${k.last4}">Удалить</button><b>${k.brand}</b><div class="num">•••• ${k.last4}</div><div style="display:flex;justify-content:space-between;font-size:13px;opacity:.85"><span>${esc(k.holder)}</span><span>${k.exp}</span></div></div>`).join('')}
+   <button class="addtile" data-action="add-card">+ Добавить карту</button></div><p class="muted" style="font-size:13px;margin-top:14px">Мы храним только последние 4 цифры и срок действия. Полный номер и CVV не сохраняются.</p>`;
+ if(tab==='bonus')body=`<div class="panel"><div class="muted">Бонусный счёт</div><div class="bigpts">${S.bonus} ₸</div><p class="muted" style="margin:4px 0 0">1 бонус = 1 ₸. Можно оплатить до 30% заказа.</p>
+   <div class="level">${[['Бронза','2%','с первой покупки'],['Серебро','3%','от 200 000 ₸'],['Золото','5%','от 700 000 ₸']].map((l,i)=>`<div class="${lv.i===i?'on':''}"><b>${l[0]} · ${l[1]}</b><small>${l[2]}</small></div>`).join('')}</div>
+   <p style="margin:0">Сумма покупок: <b>${fmt(S.spent)}</b>${lv.next?`. До уровня «${lv.i===0?'Серебро':'Золото'}» осталось <b>${fmt(lv.next-S.spent)}</b>.`:'. У вас максимальный уровень.'}</p>
+   <p class="muted" style="margin:14px 0 0;font-size:14px">Пригласите друга: вы оба получите по 2 000 бонусов после его первой покупки. Ваш код: <span class="code">${esc((u.name||'TULPAR').toUpperCase().replace(/[^A-ZА-ЯЁӘҒҚҢӨҰҮҺІ]/gi,'').slice(0,6))}${String(u.since||0).slice(-3)}</span></p></div>`;
+ return `<div class="wrap page">
+  <div class="hello"><div class="avatar" aria-hidden="true">${esc((u.name||'?')[0].toUpperCase())}</div><div><h1 style="font-size:26px">${esc(u.name)}</h1><div class="muted">${esc(u.phone)} · ${esc(u.city)} · уровень «${lv.n}», ${S.bonus} бонусов</div></div>
+   <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap"><a class="btn ghost" href="#/orders">Мои заказы (${S.orders.length})</a><a class="btn ghost" href="#/fav">Избранное (${S.fav.length})</a></div></div>
+  <div class="tabs" role="tablist">${tabs.map(([k,v])=>`<button class="tab ${tab===k?'on':''}" role="tab" aria-selected="${tab===k}" data-action="ptab" data-tab="${k}">${v}</button>`).join('')}</div>
+  ${body}</div>`;
+}
+function viewFav(){
+ const a=S.fav.map(byId).filter(Boolean);
+ return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:20px">Избранное</h1>${a.length?`<div class="grid">${a.map(card).join('')}</div>`:`<div class="empty"><h3>Здесь пока пусто</h3><p>Нажмите на сердечко у товара, чтобы сохранить его и следить за ценой.</p><a class="btn" href="#/catalog">Перейти в каталог</a></div>`}</div>`;
+}
+function viewAdmin(){
+ tick(false);
+ const live=S.orders.filter(o=>!o.cancelled);
+ const rev=live.reduce((a,o)=>a+o.totals.total,0);
+ const pop={};live.forEach(o=>o.items.forEach(i=>pop[i.name]=(pop[i.name]||0)+i.q));
+ const top=Object.entries(pop).sort((a,b)=>b[1]-a[1])[0];
+ const low=P.filter(p=>stockOf(p)<=3);
+ return `<div class="wrap page"><h1 style="font-size:28px;margin-bottom:6px">Панель продавца</h1><p class="muted" style="margin:0 0 14px">Демо: управление заказами этого браузера. Смена статуса сразу видна покупателю.</p>
+  <label class="chk panel" style="margin-bottom:20px"><input type="checkbox" data-admin="fast" ${S.fast?'checked':''}> <span><b>Ускоренный режим для презентации</b><br><span class="muted" style="font-size:14px">Каждый этап доставки за 30 секунд. Если выключить, статусы идут по реальному графику: от нескольких часов до 6 дней.</span></span></label>
+  <div class="stats"><div><small>Заказов</small><b>${S.orders.length}</b></div><div><small>Выручка</small><b>${fmt(rev)}</b></div><div><small>Средний чек</small><b>${live.length?fmt(rev/live.length):'—'}</b></div><div><small>Популярный товар</small><b style="font-size:15px;font-family:var(--body)">${top?esc(top[0]):'—'}</b></div></div>
+  ${S.orders.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>№</th><th>Дата</th><th>Покупатель</th><th>Город</th><th>Сумма</th><th>Статус</th><th>Авто</th><th></th></tr></thead><tbody>
+  ${S.orders.map(o=>`<tr><td><a href="#/order/${o.id}">${o.id}</a></td><td>${dt(o.created)}</td><td>${esc(o.name)}</td><td>${esc(o.city)}</td><td>${fmt(o.totals.total)}</td>
+   <td>${o.cancelled?'<span class="pill bad">Отменён</span>':`<select class="input" data-admin="stage" data-id="${o.id}" aria-label="Статус заказа ${o.id}">${stagesFor(o).map((s,i)=>`<option value="${i}" ${i===curStage(o)?'selected':''}>${i+1}. ${esc(s[0])}</option>`).join('')}</select>`}</td>
+   <td>${o.cancelled?'':`<input type="checkbox" data-admin="auto" data-id="${o.id}" ${o.auto?'checked':''} aria-label="Автоматическая смена статуса">`}</td>
+   <td>${o.cancelled?'':`<button class="link" style="color:var(--danger)" data-action="cancel" data-id="${o.id}">Отменить</button>`}</td></tr>`).join('')}
+  </tbody></table></div>`:`<div class="empty"><h3>Заказов пока нет</h3><p>Оформите тестовый заказ в каталоге, и он появится здесь.</p><a class="btn" href="#/catalog">В каталог</a></div>`}
+  <div class="panel" style="margin-top:20px"><h3>Заканчиваются на складе</h3>${low.length?low.map(p=>`<div class="mini"><a href="#/p/${p.id}">${esc(p.name)}</a><span class="${stockOf(p)?'':'muted'}">${stockOf(p)?stockOf(p)+' шт.':'нет в наличии'}${S.notify.includes(p.id)?' · ждут поступления':''}</span></div>`).join(''):'<p class="muted" style="margin:0">Все товары в достатке.</p>'}</div>
+ </div>`;
+}
+const INFO={
+ delivery:()=>`<h1 style="font-size:30px">Доставка и оплата</h1>
+  <p>Все заказы отправляем с нашего склада в Алматы. Доставка бесплатная при заказе от ${fmt(FREE)}.</p>
+  <div class="tbl-wrap"><table class="tbl" style="min-width:520px"><thead><tr><th>Город</th><th>Срок</th><th>Курьер</th><th>Пункт выдачи</th></tr></thead><tbody>${CITIES.map(c=>`<tr><td>${c[0]}</td><td>${c[2]}</td><td>${fmt(deliveryCost(c[0],'courier',0))}</td><td>${fmt(deliveryCost(c[0],'pickup',0))}</td></tr>`).join('')}</tbody></table></div>
+  <h2>Как движется заказ</h2><ol><li>Принимаем заказ и проверяем наличие.</li><li>Собираем и упаковываем товар на складе в Алматы.</li><li>Передаём в службу доставки и присваиваем трек-номер.</li><li>Посылка проходит сортировочный центр и едет в ваш город.</li><li>Курьер привозит заказ или он ждёт вас в пункте выдачи 7 дней.</li></ol><p>Каждый этап виден в разделе <a href="#/orders">«Мои заказы»</a>, а при смене статуса приходит уведомление.</p>
+  <h2>Способы оплаты</h2><ul><li>Картой Visa или Mastercard на сайте. Карту можно сохранить в профиле.</li><li>Рассрочка 0-0-12 без переплаты.</li><li>При получении: картой или наличными.</li><li>Бонусами до 30% стоимости заказа.</li></ul>`,
+ returns:()=>`<h1 style="font-size:30px">Возврат и обмен</h1><p>Вернуть или обменять товар надлежащего качества можно в течение 14 дней после получения, если сохранены упаковка, комплектация и товарный вид.</p>
+  <h2>Как оформить возврат</h2><ol><li>Откройте заказ в разделе «Мои заказы» и нажмите «Вернуть товар».</li><li>Мы свяжемся с вами и согласуем, как передать товар.</li><li>После проверки вернём деньги тем же способом, которым вы платили, в течение 3–10 рабочих дней.</li></ol>
+  <h2>Гарантия</h2><p>На всю технику действует гарантия производителя от 12 месяцев. Если товар неисправен, мы сами передадим его в сервисный центр.</p>`,
+ faq:()=>`<h1 style="font-size:30px;margin-bottom:20px">Вопросы и ответы</h1><div class="faq">${[
+  ['Техника оригинальная?','Да. Мы работаем с официальными дистрибьюторами, на все товары есть гарантия производителя.'],
+  ['Как узнать, где мой заказ?','В разделе «Мои заказы» видно каждый этап: склад в Алматы, сортировочный центр, путь в ваш город и передача курьеру. Также есть трек-номер.'],
+  ['Сколько идёт доставка?','По Алматы 1 день, в Астану, Шымкент и Караганду 2–3 дня, в западные регионы до 6 дней. Точный срок показан на странице товара.'],
+  ['Можно купить в рассрочку?','Да, рассрочка 0-0-12 доступна при оформлении заказа.'],
+  ['Как работают бонусы?','С каждой покупки возвращаем от 2 до 5% бонусами. Ими можно оплатить до 30% следующего заказа.'],
+  ['Можно ли отменить заказ?','Да, пока заказ не передан в службу доставки. Кнопка «Отменить» есть в карточке заказа.'],
+  ['Что делать, если товара нет в наличии?','Нажмите «Сообщить о поступлении», и мы напишем, как только товар появится.'],
+  ['Безопасно ли сохранять карту?','Мы храним только последние 4 цифры и срок действия. Полный номер и CVV не сохраняются.']
+ ].map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div>`,
+ about:()=>`<h1 style="font-size:30px">О нас</h1><p>Tulpar Electronics появился в Алматы в 2026 году. Мы начали продавать электронику, потому что сами сталкивались с проблемой: хорошую технику в Казахстане часто приходится долго ждать, переплачивать или рисковать, покупая подделку.</p><p>Мы хотели сделать магазин, где покупатель в любом городе страны получает оригинальную технику по честной цене и точно знает, где находится его заказ.</p><p>Тулпар — крылатый конь из казахских легенд, символ скорости и надёжности. Мы стараемся быть такими же.</p>`,
+ author:()=>'',
+ contacts:()=>`<h1 style="font-size:30px">Контакты</h1><p><b>Телефон:</b> +7 (727) 000-00-00<br><b>WhatsApp:</b> <a href="https://wa.me/77000000000" target="_blank" rel="noopener">+7 700 000 00 00</a><br><b>Email:</b> hello@tulpar.example<br><b>Склад и самовывоз:</b> Алматы<br><b>Режим работы:</b> ежедневно с 9:00 до 21:00</p><p class="muted">Контакты в демо-версии условные.</p>`
+};
+function viewAuthor(){
+ const feats=[['Каталог','77 товаров в 13 категориях, поиск, фильтры по бренду, цене и наличию, сортировка'],['Карточка товара','описание, особенности, комплектация, характеристики, советы по выбору, вопросы и отзывы'],['Корзина','промокоды, бесплатная доставка от 50 000 ₸, расчёт итоговой суммы'],['Оформление заказа','18 городов Казахстана, курьер, пункт выдачи, самовывоз, оплата картой, в рассрочку или при получении'],['Личный кабинет','личные данные, адреса, банковские карты, бонусы и уровни лояльности'],['Отслеживание заказа','этапы доставки по реальному графику и схема пути посылки по Казахстану'],['Панель продавца','управление статусами заказов, статистика продаж, товары с малым остатком']];
+ return `<div class="wrap page">
+  <div class="author">
+   <div class="author-photo"><span aria-hidden="true">АС</span><img src="img/author.jpg" alt="Серикбеков Азамат" onload="this.parentNode.classList.add('ph')" onerror="this.remove()"></div>
+   <div>
+    <h1 style="font-size:clamp(26px,3.4vw,38px)">Ахантаев Азамат</h1>
+    <p class="muted" style="font-size:18px;margin:10px 0 0">Автор и разработчик сайта Tulpar Electronics</p>
+    <div class="facts" style="max-width:560px"><div><small>Университет</small>Satbayev University</div><div><small>Курс</small>3 курс</div></div>
+   </div>
+  </div>
+  <div class="two" style="margin-top:24px">
+   <div>
+    <div class="panel"><h3>О проекте</h3><p style="margin-top:0">Tulpar Electronics — учебный проект интернет-магазина электроники для Казахстана. Цель проекта — показать, как устроен современный онлайн-магазин: от каталога и корзины до оформления заказа и отслеживания доставки по городам страны.</p><p style="margin-bottom:0">Название связано с тулпаром — крылатым конём из казахских легенд, символом скорости и надёжности. Именно такой должна быть доставка.</p></div>
+    <div class="panel"><h3>Что реализовано</h3><table class="specs">${feats.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</table></div>
+   </div>
+   <aside>
+    <div class="panel"><h3>Технологии</h3><ul class="tips"><li>HTML5 — структура страниц</li><li>CSS3 — адаптивный дизайн для компьютера и телефона</li><li>JavaScript — логика магазина без сторонних библиотек</li><li>LocalStorage — хранение корзины, профиля и заказов в браузере</li><li>GitHub Pages — размещение сайта</li></ul></div>
+    <div class="panel"><h3>Связаться</h3><p style="margin-top:0">Вопросы и предложения по проекту можно отправить через чат на сайте или в WhatsApp.</p><a class="btn block" href="https://wa.me/77782703856" target="_blank" rel="noopener">Написать в WhatsApp</a></div>
+   </aside>
+  </div>
+  <p class="muted" style="font-size:14px;margin-top:24px">© 2026 Ахантаев Азамат. Учебный проект: товары и цены условные, оплата не проводится.</p>
+ </div>`;
+}
+function viewInfo(k){if(k==='author')return viewAuthor();const f=INFO[k];if(!f)return notFound();return `<div class="wrap page"><div class="prose">${f()}</div></div>`;}
+function notFound(){return `<div class="wrap page"><div class="empty"><h3>Страница не найдена</h3><p>Возможно, ссылка устарела.</p><a class="btn" href="#/">На главную</a></div></div>`;}
+
+/* ================= RENDER ================= */
+function parts(){return (location.hash.replace(/^#\/?/,'')||'').split('/');}
+function render(keepScroll){
+ const [page,arg,extra]=parts();
+ let html;
+ switch(page){
+  case '':case 'catalog':html=viewHome();break;
+  case 'p':html=viewProduct(arg);break;
+  case 'cart':html=viewCart();break;
+  case 'checkout':html=viewCheckout();break;
+  case 'orders':html=viewOrders();break;
+  case 'order':html=viewOrder(arg,extra==='new');break;
+  case 'profile':html=viewProfile();break;
+  case 'fav':html=viewFav();break;
+  case 'admin':html=viewAdmin();break;
+  case 'info':html=viewInfo(arg);break;
+  default:html=notFound();
+ }
+ if(html==='')return;
+ $('#app').innerHTML=html;
+ updateHeader();
+ if(!keepScroll){
+  if(page==='catalog'){const el=$('#catalog');if(el)el.scrollIntoView();}
+  else if(location.hash.includes('#reviews')){}
+  else window.scrollTo(0,0);
+ }
+}
+function updateHeader(){
+ $('#cartCount').textContent=cartCount()||'';
+ $('#favCount').textContent=S.fav.length||'';
+ const active=S.orders.filter(o=>!o.cancelled&&!isDone(o)).length;
+ $('#ordCount').textContent=active||'';
+ $('#cityLbl').textContent=curCity();
+ $('#userLbl').textContent=S.user?S.user.name.split(' ')[0]:'Войти';
+ const page=parts()[0];
+ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',a.dataset.nav===page||(a.dataset.nav==='orders'&&page==='order')||(a.dataset.nav==='author'&&location.hash==='#/info/author')));
+}
+function refresh(){const page=parts()[0];if(page===''||page==='catalog'){renderGrid();updateHeader();document.querySelectorAll('.section .grid').forEach(()=>{});}else render(true);}
+
+/* ================= CART OPS ================= */
+function addCart(id,d=1){
+ const p=byId(id);const cur=S.cart[id]||0,next=cur+d;
+ if(next>stockOf(p)){toast(`На складе только ${stockOf(p)} шт.`);return;}
+ if(next<=0)delete S.cart[id];else S.cart[id]=next;
+ save();if(d>0&&cur===0)toast('Добавлено в корзину');refresh();
+}
+
+/* ================= MODALS ================= */
+const dlg=$('#dlg');
+function modal(html){dlg.innerHTML=`<div class="dlg">${html}</div>`;dlg.showModal();const f=dlg.querySelector('input,select');if(f)f.focus();}
+function cardModal(){modal(`<h3>Новая карта</h3><form data-form="card">
+ <div class="field"><label for="cNum">Номер карты</label><input class="input" id="cNum" name="num" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="23" required></div>
+ <p class="hint">Для проверки подойдёт тестовый номер 4242 4242 4242 4242.</p>
+ <div class="row2"><div class="field"><label for="cExp">Срок действия</label><input class="input" id="cExp" name="exp" placeholder="ММ/ГГ" inputmode="numeric" autocomplete="cc-exp" maxlength="5" required></div>
+ <div class="field"><label for="cName">Имя на карте</label><input class="input" id="cName" name="holder" autocomplete="cc-name" placeholder="AIGERIM SAPAROVA" required></div></div>
+ <p class="err" id="cErr" hidden></p>
+ <div class="dlg-actions"><button class="btn ghost" type="button" data-action="close">Отмена</button><button class="btn" type="submit">Сохранить карту</button></div></form>`);}
+function addrModal(){modal(`<h3>Новый адрес</h3><form data-form="addr">
+ <div class="field"><label for="aCity">Город</label><select class="input" id="aCity" name="city">${CITIES.map(x=>`<option ${x[0]===curCity()?'selected':''}>${x[0]}</option>`).join('')}</select></div>
+ <div class="field"><label for="aStreet">Улица и дом</label><input class="input" id="aStreet" name="street" required placeholder="пр. Абая, 52"></div>
+ <div class="row2"><div class="field"><label for="aApt">Квартира / офис</label><input class="input" id="aApt" name="apt"></div><div class="field"><label for="aNote">Комментарий</label><input class="input" id="aNote" name="note" placeholder="Домофон 52"></div></div>
+ <div class="dlg-actions"><button class="btn ghost" type="button" data-action="close">Отмена</button><button class="btn" type="submit">Сохранить адрес</button></div></form>`);}
+function notifyModal(id){const p=byId(id);modal(`<h3>Сообщить о поступлении</h3><p class="muted" style="margin-top:-8px">${esc(p.name)}</p><form data-form="notify" data-id="${id}">
+ <div class="field"><label for="nEmail">Email</label><input class="input" id="nEmail" name="email" type="email" required value="${esc(S.user?.email||'')}"></div>
+ <div class="dlg-actions"><button class="btn ghost" type="button" data-action="close">Отмена</button><button class="btn" type="submit">Сообщить мне</button></div></form>`);}
+function cityModal(){modal(`<h3>Ваш город</h3><p class="muted" style="margin:-8px 0 14px">От города зависят сроки и стоимость доставки.</p>
+ <div class="citylist">${CITIES.map(c=>`<button class="chip ${c[0]===curCity()?'on':''}" data-action="setcity" data-city="${c[0]}">${c[0]}</button>`).join('')}</div>`);}
+function setCity(n,msg){S.city=n;S.cityAsked=true;UI.estCity=null;if(UI.co){UI.co.city=n;UI.co.addrId='new';}save();if(dlg.open)dlg.close();if(msg)toast(msg);render(true);}
+function luhn(n){let s=0,alt=false;for(let i=n.length-1;i>=0;i--){let d=+n[i];if(alt){d*=2;if(d>9)d-=9;}s+=d;alt=!alt;}return s%10===0;}
+
+/* ================= CHAT ================= */
+function botReply(t){
+ t=t.toLowerCase();
+ if(/где|статус|заказ|трек/.test(t)){const o=S.orders.find(o=>!o.cancelled);return o?`Заказ №${o.id}: «${statusText(o)}». ${where(o).text}. Весь путь посылки виден в разделе «Мои заказы».`:'У вас пока нет заказов. Когда оформите, здесь можно будет узнать статус.';}
+ if(/достав|срок|идёт|идет/.test(t))return 'Отправляем со склада в Алматы. По Алматы 1 день, в Астану, Шымкент и Караганду 2–3 дня, в западные регионы до 6 дней. Бесплатно от 50 000 ₸.';
+ if(/рассроч|kaspi|каспи|кредит/.test(t))return 'Есть рассрочка 0-0-12 без переплаты. Выберите её на шаге оплаты при оформлении заказа.';
+ if(/возврат|вернуть|обмен/.test(t))return 'Вернуть или обменять товар можно в течение 14 дней. В карточке доставленного заказа есть кнопка «Вернуть товар».';
+ if(/гарант|оригинал|подделк/.test(t))return 'Вся техника оригинальная, с гарантией производителя от 12 месяцев.';
+ if(/оплат|карт/.test(t))return 'Принимаем Visa и Mastercard, рассрочку и оплату при получении. Карту можно сохранить в профиле.';
+ if(/промо|скидк|код/.test(t))return 'Код TULPAR10 даёт скидку 10% на заказ. Введите его в корзине.';
+ if(/привет|здравств|салем|сәлем|добрый/.test(t))return 'Здравствуйте! Подскажу по доставке, оплате, заказу или возврату.';
+ return 'Спасибо за вопрос! Оператор ответит в рабочее время, с 9:00 до 21:00. Быстрее всего написать нам в WhatsApp.';
+}
+function renderChat(){const log=$('#chatLog');const msgs=S.chat.length?S.chat:[{me:false,t:'Здравствуйте! Я помощник Tulpar. Спросите про доставку, оплату или ваш заказ.'}];log.innerHTML=msgs.map(m=>`<div class="msg ${m.me?'me':'bot'}">${esc(m.t)}</div>`).join('');log.scrollTop=log.scrollHeight;}
+function chatSend(t){if(!t.trim())return;S.chat.push({me:true,t});S.chat.push({me:false,t:botReply(t)});S.chat=S.chat.slice(-40);save();renderChat();}
+
+/* ================= EVENTS ================= */
+document.addEventListener('click',e=>{
+ const j=e.target.closest('[data-jump]');if(j){e.preventDefault();const t=document.getElementById(j.dataset.jump);if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});return;}
+ const el=e.target.closest('[data-action]');if(!el)return;
+ const a=el.dataset.action,id=el.dataset.id;
+ switch(a){
+  case 'add':addCart(id,1);break;
+  case 'inc':addCart(id,1);break;
+  case 'dec':addCart(id,-1);break;
+  case 'rm':delete S.cart[id];save();refresh();break;
+  case 'fav':{const i=S.fav.indexOf(id);if(i>=0){S.fav.splice(i,1);toast('Убрано из избранного');}else{S.fav.push(id);toast('Добавлено в избранное');}save();refresh();break;}
+  case 'cat':{UI.cat=el.dataset.cat;const pg=parts()[0];if(pg===''||pg==='catalog'){document.querySelectorAll('.chip').forEach(c=>{c.classList.toggle('on',c.dataset.cat===UI.cat);c.setAttribute('aria-selected',c.dataset.cat===UI.cat)});renderGrid(true);}break;}
+  case 'more':UI.limit+=PAGE;renderGrid();break;
+  case 'reset':UI.limit=PAGE;UI.brands=[];UI.max=null;UI.stock=false;UI.cat='all';UI.q='';$('#q').value='';render(true);break;
+  case 'notify':notifyModal(id);break;
+  case 'city':cityModal();break;
+  case 'setcity':setCity(el.dataset.city);break;
+  case 'close':dlg.close();break;
+  case 'promo-rm':S.promo=null;save();render(true);break;
+  case 'place':placeOrder();break;
+  case 'add-card':cardModal();break;
+  case 'card-rm':S.cards=S.cards.filter(k=>k.id!==id);save();render(true);toast('Карта удалена');break;
+  case 'add-addr':addrModal();break;
+  case 'addr-rm':S.addresses=S.addresses.filter(x=>x.id!==id);if(S.addresses.length&&!S.addresses.some(x=>x.def))S.addresses[0].def=true;save();render(true);break;
+  case 'addr-def':S.addresses.forEach(x=>x.def=x.id===id);save();render(true);break;
+  case 'ptab':UI.ptab=el.dataset.tab;render(true);break;
+  case 'logout':S.user=null;UI.co=null;save();toast('Вы вышли из профиля');render();break;
+  case 'cancel':{const o=S.orders.find(x=>String(x.id)===id);if(o&&!o.cancelled){o.cancelled=true;S.bonus+=o.totals.bonus;o.items.forEach(i=>S.sold[i.id]=Math.max(0,(S.sold[i.id]||0)-i.q));save();toast(`Заказ №${o.id} отменён`);render(true);}break;}
+  case 'return':{const o=S.orders.find(x=>String(x.id)===id);o.returnReq=true;save();toast('Заявка на возврат принята. Мы свяжемся с вами.');render(true);break;}
+  case 'repeat':{const o=S.orders.find(x=>String(x.id)===id);let miss=0;o.items.forEach(i=>{const p=byId(i.id);const can=Math.min(i.q,stockOf(p)-(S.cart[i.id]||0));if(can>0)S.cart[i.id]=(S.cart[i.id]||0)+can;if(can<i.q)miss++;});save();if(miss)toast('Часть товаров закончилась на складе');location.hash='#/cart';break;}
+  case 'chat-toggle':{const c=$('#chat');c.classList.toggle('open');if(c.classList.contains('open')){renderChat();$('#chatIn').focus();}break;}
+  case 'chat-quick':chatSend(el.dataset.q);break;
+  case 'promo-copy':try{navigator.clipboard.writeText('TULPAR10');}catch(err){}toast('Код TULPAR10 скопирован');break;
+  case 'sheet-close':S.seenPromo=true;save();el.closest('.sheet').remove();break;
+ }
+});
+document.addEventListener('submit',e=>{
+ const f=e.target.closest('[data-form]');if(!f)return;e.preventDefault();
+ const d=Object.fromEntries(new FormData(f));const k=f.dataset.form;
+ if(k==='promo'){const c=(d.code||'').trim().toUpperCase();if(PROMOS[c]){if(!PROMOS[c].calc(calc().sub)){UI.errs.promo='Код действует от 30 000 ₸.';}else{S.promo=c;UI.errs.promo=null;save();toast('Промокод применён');}}else UI.errs.promo='Такого промокода нет. Попробуйте TULPAR10.';render(true);}
+ if(k==='login'){const ph=(d.phone||'').replace(/\D/g,'');if(!d.name.trim()||ph.length<11){UI.errs.login='Укажите имя и телефон в формате +7 700 000 00 00.';render(true);return;}UI.errs.login=null;S.user={name:d.name.trim(),phone:d.phone.trim(),email:(d.email||'').trim(),city:d.city,since:Date.now()};UI.co=null;save();toast('Профиль создан');render();}
+ if(k==='profile'){Object.assign(S.user,{name:d.name.trim(),phone:d.phone.trim(),email:(d.email||'').trim(),city:d.city,sms:!!d.sms});save();toast('Изменения сохранены');render(true);}
+ if(k==='card'){
+  const num=(d.num||'').replace(/\D/g,'');const err=$('#cErr');
+  const m=(d.exp||'').match(/^(\d{2})\s*\/\s*(\d{2})$/);
+  let msg='';
+  if(num.length<13||num.length>19||!luhn(num))msg='Номер карты введён с ошибкой.';
+  else if(!m||+m[1]<1||+m[1]>12)msg='Срок укажите в формате ММ/ГГ.';
+  else{const exp=new Date(2000+ +m[2],+m[1],0,23,59);if(exp<new Date())msg='Срок действия карты истёк.';}
+  if(!d.holder.trim())msg=msg||'Укажите имя на карте.';
+  if(msg){err.textContent=msg;err.hidden=false;return;}
+  const brand=num[0]==='4'?'Visa':/^(5[1-5]|2[2-7])/.test(num)?'Mastercard':'Карта';
+  const card={id:'k'+Date.now(),brand,last4:num.slice(-4),exp:`${m[1]}/${m[2]}`,holder:d.holder.trim().toUpperCase()};
+  S.cards.push(card);if(UI.co){UI.co.cardId=card.id;UI.co.pay='card';UI.errs.card=null;}
+  save();dlg.close();toast(`Карта ${brand} •••• ${card.last4} сохранена`);render(true);
+ }
+ if(k==='addr'){const a={id:'a'+Date.now(),city:d.city,street:d.street.trim(),apt:(d.apt||'').trim(),note:(d.note||'').trim(),def:!S.addresses.length};S.addresses.push(a);save();dlg.close();toast('Адрес сохранён');render(true);}
+ if(k==='notify'){const id=f.dataset.id;if(!S.notify.includes(id))S.notify.push(id);save();dlg.close();toast(`Напишем на ${d.email}, как только товар появится`);}
+ if(k==='review'){const id=f.dataset.id;(S.reviews[id]=S.reviews[id]||[]).unshift({name:d.name.trim(),r:+d.r,text:d.text.trim(),t:Date.now()});save();toast('Спасибо за отзыв!');render(true);}
+ if(k==='chat'){chatSend(d.m||'');f.reset();}
+ if(k==='subscribe'){S.subscribed=true;save();f.reset();toast('Готово! Код WELCOME5000 даёт −5 000 ₸ на заказ от 30 000 ₸');}
+});
+document.addEventListener('input',e=>{
+ const t=e.target;
+ if(t.id==='q'){UI.q=t.value;const pg=parts()[0];if(pg!==''&&pg!=='catalog')location.hash='#/catalog';else renderGrid(true);return;}
+ if(t.dataset.co&&UI.co){UI.co[t.dataset.co]=t.value;return;}
+ if(t.dataset.filter==='max'){UI.max=+t.value;$('#maxv').textContent=fmt(UI.max);renderGrid(true);}
+ if(t.id==='cNum'){const v=t.value.replace(/\D/g,'').slice(0,19);t.value=v.replace(/(.{4})/g,'$1 ').trim();}
+ if(t.id==='cExp'){let v=t.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);t.value=v;}
+});
+document.addEventListener('change',e=>{
+ const t=e.target;
+ if(t.dataset.filter==='brand'){UI.brands=[...document.querySelectorAll('[data-filter="brand"]:checked')].map(x=>x.value);renderGrid(true);}
+ if(t.dataset.filter==='stock'){UI.stock=t.checked;renderGrid(true);}
+ if(t.dataset.filter==='sort'){UI.sort=t.value;renderGrid(true);}
+ if(t.dataset.change==='estCity'){UI.estCity=t.value;render(true);}
+ if(t.dataset.cochange&&UI.co){const f=t.dataset.cochange;UI.co[f]=t.type==='checkbox'?t.checked:t.value;if(f==='city'&&UI.co.city!=='Алматы'&&UI.co.method==='self')UI.co.method='courier';UI.errs={};render(true);}
+ if(t.dataset.admin==='stage'){const o=S.orders.find(x=>String(x.id)===t.dataset.id);setStage(o,+t.value);toast(`Заказ №${o.id}: ${statusText(o)}`);render(true);}
+ if(t.dataset.admin==='auto'){const o=S.orders.find(x=>String(x.id)===t.dataset.id);o.auto=t.checked;if(o.auto)reAnchor(o);save();}
+ if(t.dataset.admin==='fast'){S.fast=t.checked;S.orders.forEach(o=>{if(!o.cancelled&&o.auto)reAnchor(o);});save();toast(S.fast?'Ускоренный режим включён':'Статусы идут по реальному графику');render(true);}
+});
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+window.addEventListener('hashchange',()=>{UI.errs={};render();});
+
+/* status auto-advance */
+let lastMapDraw=Date.now();
+setInterval(()=>{const pg=parts()[0];if(tick(true)){if(['orders','order','admin'].includes(pg))render(true);else updateHeader();lastMapDraw=Date.now();}else if(pg==='order'&&Date.now()-lastMapDraw>20000&&!document.querySelector('dialog[open]')){render(true);lastMapDraw=Date.now();}},4000);
+
+/* first-visit promo */
+if(!S.seenPromo){setTimeout(()=>{if(S.seenPromo||document.querySelector('.sheet'))return;const s=document.createElement('aside');s.className='sheet';s.setAttribute('aria-label','Скидка на первый заказ');
+ s.innerHTML=`<h3>Скидка 10% на первый заказ</h3><p class="muted" style="margin:8px 0 14px">Введите код в корзине: <span class="code">TULPAR10</span></p><div style="display:flex;gap:8px"><button class="btn gold sm" data-action="promo-copy">Скопировать код</button><button class="btn ghost sm" data-action="sheet-close">Закрыть</button></div>`;
+ document.body.appendChild(s);},3500);}
+
+/* mobile: высота шапки, чат над клавиатурой */
+(function(){
+ const top=document.querySelector('.top'),root=document.documentElement,chat=document.getElementById('chat'),vv=window.visualViewport;
+ const setH=()=>root.style.setProperty('--hdr',top.offsetHeight+'px');
+ setH();addEventListener('resize',setH);addEventListener('orientationchange',setH);
+ if('ResizeObserver' in window)new ResizeObserver(setH).observe(top);
+ const fit=()=>{
+  const on=matchMedia('(max-width:760px)').matches&&chat.classList.contains('open');
+  document.body.classList.toggle('chat-open',on);
+  if(on&&vv){chat.style.height=vv.height+'px';chat.style.top=vv.offsetTop+'px';}else{chat.style.height='';chat.style.top='';}
+ };
+ if(vv){vv.addEventListener('resize',fit);vv.addEventListener('scroll',fit);}
+ addEventListener('resize',fit);
+ new MutationObserver(fit).observe(chat,{attributes:true,attributeFilter:['class']});
+})();
+
+$('#q').value=UI.q;
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+ФОТО ТОВАРОВ
+
+Положите фото в эту папку под такими именами (формат .jpg, .png или .webp).
+Лучше квадратные или 4:3, на белом фоне, 800–1200 px по ширине.
+Если фото нет, сайт покажет нарисованную иллюстрацию.
+
+== Смартфоны ==
+s25.jpg         Samsung Galaxy S25 12/256 ГБ
+ip16.jpg        Apple iPhone 16 128 ГБ
+rn14.jpg        Xiaomi Redmi Note 14 Pro 8/256 ГБ
+a56.jpg         Samsung Galaxy A56 8/256 ГБ
+ip16pro.jpg     Apple iPhone 16 Pro 256 ГБ
+s25u.jpg        Samsung Galaxy S25 Ultra 12/512 ГБ
+x14t.jpg        Xiaomi 14T 12/256 ГБ
+x7pro.jpg       POCO X7 Pro 12/256 ГБ
+a16.jpg         Samsung Galaxy A16 4/128 ГБ
+honor200.jpg    HONOR 200 8/256 ГБ
+rm13.jpg        realme 13 Pro+ 12/512 ГБ
+
+== Ноутбуки ==
+mba.jpg         Apple MacBook Air 13″ M3 16/256 ГБ
+vivo15.jpg      ASUS Vivobook 15 i5 / 16 / 512 ГБ
+legion.jpg      Lenovo Legion 5 Ryzen 7 / RTX 4060
+mbp14.jpg       Apple MacBook Pro 14″ M4 16/512 ГБ
+hp15.jpg        HP Pavilion 15 Ryzen 5 / 16 / 512 ГБ
+aspire5.jpg     Acer Aspire 5 i3 / 8 / 512 ГБ
+rog16.jpg       ASUS ROG Strix G16 i7 / RTX 4070
+mated16.jpg     HUAWEI MateBook D 16 i5 / 16 / 512 ГБ
+ideapad3.jpg    Lenovo IdeaPad Slim 3 Ryzen 5 / 8 / 512 ГБ
+
+== Планшеты ==
+ipad.jpg        Apple iPad 11″ 128 ГБ Wi-Fi
+tabs9.jpg       Samsung Galaxy Tab S9 FE 128 ГБ
+ipadair.jpg     Apple iPad Air 11″ M2 128 ГБ
+pad6s.jpg       Xiaomi Pad 6S Pro 8/256 ГБ
+taba9.jpg       Samsung Galaxy Tab A9+ 8/128 ГБ
+tabm11.jpg      Lenovo Tab M11 4/128 ГБ
+
+== Наушники ==
+xm5.jpg         Sony WH-1000XM5
+app2.jpg        Apple AirPods Pro 2 (USB-C)
+jbl520.jpg      JBL Tune 520BT
+airpods4.jpg    Apple AirPods 4
+buds3.jpg       Samsung Galaxy Buds3 Pro
+wf5.jpg         Sony WF-1000XM5
+beam2.jpg       JBL Tune Beam 2
+rbuds6.jpg      Xiaomi Redmi Buds 6 Active
+major5.jpg      Marshall Major V
+hd450.jpg       Sennheiser ACCENTUM Wireless
+
+== Часы и браслеты ==
+aw10.jpg        Apple Watch Series 10 42 мм
+band9.jpg       Xiaomi Smart Band 9
+gw7.jpg         Samsung Galaxy Watch7 44 мм
+awse.jpg        Apple Watch SE 40 мм
+gt5.jpg         HUAWEI Watch GT 5 46 мм
+bip5.jpg        Amazfit Bip 5
+rw5.jpg         Xiaomi Redmi Watch 5 Active
+
+== Мониторы ==
+g5.jpg          Samsung Odyssey G5 27″ 2K 165 Гц
+lg27.jpg        LG UltraGear 27″ 2K 180 Гц
+a27i.jpg        Xiaomi Monitor A27i 27″
+dell24.jpg      Dell 24″ P2425H
+
+== Телевизоры ==
+tv55.jpg        Samsung 55″ Crystal UHD 4K
+tv43.jpg        Xiaomi TV A 43″ 2025
+lgc4.jpg        LG 65″ OLED evo C4
+q60d.jpg        Samsung 50″ QLED Q60D
+tcl55.jpg       TCL 55″ QLED C655
+his43.jpg       Hisense 43″ A6N 4K
+
+== Игры ==
+ps5.jpg         Sony PlayStation 5 Slim
+xsx.jpg         Xbox Series X 1 ТБ
+switch.jpg      Nintendo Switch OLED
+dualsense.jpg   Геймпад Sony DualSense
+xboxpad.jpg     Геймпад Xbox Wireless Controller
+
+== Колонки ==
+charge5.jpg     JBL Charge 5
+emb2.jpg        Marshall Emberton II
+flip6.jpg       JBL Flip 6
+stmidi.jpg      Яндекс Станция Миди
+xb100.jpg       Sony SRS-XB100
+encore.jpg      JBL PartyBox Encore
+
+== Фото и видео ==
+gopro13.jpg     GoPro HERO13 Black
+zve10.jpg       Sony ZV-E10 II Kit 16–50 мм
+instax12.jpg    Fujifilm Instax Mini 12
+
+== Умный дом ==
+s20.jpg         Xiaomi Robot Vacuum S20
+purifier.jpg    Xiaomi Smart Air Purifier 4 Compact
+c200.jpg        TP-Link Tapo C200 камера
+
+== Аксессуары ==
+anker.jpg       Anker PowerCore 20000 мА·ч
+ad20.jpg        Apple 20W USB-C адаптер
+nano65.jpg      Anker Nano 65W GaN
+mx3s.jpg        Logitech MX Master 3S
+mxkeys.jpg      Logitech MX Keys S
+t7.jpg          Samsung T7 SSD 1 ТБ
+pb10.jpg        Xiaomi Power Bank 10000 мА·ч 22,5 Вт
+
+Чтобы добавить новый товар, скопируйте строку любого товара в index.html (массив P),
+поменяйте id, название, цену и характеристики, а фото положите в img/ с этим id.
